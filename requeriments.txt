@@ -1,0 +1,5 @@
+binance-connector
+pandas
+numpy
+ta-lib
+colorama
