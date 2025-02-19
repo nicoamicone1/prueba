@@ -22,27 +22,6 @@ def obtener_saldo_futuros():
         return 30  # Valor por defecto en caso de error
 
 # ===========================
-# LECTURA DE CLAVES DESDE KEYS.TXT
-# ===========================
-# Asegúrate de que el archivo keys.txt esté en el mismo directorio y tenga:
-# API_KEY=tu_api_key
-# API_SECRET=tu_api_secret
-api_key = ""
-api_secret = ""
-try:
-    with open("keys.txt", "r") as f:
-        lines = f.read().splitlines()
-    for line in lines:
-        if "API_KEY" in line:
-            api_key = line.split("=")[1].strip()
-        elif "API_SECRET" in line:
-            api_secret = line.split("=")[1].strip()
-except Exception as e:
-    print(f"{Fore.RED}Error leyendo keys.txt: {e}")
-    api_key = "TU_API_KEY"
-    api_secret = "TU_API_SECRET"
-
-# ===========================
 # CONFIGURACIÓN DE LA API
 # ===========================
 client = Client(api_key, api_secret)
