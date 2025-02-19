@@ -237,7 +237,7 @@ print(f"{Fore.CYAN}Parámetros del símbolo - Tick size: {tick_size}, Step size:
 # ===========================
 # VARIABLES DE ESTADO
 # ===========================
-check_interval = 120  # Segundos entre chequeos
+check_interval = 60  # Segundos entre chequeos
 trade_in_progress = False
 initial_signal = None
 entry_price = None
