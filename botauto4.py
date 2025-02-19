@@ -22,6 +22,27 @@ def obtener_saldo_futuros():
         return 30  # Valor por defecto en caso de error
 
 # ===========================
+# LECTURA DE CLAVES DESDE KEYS.TXT
+# ===========================
+# Asegúrate de que el archivo keys.txt esté en el mismo directorio y tenga:
+# API_KEY=tu_api_key
+# API_SECRET=tu_api_secret
+api_key = ""
+api_secret = ""
+try:
+    with open("keys.txt", "r") as f:
+        lines = f.read().splitlines()
+    for line in lines:
+        if "API_KEY" in line:
+            api_key = line.split("=")[1].strip()
+        elif "API_SECRET" in line:
+            api_secret = line.split("=")[1].strip()
+except Exception as e:
+    print(f"{Fore.RED}Error leyendo keys.txt: {e}")
+    api_key = "TU_API_KEY"
+    api_secret = "TU_API_SECRET"
+
+# ===========================
 # CONFIGURACIÓN DE LA API
 # ===========================
 client = Client(api_key, api_secret)
@@ -176,7 +197,6 @@ def get_multi_timeframe_signal(symbol):
     sig_1m = get_ai_signal(symbol, interval="1m", lookback=30)
     sig_5m = get_ai_signal(symbol, interval="5m", lookback=30)
     sig_15m = get_ai_signal(symbol, interval="15m", lookback=30)
-    # Solo si las 3 señales coinciden se confirma
     if sig_1m == sig_5m == sig_15m:
         chart_1m = get_chart_pattern(symbol, interval="1m", lookback=50)
         if chart_1m == sig_1m or chart_1m == "NEUTRAL":
@@ -252,11 +272,9 @@ last_exit_time = None
 # ===========================
 # BUCLE PRINCIPAL: OPERACIONES Y MONITOREO
 # ===========================
-num_trades = 1
-
+# Se realizará una única orden (100% del capital asignado)
 while True:
     pos_info = client.futures_position_information(symbol=symbol)
-    # Si hay posición abierta, se considera la suma de órdenes (Binance agrupa las órdenes en una sola posición)
     position_open = any(abs(float(pos.get("positionAmt", "0"))) > 0 for pos in pos_info)
     
     if not position_open:
@@ -299,63 +317,40 @@ while True:
             print(f"{Fore.YELLOW}Señal NEUTRAL, no se abre operación.")
             time.sleep(check_interval)
             continue
-
-        # Dividir el capital total en 3 órdenes (cada una con 1/3 del capital total)
+    
+        # Calcular la cantidad a operar con el 100% del capital asignado
         trade_value_total = capital_total * trade_capital_ratio
-        order_quantities = []
-        for i in range(num_trades):
-            trade_value_i = trade_value_total / num_trades
-            cantidad_operacion_i = trade_value_i / precio_actual
-            cantidad_operacion_i_adj = adjust_quantity(cantidad_operacion_i, step_size)
-            order_quantities.append(cantidad_operacion_i_adj)
-        
-        total_order_qty = sum(order_quantities)
-        print(f"{Fore.CYAN}Se ejecutarán 3 órdenes con una cantidad total de {format_quantity(total_order_qty, step_size)} BNB (≈ USD {trade_value_total})")
-        
-        # Ejecutar las 3 órdenes de entrada
-        for i, qty in enumerate(order_quantities):
-            try:
-                order = client.futures_create_order(
-                    symbol=symbol,
-                    side=trade_side,
-                    type="MARKET",
-                    quantity=format_quantity(qty, step_size)
-                )
-                print(f"{Fore.GREEN}Orden de entrada {i+1} ejecutada:", order)
-                time.sleep(1)  # Pequeña pausa entre órdenes
-            except Exception as e:
-                print(f"{Fore.RED}Error al crear orden de entrada {i+1}: {e}")
-                time.sleep(60)
-                continue
-        
-        # Esperar a que las órdenes se consoliden en la posición
-        time.sleep(5)
+        order_qty = adjust_quantity(trade_value_total / precio_actual, step_size)
+        print(f"{Fore.CYAN}Se ejecutará una orden de {format_quantity(order_qty, step_size)} BNB (≈ USD {trade_value_total})")
+    
         try:
-            precio_actual = float(client.futures_symbol_ticker(symbol=symbol)["price"])
+            entry_order = client.futures_create_order(
+                symbol=symbol,
+                side=trade_side,
+                type="MARKET",
+                quantity=format_quantity(order_qty, step_size)
+            )
+            print(f"{Fore.GREEN}Orden de entrada ejecutada:", entry_order)
+            order_status = entry_order.get("status", "NEW")
+            while order_status != "FILLED":
+                entry_order = client.futures_get_order(symbol=symbol, orderId=entry_order['orderId'])
+                order_status = entry_order.get("status", "NEW")
+                time.sleep(1)
+            entry_price = float(entry_order.get("avgFillPrice", precio_actual))
+            if entry_price == 0:
+                entry_price = precio_actual
+            print(f"{Fore.GREEN}Precio de entrada establecido: {entry_price}")
+            
+            trade_in_progress = True
+            highest_price = entry_price
+            lowest_price = entry_price
+            current_sl = calc_sl(entry_price)
+            partial_profit_taken = False
         except Exception as e:
-            precio_actual = 0
-        # Obtener el precio de entrada agregado (se toma el promedio ponderado)
-        pos_info = client.futures_position_information(symbol=symbol)
-        total_qty = 0
-        weighted_sum = 0
-        for pos in pos_info:
-            qty = abs(float(pos.get("positionAmt", "0")))
-            if qty > 0:
-                ep = float(pos.get("entryPrice", "0"))
-                total_qty += qty
-                weighted_sum += ep * qty
-        if total_qty > 0:
-            entry_price = weighted_sum / total_qty
-        else:
-            entry_price = precio_actual
-        print(f"{Fore.GREEN}Precio de entrada agregado establecido: {entry_price}")
-        
-        trade_in_progress = True
-        highest_price = entry_price
-        lowest_price = entry_price
-        current_sl = calc_sl(entry_price)
-        partial_profit_taken = False
-
+            print(f"{Fore.RED}Error al crear orden de entrada: {e}")
+            time.sleep(60)
+            continue
+    
         initial_sl = current_sl
         initial_tp = calc_tp(entry_price)
         print(f"{Fore.CYAN}Stop Loss: {format_price(initial_sl, tick_size)} | Take Profit: {format_price(initial_tp, tick_size)}")
@@ -365,7 +360,7 @@ while True:
                 symbol=symbol,
                 side=sl_side,
                 type="STOP_MARKET",
-                quantity=format_quantity(total_order_qty, step_size),
+                quantity=format_quantity(order_qty, step_size),
                 stopPrice=format_price(initial_sl, tick_size),
                 timeInForce="GTC"
             )
@@ -377,7 +372,7 @@ while True:
                 symbol=symbol,
                 side="SELL" if trade_side=="BUY" else "BUY",
                 type="LIMIT",
-                quantity=format_quantity(total_order_qty, step_size),
+                quantity=format_quantity(order_qty, step_size),
                 price=format_price(initial_tp, tick_size),
                 timeInForce="GTC"
             )
