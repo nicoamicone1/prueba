@@ -1,42 +1,63 @@
-
-api_key = "RkavHxWrM3OMfVtTKmaJjwl7rKYrIhXMMU2IXaNXhqMXUMBKrkz472Bm04yHrsc8"
-api_secret = "qdk5W5OOGIo214HfXSrKt51FuGxnuh03vQ9s5JipzHyn7d2sBFXmrOS9K50CeFR5"
-
 import os
-import time, math, pandas as pd, numpy as np, talib
-from binance.client import Client
+import time, math, pandas as np
+import talib
+import pandas as pd
 from colorama import Fore, Style, init
+from binance.client import Client
 
-# ----------------------------
-# Configuración de API y Conexión
-# ----------------------------
-# Puedes obtener las claves desde las variables de entorno o definirlas aquí:
-# api_key = os.getenv("BINANCE_API_KEY")
-# api_secret = os.getenv("BINANCE_API_SECRET")
+# ===========================
+#  LECTURA DE CLAVES DESDE KEYS.TXT
+# ===========================
+api_key = ""
+api_secret = ""
 
+try:
+    with open("keys.txt", "r") as f:
+        lines = f.read().splitlines()
+    for line in lines:
+        if "API_KEY" in line:
+            api_key = line.split("=")[1].strip()
+        elif "API_SECRET" in line:
+            api_secret = line.split("=")[1].strip()
+except Exception as e:
+    print(f"{Fore.RED}Error leyendo keys.txt: {e}")
+    api_key = "SIN_API_KEY"
+    api_secret = "SIN_API_SECRET"
+
+# ===========================
+#  CONFIGURACIÓN DE API
+# ===========================
 client = Client(api_key, api_secret)
 symbol = "BNBUSDT"
 
 # Inicializar colorama para logs en color
 init(autoreset=True)
 
-# ----------------------------
-# Parámetros de mejora para maximizar ganancia y patrones chartistas
-# ----------------------------
-trailing_stop_pct = 0.005          # Trailing Stop del 0.5%
-partial_profit_threshold = 0.02    # Toma parcial a partir de 2% de ganancia
-partial_profit_ratio = 0.5         # Se cierra el 50% de la posición en toma parcial
-exit_cooldown = 300                # Cooldown de 5 minutos tras cierre por pérdida
+# ===========================
+#  PARÁMETROS DE TRADING
+# ===========================
+trailing_stop_pct = 0.005       # Trailing Stop del 0.5%
+partial_profit_threshold = 0.02 # Toma parcial a partir de 2% de ganancia
+partial_profit_ratio = 0.5      # Se cierra el 50% de la posición en toma parcial
+exit_cooldown = 300             # Cooldown de 5 minutos tras cierre por pérdida
 
-# ----------------------------
-# Funciones de ajuste y formateo
-# ----------------------------
+# Ajuste de capital y apalancamiento
+capital_invertido = 30
+apalancamiento = 10
+capital_total = capital_invertido * apalancamiento
+trade_capital_ratio = 1  # Usar el 100% del capital_total en cada trade
+
+# Stop Loss y Take Profit iniciales
+stop_loss_init_pct = 0.01  # 1%
+take_profit_init_pct = 0.01 # 1%
+
+# ===========================
+#  FUNCIONES DE FORMATEO
+# ===========================
 def adjust_price(value, tick_size):
-    """Redondea hacia abajo el precio al múltiplo permitido por tick_size."""
     return math.floor(value / tick_size) * tick_size
 
 def adjust_quantity(value, step_size):
-    """Redondea hacia abajo la cantidad al múltiplo permitido por step_size."""
     return math.floor(value / step_size) * step_size
 
 def format_price(price, tick_size):
@@ -47,12 +68,12 @@ def format_quantity(qty, step_size):
     decimals = len(str(step_size).split('.')[1])
     return f"{qty:.{decimals}f}"
 
-# ----------------------------
-# Función para actualizar la orden de trailing stop
-# ----------------------------
+# ===========================
+#  TRAILING STOP
+# ===========================
 def update_trailing_stop_order(symbol, quantity, sl_side, new_sl, step_size, tick_size):
     try:
-        # Cancelar órdenes STOP_MARKET existentes para el símbolo
+        # Cancelar órdenes STOP_MARKET existentes
         orders = client.futures_get_open_orders(symbol=symbol)
         for order in orders:
             if order.get("type") == "STOP_MARKET":
@@ -71,10 +92,14 @@ def update_trailing_stop_order(symbol, quantity, sl_side, new_sl, step_size, tic
         print(f"{Fore.RED}Error actualizando Trailing Stop Loss: {e}")
         return None
 
-# ----------------------------
-# Función de señal "IA" usando TA‑Lib (indicadores técnicos)
-# ----------------------------
+# ===========================
+#  SEÑALES DE IA (INDICADORES)
+# ===========================
 def get_ai_signal(symbol, interval="5m", lookback=30):
+    """
+    Calcula una señal (BULLISH o BEARISH) con SMA, RSI, MACD y Stochastic
+    usando TA-Lib.
+    """
     try:
         req_lookback = max(lookback, 50)
         klines = client.futures_klines(symbol=symbol, interval=interval, limit=req_lookback)
@@ -91,7 +116,7 @@ def get_ai_signal(symbol, interval="5m", lookback=30):
         last_rsi = rsi[-1] if not np.isnan(rsi[-1]) else 50
         rsi_signal = "BULLISH" if last_rsi < 40 else "BEARISH" if last_rsi > 60 else "NEUTRAL"
 
-        # MACD usando el histograma
+        # MACD
         macd, macdsignal, macdhist = talib.MACD(close_array, fastperiod=12, slowperiod=26, signalperiod=9)
         last_macdhist = macdhist[-1] if not np.isnan(macdhist[-1]) else 0
         macd_signal = "BULLISH" if last_macdhist > 0 else "BEARISH"
@@ -106,13 +131,13 @@ def get_ai_signal(symbol, interval="5m", lookback=30):
         stoch_signal = "BULLISH" if last_slowk > last_slowd else "BEARISH" if last_slowk < last_slowd else "NEUTRAL"
 
         print(
-            f"{Fore.CYAN}[IA] Señal - SMA: {Fore.GREEN if ma_signal=='BULLISH' else Fore.RED}{ma_signal}{Style.RESET_ALL} | "
+            f"{Fore.CYAN}[IA {interval}] - SMA: {Fore.GREEN if ma_signal=='BULLISH' else Fore.RED}{ma_signal}{Style.RESET_ALL} | "
             f"RSI: {last_rsi:.2f} ({Fore.GREEN if rsi_signal=='BULLISH' else Fore.RED if rsi_signal=='BEARISH' else Fore.YELLOW}{rsi_signal}{Style.RESET_ALL}) | "
             f"MACD Hist: {last_macdhist:.4f} ({Fore.GREEN if macd_signal=='BULLISH' else Fore.RED}{macd_signal}{Style.RESET_ALL}) | "
             f"STOCH: {last_slowk:.2f}/{last_slowd:.2f} ({Fore.GREEN if stoch_signal=='BULLISH' else Fore.RED if stoch_signal=='BEARISH' else Fore.YELLOW}{stoch_signal}{Style.RESET_ALL})"
         )
-        
-        # Lógica de señales modificada:
+
+        # Lógica de conteo
         if rsi_signal == "NEUTRAL":
             signals = [ma_signal, macd_signal, stoch_signal]
             required = 2
@@ -126,30 +151,28 @@ def get_ai_signal(symbol, interval="5m", lookback=30):
         print(f"{Fore.RED}Error en get_ai_signal: {e}")
         return "BULLISH"
 
-# ----------------------------
-# Función para detectar patrones chartistas (candlestick patterns) usando TA‑Lib
-# ----------------------------
+# ===========================
+#  PATRONES CHARTISTAS
+# ===========================
 def get_chart_pattern(symbol, interval="5m", lookback=50):
+    """
+    Usa TA-Lib para detectar patrones Engulfing, Hammer y Doji.
+    """
     try:
         klines = client.futures_klines(symbol=symbol, interval=interval, limit=lookback)
         opens = np.array([float(k[1]) for k in klines])
         highs = np.array([float(k[2]) for k in klines])
         lows  = np.array([float(k[3]) for k in klines])
         closes = np.array([float(k[4]) for k in klines])
-        # Detectar algunos patrones candlestick:
+
         engulfing = talib.CDLENGULFING(opens, highs, lows, closes)
         hammer = talib.CDLHAMMER(opens, highs, lows, closes)
         doji = talib.CDLDOJI(opens, highs, lows, closes)
-        
-        # Obtener los últimos valores de cada patrón:
+
         pat_engulfing = engulfing[-1]
         pat_hammer = hammer[-1]
         pat_doji = doji[-1]
-        
-        # Asumimos:
-        #   - Engulfing: > 0 indica patrón alcista, < 0 bajista.
-        #   - Hammer: > 0 indica patrón alcista, < 0 bajista.
-        #   - Doji se considera neutral.
+
         bullish_score = 0
         bearish_score = 0
         if pat_engulfing > 0:
@@ -160,47 +183,52 @@ def get_chart_pattern(symbol, interval="5m", lookback=50):
             bullish_score += 1
         elif pat_hammer < 0:
             bearish_score += 1
-        
-        # Definir señal global basada en patrones:
+
         if bullish_score > bearish_score:
             overall = "BULLISH"
         elif bearish_score > bullish_score:
             overall = "BEARISH"
         else:
             overall = "NEUTRAL"
-        
-        print(f"{Fore.MAGENTA}[Chart Patterns] Engulfing: {pat_engulfing}, Hammer: {pat_hammer}, Doji: {pat_doji} -> Overall: {overall}")
+
+        print(f"{Fore.MAGENTA}[Chart {interval}] Engulfing: {pat_engulfing}, Hammer: {pat_hammer}, Doji: {pat_doji} -> Overall: {overall}")
         return overall
     except Exception as e:
         print(f"{Fore.RED}Error en get_chart_pattern: {e}")
         return "NEUTRAL"
 
-# ----------------------------
-# Función para combinar señales de IA y patrones chartistas
-# ----------------------------
-def get_final_signal(symbol, ai_interval="5m", ai_lookback=30, chart_interval="5m", chart_lookback=50):
-    ai_signal = get_ai_signal(symbol, interval=ai_interval, lookback=ai_lookback)
-    chart_signal = get_chart_pattern(symbol, interval=chart_interval, lookback=chart_lookback)
-    signals = []
-    if ai_signal != "NEUTRAL":
-        signals.append(ai_signal)
-    if chart_signal != "NEUTRAL":
-        signals.append(chart_signal)
-    if len(signals) == 0:
-        final = ai_signal
-    else:
-        if signals.count("BULLISH") > signals.count("BEARISH"):
-            final = "BULLISH"
-        elif signals.count("BEARISH") > signals.count("BULLISH"):
-            final = "BEARISH"
-        else:
-            final = ai_signal  # desempata con la señal de IA
-    print(f"{Fore.CYAN}Señal combinada: {final} (AI: {ai_signal}, Chart: {chart_signal})")
-    return final
+# ===========================
+#  CONFIRMACIÓN MULTI-TIMEFRAME
+# ===========================
+def get_multi_timeframe_signal(symbol):
+    """
+    Compara señales en 5m y 15m. Solo retorna BULLISH si ambas son BULLISH,
+    BEARISH si ambas son BEARISH, de lo contrario NEUTRAL.
+    Además, aplica un filtro chartista en 5m.
+    """
+    signal_5m = get_ai_signal(symbol, interval="5m", lookback=30)
+    signal_15m = get_ai_signal(symbol, interval="15m", lookback=30)
 
-# ----------------------------
-# Función para imprimir información de posiciones abiertas
-# ----------------------------
+    # Si no coinciden, marcamos NEUTRAL
+    if signal_5m == signal_15m:
+        # Filtro chartista en 5m
+        chart_5m = get_chart_pattern(symbol, interval="5m", lookback=50)
+        # Si la señal coincide con el chart pattern, es una señal fuerte
+        if chart_5m == signal_5m:
+            return signal_5m
+        else:
+            # Si el chart pattern es neutral, mantenemos la señal AI
+            if chart_5m == "NEUTRAL":
+                return signal_5m
+            else:
+                # Si el chart pattern contradice la señal, nos quedamos neutrales
+                return "NEUTRAL"
+    else:
+        return "NEUTRAL"
+
+# ===========================
+#  MOSTRAR POSICIONES
+# ===========================
 def print_position_info(symbol):
     pos_info = client.futures_position_information(symbol=symbol)
     for pos in pos_info:
@@ -208,15 +236,12 @@ def print_position_info(symbol):
         if abs(amt) > 0:
             entry_price_pos = float(pos.get("entryPrice", "0"))
             current_price = float(client.futures_symbol_ticker(symbol=symbol)["price"])
-            if amt > 0:
-                pnl_pct = (current_price - entry_price_pos) / entry_price_pos
-            else:
-                pnl_pct = (entry_price_pos - current_price) / entry_price_pos
+            pnl_pct = (current_price - entry_price_pos) / entry_price_pos if amt > 0 else (entry_price_pos - current_price) / entry_price_pos
             print(f"{Fore.BLUE}Posición: {amt} {symbol} | Entrada: {entry_price_pos} | Actual: {current_price} | PnL: {pnl_pct*100:.2f}%")
 
-# ----------------------------
-# Función para forzar el cierre de posiciones abiertas
-# ----------------------------
+# ===========================
+#  CERRAR POSICIÓN
+# ===========================
 def force_close_position(symbol, step_size):
     try:
         pos_info = client.futures_position_information(symbol=symbol)
@@ -240,54 +265,39 @@ def force_close_position(symbol, step_size):
     except Exception as e:
         print(f"{Fore.RED}Error al cerrar posición: {e}")
 
-# ----------------------------
-# Parámetros generales de la operación
-# ----------------------------
-check_interval = 120  # Verificar cada 2 minutos
-
-# Capital y tamaño de operación
-capital_invertido = 30        # USD base invertidos
-apalancamiento = 10
-capital_total = capital_invertido * apalancamiento  # Valor total en USD
-trade_capital_ratio = 1    # Usar el 100% del capital_total en cada trade (ajusta según tu estrategia)
-
-# Parámetros iniciales para SL y TP (porcentaje respecto al precio de entrada)
-stop_loss_init_pct = 0.01    # 1%
-take_profit_init_pct = 0.01  # 1%
-
-# Obtener información de precisión para el símbolo
+# ===========================
+#  OBTENER INFORMACIÓN DEL SÍMBOLO
+# ===========================
 exchange_info = client.futures_exchange_info()
 symbol_info = next(item for item in exchange_info['symbols'] if item['symbol'] == symbol)
 tick_size = float(symbol_info['filters'][0]['tickSize'])
 step_size = float(symbol_info['filters'][1]['stepSize'])
 print(f"{Fore.CYAN}Parámetros del símbolo - Tick size: {tick_size}, Step size: {step_size}")
 
-# Variables de estado globales
+# ===========================
+#  VARIABLES DE ESTADO
+# ===========================
+check_interval = 120  # Segundos entre chequeos
 trade_in_progress = False
-initial_signal = None  # Esta será la señal combinada (AI + Chart Patterns) al momento de abrir la operación
+initial_signal = None
 entry_price = None
-trade_side = None  
-pnl_pct = 0  
-
-# Variables para trailing stop y beneficio parcial (se definen al abrir operación)
+trade_side = None
+pnl_pct = 0
 highest_price = None
 lowest_price = None
 current_sl = None
 partial_profit_taken = False
-
-# Variable para cooldown tras cierre por pérdida
 last_exit_time = None
 
-# ----------------------------
-# Bucle principal: operaciones y monitoreo cada 2 minutos
-# ----------------------------
+# ===========================
+#  BUCLE PRINCIPAL
+# ===========================
 while True:
-    # Verificar si hay posición abierta
     pos_info = client.futures_position_information(symbol=symbol)
     position_open = any(abs(float(pos.get("positionAmt", "0"))) > 0 for pos in pos_info)
     
-    # Si no hay posición abierta, revisar cooldown
     if not position_open:
+        # Cooldown tras pérdida
         if last_exit_time is not None and (time.time() - last_exit_time) < exit_cooldown:
             remaining = int(exit_cooldown - (time.time() - last_exit_time))
             print(f"{Fore.YELLOW}Cooldown activo. Esperando {remaining} segundos antes de reingresar.")
@@ -303,7 +313,7 @@ while True:
             print(f"{Fore.RED}Error al cancelar órdenes: {e}")
         time.sleep(2)
         
-        # Obtener precio actual
+        # Precio actual
         try:
             precio_actual = float(client.futures_symbol_ticker(symbol=symbol)["price"])
         except Exception as e:
@@ -311,30 +321,32 @@ while True:
             continue
         print(f"{Fore.CYAN}Precio actual de {symbol}: {precio_actual}")
     
-        # Obtener señales de IA y patrones chartistas y combinarlas
-        combined_signal = get_final_signal(symbol, ai_interval="5m", ai_lookback=30, chart_interval="5m", chart_lookback=50)
+        # Señal final multi-timeframe
+        combined_signal = get_multi_timeframe_signal(symbol)
         initial_signal = combined_signal
-        print(f"{Fore.CYAN}Señal combinada inicial: {combined_signal}")
+        print(f"{Fore.CYAN}Señal final: {combined_signal}")
     
-        # Definir dirección y niveles según la señal combinada
         if combined_signal == "BULLISH":
-            trade_side = "BUY"     # Abrir posición long
-            sl_side = "SELL"       # Orden para cerrar long (Stop Loss y TP)
-            calc_sl = lambda price: adjust_price(price * (1 - stop_loss_init_pct), tick_size)
-            calc_tp = lambda price: adjust_price(price * (1 + take_profit_init_pct), tick_size)
+            trade_side = "BUY"
+            sl_side = "SELL"
+            calc_sl = lambda p: adjust_price(p * (1 - stop_loss_init_pct), tick_size)
+            calc_tp = lambda p: adjust_price(p * (1 + take_profit_init_pct), tick_size)
+        elif combined_signal == "BEARISH":
+            trade_side = "SELL"
+            sl_side = "BUY"
+            calc_sl = lambda p: adjust_price(p * (1 + stop_loss_init_pct), tick_size)
+            calc_tp = lambda p: adjust_price(p * (1 - take_profit_init_pct), tick_size)
         else:
-            trade_side = "SELL"    # Abrir posición short
-            sl_side = "BUY"        # Orden para cerrar short (Stop Loss y TP)
-            calc_sl = lambda price: adjust_price(price * (1 + stop_loss_init_pct), tick_size)
-            calc_tp = lambda price: adjust_price(price * (1 - take_profit_init_pct), tick_size)
+            print(f"{Fore.YELLOW}Señal NEUTRAL, no se abre operación.")
+            time.sleep(check_interval)
+            continue
     
-        # Calcular monto a operar (capital_total * trade_capital_ratio)
         trade_value = capital_total * trade_capital_ratio
-        cantidad_operacion = trade_value / precio_actual  # en BNB
+        cantidad_operacion = trade_value / precio_actual
         cantidad_operacion_adj = adjust_quantity(cantidad_operacion, step_size)
-        print(f"{Fore.CYAN}Operando {format_quantity(cantidad_operacion_adj, step_size)} BNB (valor ≈ USD {trade_value})")
+        print(f"{Fore.CYAN}Operando {format_quantity(cantidad_operacion_adj, step_size)} BNB (≈ USD {trade_value})")
     
-        # Ejecutar orden de entrada (MARKET)
+        # Orden de entrada
         try:
             entry_order = client.futures_create_order(
                 symbol=symbol,
@@ -343,7 +355,6 @@ while True:
                 quantity=format_quantity(cantidad_operacion_adj, step_size)
             )
             print(f"{Fore.GREEN}Orden de entrada ejecutada:", entry_order)
-            # Esperar a que se complete la orden
             order_status = entry_order.get("status", "NEW")
             while order_status != "FILLED":
                 entry_order = client.futures_get_order(symbol=symbol, orderId=entry_order['orderId'])
@@ -353,8 +364,8 @@ while True:
             if entry_price == 0:
                 entry_price = precio_actual
             print(f"{Fore.GREEN}Precio de entrada establecido: {entry_price}")
+            
             trade_in_progress = True
-            # Inicializar variables para trailing stop y toma parcial
             highest_price = entry_price
             lowest_price = entry_price
             current_sl = calc_sl(entry_price)
@@ -364,12 +375,11 @@ while True:
             time.sleep(60)
             continue
     
-        # Calcular niveles iniciales de SL y TP
+        # Stop Loss y Take Profit
         initial_sl = current_sl
         initial_tp = calc_tp(entry_price)
-        print(f"{Fore.CYAN}Niveles establecidos - Stop Loss: {format_price(initial_sl, tick_size)} | Take Profit: {format_price(initial_tp, tick_size)}")
+        print(f"{Fore.CYAN}Stop Loss: {format_price(initial_sl, tick_size)} | Take Profit: {format_price(initial_tp, tick_size)}")
     
-        # Colocar órdenes de Stop Loss y Take Profit
         try:
             sl_order = client.futures_create_order(
                 symbol=symbol,
@@ -395,17 +405,17 @@ while True:
         except Exception as e:
             print(f"{Fore.RED}Error al colocar orden de Take Profit: {e}")
     else:
+        # Si hay una operación en curso
         print(f"{Fore.YELLOW}Operación en curso. Monitoreando posición...")
         print_position_info(symbol)
     
-    # Esperar el intervalo de verificación (2 minutos)
+    # Esperar el intervalo de verificación
     time.sleep(check_interval)
     
-    # Durante el monitoreo, obtener nuevas señales (IA y Chart) y combinarlas
-    new_combined_signal = get_final_signal(symbol, ai_interval="5m", ai_lookback=30, chart_interval="5m", chart_lookback=50)
-    print(f"{Fore.CYAN}[Monitoreo] Nueva señal combinada: {new_combined_signal}")
+    # Revisar señales y PnL
+    new_signal = get_multi_timeframe_signal(symbol)
+    print(f"{Fore.CYAN}[Monitoreo] Nueva señal: {new_signal}")
     
-    # Recuperar entry_price si no está definido
     if (entry_price is None or entry_price == 0) and position_open:
         for pos in pos_info:
             if abs(float(pos.get("positionAmt", "0"))) > 0:
@@ -414,7 +424,7 @@ while True:
     
     try:
         current_price = float(client.futures_symbol_ticker(symbol=symbol)["price"])
-        if entry_price is not None and entry_price != 0:
+        if entry_price and entry_price != 0:
             if trade_side == "BUY":
                 pnl_pct = (current_price - entry_price) / entry_price
             else:
@@ -427,20 +437,20 @@ while True:
         pnl_pct = 0
         print(f"{Fore.RED}Error al obtener PnL: {e}")
     
-    # Actualizar trailing stop dinámico
+    # Actualizar trailing stop
     if trade_in_progress:
         if trade_side == "BUY":
             highest_price = max(highest_price, current_price)
             new_trailing_sl = adjust_price(highest_price * (1 - trailing_stop_pct), tick_size)
             if new_trailing_sl > current_sl:
                 current_sl = new_trailing_sl
-                # Obtener cantidad actual de la posición
+                # Obtener cantidad actual
                 for pos in client.futures_position_information(symbol=symbol):
                     if abs(float(pos.get("positionAmt", "0"))) > 0:
                         current_qty = abs(float(pos.get("positionAmt", "0")))
                         break
-                update_trailing_stop_order(symbol, current_qty, sl_side, current_sl, step_size, tick_size)
-        else:  # Para posición short
+                update_trailing_stop_order(symbol, current_qty, "SELL", current_sl, step_size, tick_size)
+        else:
             lowest_price = min(lowest_price, current_price)
             new_trailing_sl = adjust_price(lowest_price * (1 + trailing_stop_pct), tick_size)
             if new_trailing_sl < current_sl:
@@ -449,9 +459,9 @@ while True:
                     if abs(float(pos.get("positionAmt", "0"))) > 0:
                         current_qty = abs(float(pos.get("positionAmt", "0")))
                         break
-                update_trailing_stop_order(symbol, current_qty, sl_side, current_sl, step_size, tick_size)
+                update_trailing_stop_order(symbol, current_qty, "BUY", current_sl, step_size, tick_size)
     
-    # Ejecutar toma de beneficio parcial si se supera el umbral y no se ha hecho ya
+    # Toma de beneficio parcial
     if pnl_pct >= partial_profit_threshold and not partial_profit_taken:
         pos_info = client.futures_position_information(symbol=symbol)
         for pos in pos_info:
@@ -478,7 +488,7 @@ while True:
                 )
             print(f"{Fore.GREEN}Orden de beneficio parcial ejecutada:", close_order)
             partial_profit_taken = True
-            # Cancelar órdenes pendientes y reestablecer trailing stop para la cantidad restante
+            # Cancelar órdenes pendientes y reestablecer trailing stop
             try:
                 cancel_result = client.futures_cancel_all_open_orders(symbol=symbol)
                 print(f"{Fore.GREEN}Órdenes canceladas tras beneficio parcial: {cancel_result['msg']}")
@@ -492,7 +502,7 @@ while True:
                     current_sl = adjust_price(current_price * (1 + trailing_stop_pct), tick_size)
                 new_sl_order = client.futures_create_order(
                     symbol=symbol,
-                    side=sl_side,
+                    side="SELL" if trade_side=="BUY" else "BUY",
                     type="STOP_MARKET",
                     quantity=format_quantity(remaining_qty, step_size),
                     stopPrice=format_price(current_sl, tick_size),
@@ -504,21 +514,24 @@ while True:
         except Exception as e:
             print(f"{Fore.RED}Error en beneficio parcial: {e}")
     
-    # Cerrar posición si se detecta reversión o pérdida excesiva
-    if (new_combined_signal != initial_signal and pnl_pct < 0):
-        print(f"{Fore.MAGENTA}Se detectó reversión en condiciones desfavorables. Procediendo al cierre de la posición.")
+    # Cierre por reversión negativa o pérdida excesiva
+    if (new_signal != initial_signal and pnl_pct < 0):
+        print(f"{Fore.MAGENTA}Se detectó reversión en condiciones desfavorables. Cerrando posición.")
         force_close_position(symbol, step_size)
         trade_in_progress = False
-        entry_price = None  # Reiniciar para la siguiente operación
-        last_exit_time = None  # Permite reingresar de inmediato con la señal de reversión
+        entry_price = None
+        last_exit_time = None
+        # Evitar re-abrir en el mismo ciclo
+        continue
     elif pnl_pct < -0.01:
-        print(f"{Fore.MAGENTA}Pérdida excesiva detectada. Procediendo al cierre de la posición y activando cooldown.")
+        print(f"{Fore.MAGENTA}Pérdida excesiva. Cerrando posición y activando cooldown.")
         force_close_position(symbol, step_size)
         trade_in_progress = False
         entry_price = None
         last_exit_time = time.time()
+        # Evitar re-abrir en el mismo ciclo
+        continue
     else:
         print(f"{Fore.GREEN}La operación se mantiene en curso sin cambios.")
 
-    # Esperar 1 minuto antes del siguiente ciclo de verificación
     time.sleep(60)
