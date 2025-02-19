@@ -8,20 +8,6 @@ from binance.client import Client
 from colorama import Fore, Style, init
 
 # ===========================
-# OBTENCIÓN DEL SALDO DE FUTUROS (USDT)
-# ===========================
-def obtener_saldo_futuros():
-    try:
-        balance_info = client.futures_account_balance()
-        for asset in balance_info:
-            if asset["asset"] == "USDT":
-                return float(asset["balance"])
-        return 0.0
-    except Exception as e:
-        print(f"{Fore.RED}Error al obtener saldo: {e}")
-        return 30  # Valor por defecto en caso de error
-
-# ===========================
 # CONFIGURACIÓN DE LA API
 # ===========================
 client = Client(api_key, api_secret)
@@ -37,7 +23,7 @@ partial_profit_ratio = 0.5      # Cierra el 50% de la posición en beneficio par
 exit_cooldown = 300             # Cooldown de 5 minutos tras cierre por pérdida
 
 # Capital y apalancamiento (usando saldo de futuros)
-capital_invertido = obtener_saldo_futuros()
+capital_invertido = 30
 apalancamiento = 10
 capital_total = capital_invertido * apalancamiento
 trade_capital_ratio = 1         # Usar el 100% del capital total en trading
@@ -170,20 +156,44 @@ def get_chart_pattern(symbol, interval="1m", lookback=50):
         return "NEUTRAL"
 
 # ===========================
-# CONFIRMACIÓN MULTI-TIMEFRAME (1m, 5m y 15m)
+# CONFIRMACIÓN MULTI-TIMEFRAME CON VOTACIÓN PONDERADA
 # ===========================
 def get_multi_timeframe_signal(symbol):
-    sig_1m = get_ai_signal(symbol, interval="1m", lookback=30)
-    sig_5m = get_ai_signal(symbol, interval="5m", lookback=30)
+    # Obtener señales de cada timeframe
+    sig_1h = get_ai_signal(symbol, interval="1h", lookback=30)
     sig_15m = get_ai_signal(symbol, interval="15m", lookback=30)
-    if sig_1m == sig_5m == sig_15m:
-        chart_1m = get_chart_pattern(symbol, interval="1m", lookback=50)
-        if chart_1m == sig_1m or chart_1m == "NEUTRAL":
-            return sig_1m
-        else:
-            return "NEUTRAL"
+    sig_5m = get_ai_signal(symbol, interval="5m", lookback=30)
+    sig_1m = get_ai_signal(symbol, interval="1m", lookback=30)
+    # Convertir señales: BULLISH=1, BEARISH=0
+    def sig_to_val(sig):
+        return 1 if sig == "BULLISH" else 0
+    v1h = sig_to_val(sig_1h)
+    v15m = sig_to_val(sig_15m)
+    v5m = sig_to_val(sig_5m)
+    v1m = sig_to_val(sig_1m)
+    # Pesos según prioridad:
+    total_weight = 1
+    weighted_sum = 0.4*v1h + 0.3*v15m + 0.2*v5m + 0.1*v1m
+    normalized_score = weighted_sum / total_weight
+    if normalized_score > 0.5:
+        final = "BULLISH"
+    elif normalized_score < 0.5:
+        final = "BEARISH"
     else:
-        return "NEUTRAL"
+        # Desempate usando RSI del timeframe 5m
+        try:
+            klines = client.futures_klines(symbol=symbol, interval="5m", limit=50)
+            df = pd.DataFrame(klines, columns=['open_time','open','high','low','close','volume',
+                                                 'close_time','quote_asset_volume','number_of_trades',
+                                                 'taker_buy_base_asset_volume','taker_buy_quote_asset_volume','ignore'])
+            df['close'] = pd.to_numeric(df['close'])
+            rsi_5m = ta.momentum.RSIIndicator(df['close'], window=14).rsi().iloc[-1]
+            final = "BULLISH" if rsi_5m < 50 else "BEARISH"
+        except Exception as e:
+            print(f"{Fore.RED}Error desempatando RSI en 5m: {e}")
+            final = "NEUTRAL"
+    print(f"{Fore.CYAN}[Multi-Timeframe] Señales: 1h={sig_1h}, 15m={sig_15m}, 5m={sig_5m}, 1m={sig_1m} -> Score: {normalized_score:.2f}, Final: {final}")
+    return final
 
 # ===========================
 # MOSTRAR INFORMACIÓN DE POSICIONES
@@ -236,7 +246,7 @@ print(f"{Fore.CYAN}Parámetros del símbolo - Tick size: {tick_size}, Step size:
 # ===========================
 # VARIABLES DE ESTADO
 # ===========================
-check_interval = 60  # Segundos entre chequeos
+check_interval = 60  # Ahora cada 5 minutos (300 segundos)
 trade_in_progress = False
 initial_signal = None
 entry_price = None
@@ -251,7 +261,6 @@ last_exit_time = None
 # ===========================
 # BUCLE PRINCIPAL: OPERACIONES Y MONITOREO
 # ===========================
-# Se realizará una única orden (100% del capital asignado)
 while True:
     pos_info = client.futures_position_information(symbol=symbol)
     position_open = any(abs(float(pos.get("positionAmt", "0"))) > 0 for pos in pos_info)
@@ -297,7 +306,6 @@ while True:
             time.sleep(check_interval)
             continue
     
-        # Calcular la cantidad a operar con el 100% del capital asignado
         trade_value_total = capital_total * trade_capital_ratio
         order_qty = adjust_quantity(trade_value_total / precio_actual, step_size)
         print(f"{Fore.CYAN}Se ejecutará una orden de {format_quantity(order_qty, step_size)} BNB (≈ USD {trade_value_total})")
