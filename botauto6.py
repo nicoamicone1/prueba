@@ -10,7 +10,7 @@ import ta
 import psutil
 from binance.client import Client
 from websocket import create_connection
-from threading import Thread
+from threading import Thread, Lock
 from colorama import Fore, Style, init
 from datetime import datetime
 
@@ -25,6 +25,7 @@ ERROR_COLOR = Fore.RED
 WARNING_COLOR = Fore.YELLOW
 SUCCESS_COLOR = Fore.GREEN
 BANNER_COLOR = Fore.MAGENTA
+POSITION_COLOR = Fore.BLUE
 
 def print_separator():
     print(f"\n{BANNER_COLOR}{'='*60}{Style.RESET_ALL}")
@@ -32,7 +33,7 @@ def print_separator():
 def print_banner():
     os.system('cls' if os.name == 'nt' else 'clear')
     print_separator()
-    print(f"{BANNER_COLOR}🛠️  INICIALIZANDO BOT DE TRADING AVANZADO")
+    print(f"{BANNER_COLOR}🚀 BOT DE TRADING AVANZADO CON GESTIÓN DINÁMICA DE RIESGO")
     print(f"{STATUS_COLOR}📅 Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{STATUS_COLOR}🐍 Python: {sys.version.split()[0]}")
     print(f"{STATUS_COLOR}📂 Directorio: {os.getcwd()}")
@@ -64,20 +65,21 @@ TIMEFRAMES = ['4h', '1h', '15m', '5m', '1m']
 WEIGHTS = [0.3, 0.25, 0.2, 0.15, 0.1]
 
 # ===========================
-# PARÁMETROS DE TRADING ACTUALIZADOS
+# PARÁMETROS DE TRADING MEJORADOS
 # ===========================
 TRADING_PARAMS = {
-    'risk_per_trade': 1.0,  # Usar 100% del capital
+    'risk_per_trade': 1.0,
     'atr_period': 14,
     'ichimoku_params': (9, 26, 52),
     'adx_threshold': 25,
     'max_daily_loss': -0.05,
     'trailing_stop_multiplier': 2,
-    'take_profit_multipliers': [1, 2, 3],  # Multiplicadores de ATR para TP
-    'profit_ratios': [0.5, 0.3, 0.2],      # Distribución de TPs
+    'take_profit_multipliers': [1.5, 3.0],  # Multiplicadores de ATR para TP
+    'profit_ratios': [0.6, 0.4],             # Distribución de TPs
+    'stop_loss_multiplier': 1.8,             # Multiplicador para SL
     'min_notional': 20,
-    'max_leverage': 10,       # Apalancamiento x10
-    'safety_buffer': 0.0      # Sin margen de seguridad
+    'max_leverage': 10,
+    'position_refresh_interval': 60         # Segundos entre actualizaciones
 }
 
 # ===========================
@@ -91,6 +93,7 @@ class PriceMonitor(Thread):
         self.ask = None
         self.running = True
         self.ws = None
+        self.lock = Lock()
         print(f"{STATUS_COLOR}📡 Iniciando monitor de precios para {symbol}...")
 
     def run(self):
@@ -106,8 +109,9 @@ class PriceMonitor(Thread):
                 while self.running:
                     try:
                         data = json.loads(self.ws.recv())
-                        self.bid = float(data.get('b', 0)) if data.get('b') else None
-                        self.ask = float(data.get('a', 0)) if data.get('a') else None
+                        with self.lock:
+                            self.bid = float(data.get('b', 0)) if data.get('b') else None
+                            self.ask = float(data.get('a', 0)) if data.get('a') else None
                     except Exception as e:
                         print(f"{WARNING_COLOR}⚠️ Error recibiendo datos: {e}")
                         break
@@ -126,8 +130,59 @@ class PriceMonitor(Thread):
         self.running = False
 
 # ===========================
+# GESTIÓN DE POSICIONES Y ÓRDENES
+# ===========================
+class PositionManager:
+    def __init__(self):
+        self.positions = {}
+        self.orders = {}
+        self.last_update = 0
+        self.lock = Lock()
+        
+    def update_positions(self):
+        try:
+            with self.lock:
+                self.positions = {}
+                positions = client.futures_position_information()
+                for p in positions:
+                    if float(p['positionAmt']) != 0:
+                        self.positions[p['symbol']] = {
+                            'size': float(p['positionAmt']),
+                            'entry_price': float(p['entryPrice']),
+                            'mark_price': float(p['markPrice']),
+                            'unrealized_pnl': float(p['unRealizedProfit'])
+                        }
+                
+                self.orders = {}
+                orders = client.futures_get_open_orders(symbol=SYMBOL)
+                for o in orders:
+                    self.orders[o['orderId']] = {
+                        'type': o['type'],
+                        'side': o['side'],
+                        'price': float(o['price']),
+                        'stop_price': float(o['stopPrice']) if o['stopPrice'] else None,
+                        'quantity': float(o['origQty'])
+                    }
+                
+                self.last_update = time.time()
+                return True
+        except Exception as e:
+            print(f"{ERROR_COLOR}❌ Error actualizando posiciones: {e}")
+            return False
+
+    def get_position_info(self):
+        self.update_positions()
+        return self.positions.get(SYMBOL, None)
+
+    def get_open_orders(self):
+        self.update_positions()
+        return self.orders
+
+# ===========================
 # FUNCIONES AUXILIARES MEJORADAS
 # ===========================
+position_manager = PositionManager()
+
 def get_system_stats():
     try:
         return (
@@ -139,13 +194,34 @@ def get_system_stats():
 
 def log_status(signal, score, price, capital):
     try:
+        position = position_manager.get_position_info()
+        orders = position_manager.get_open_orders()
+        
         status = [
             f"{STATUS_COLOR}🕒 {datetime.now().strftime('%H:%M:%S')}",
             f"{SUCCESS_COLOR}💰 Precio: {price:.4f}" if price else f"{WARNING_COLOR}💰 Precio: N/A",
             f"{BANNER_COLOR}📊 Señal: {signal} (Puntaje: {score:.2f})" if score else f"{WARNING_COLOR}📊 Señal: N/A",
-            f"{SUCCESS_COLOR}💵 Capital disponible: {capital:.2f} USDT",
-            get_system_stats()
+            f"{SUCCESS_COLOR}💵 Capital disponible: {capital:.2f} USDT"
         ]
+        
+        if position:
+            pos_side = 'LONG' if position['size'] > 0 else 'SHORT'
+            status.append(
+                f"{POSITION_COLOR}📊 Posición {pos_side} | "
+                f"Tamaño: {abs(position['size']):.4f} | "
+                f"Entrada: {position['entry_price']:.2f} | "
+                f"P&L: {position['unrealized_pnl']:.2f} USDT"
+            )
+            
+            sl_orders = [o for o in orders.values() if o['type'] in ['STOP_MARKET', 'TRAILING_STOP_MARKET']]
+            tp_orders = [o for o in orders.values() if o['type'] == 'TAKE_PROFIT']
+            
+            for o in sl_orders:
+                status.append(f"{ERROR_COLOR}⛔ SL: {o['stop_price']:.2f}" if o['stop_price'] else f"{ERROR_COLOR}⛔ SL Dinámico")
+            for o in tp_orders:
+                status.append(f"{SUCCESS_COLOR}🎯 TP: {o['price']:.2f}")
+
+        status.append(get_system_stats())
         print("\n".join(status))
         print_separator()
     except Exception as e:
@@ -180,7 +256,7 @@ def get_historical_data(symbol, interval, limit=100):
         return None
 
 # ===========================
-# CÁLCULO DE INDICADORES
+# CÁLCULO DE INDICADORES ROBUSTO
 # ===========================
 def calculate_indicators(df):
     try:
@@ -206,10 +282,10 @@ def calculate_indicators(df):
         df['atr'] = ta.volatility.AverageTrueRange(
             df['high'], df['low'], df['close'], 
             window=TRADING_PARAMS['atr_period']
-        ).average_true_range()
+        ).average_true_range().fillna(0)
         
-        if 'atr' not in df.columns:
-            raise ValueError("Columna ATR no creada")
+        if df['atr'].iloc[-1] <= 0:
+            raise ValueError("ATR no válido")
             
         return df
     except Exception as e:
@@ -217,7 +293,7 @@ def calculate_indicators(df):
         return None
 
 # ===========================
-# ANÁLISIS DE MERCADO
+# ANÁLISIS DE MERCADO (FUNCIÓN FALTANTE AGREGADA)
 # ===========================
 def analyze_market(df):
     try:
@@ -267,28 +343,39 @@ def get_market_signal():
     return 'NEUTRAL', total_score
 
 # ===========================
-# GESTIÓN DE POSICIONES
+# GESTIÓN DE RIESGO MEJORADA
 # ===========================
-def set_leverage():
+def set_leverage_and_mode():
     try:
+        # Configurar modo de margen aislado
+        client.futures_change_margin_type(
+            symbol=SYMBOL,
+            marginType='ISOLATED'
+        )
+        
+        # Configurar apalancamiento
         client.futures_change_leverage(
             symbol=SYMBOL,
             leverage=TRADING_PARAMS['max_leverage']
         )
-        print(f"{SUCCESS_COLOR}✅ Apalancamiento ajustado a {TRADING_PARAMS['max_leverage']}x")
+        print(f"{SUCCESS_COLOR}✅ Modo ISOLATED | Apalancamiento {TRADING_PARAMS['max_leverage']}x")
     except Exception as e:
-        print(f"{ERROR_COLOR}❌ Error configurando apalancamiento: {e}")
+        if 'No need to change margin type' in str(e):
+            print(f"{WARNING_COLOR}⚠️ El modo de margen ya está configurado")
+        else:
+            print(f"{ERROR_COLOR}❌ Error configurando apalancamiento/modo: {e}")
 
-def calculate_position_size(price):
+def calculate_position_size(price, atr):
     try:
-        set_leverage()
+        set_leverage_and_mode()
         balance = get_available_balance()
         
         if balance < TRADING_PARAMS['min_notional']:
             raise ValueError(f"Balance insuficiente: {balance:.2f} < {TRADING_PARAMS['min_notional']}")
         
-        # Calcular tamaño máximo posible con apalancamiento
-        max_pos_size = (balance * TRADING_PARAMS['max_leverage']) / price
+        risk_amount = balance * TRADING_PARAMS['risk_per_trade']
+        position_size = (risk_amount / (TRADING_PARAMS['stop_loss_multiplier'] * atr)) 
+        position_size *= TRADING_PARAMS['max_leverage']
         
         # Obtener parámetros del símbolo
         symbol_info = client.futures_exchange_info()['symbols']
@@ -297,10 +384,12 @@ def calculate_position_size(price):
         
         step_size = float(lot_size_filter['stepSize'])
         min_qty = float(lot_size_filter['minQty'])
+        max_qty = float(lot_size_filter['maxQty'])
         
         # Ajustar precisión
         precision = int(abs(math.log10(step_size)))
-        size = round(max_pos_size - (max_pos_size % step_size), precision)
+        size = round(position_size - (position_size % step_size), precision)
+        size = max(min(size, max_qty), min_qty)
         
         # Verificar notional mínimo
         notional = size * price
@@ -312,14 +401,8 @@ def calculate_position_size(price):
         print(f"{ERROR_COLOR}❌ Error calculando tamaño: {e}")
         return 0
 
-def adjust_precision(value, precision):
-    try:
-        return round(value - (value % (10 ** -precision)), precision)
-    except:
-        return value
-
 # ===========================
-# EJECUCIÓN DE ÓRDENES AVANZADA
+# EJECUCIÓN DE ÓRDENES MEJORADA
 # ===========================
 def execute_order(signal, price, atr):
     try:
@@ -331,12 +414,13 @@ def execute_order(signal, price, atr):
         price_precision = int(symbol_info['pricePrecision'])
         qty_precision = int(symbol_info['quantityPrecision'])
         
-        size = calculate_position_size(price)
+        size = calculate_position_size(price, atr)
         if size <= 0:
             return False
             
-        quantity = adjust_precision(size, qty_precision)
+        quantity = round(size, qty_precision)
         side = 'BUY' if signal == 'BULLISH' else 'SELL'
+        stop_loss_price = price - (TRADING_PARAMS['stop_loss_multiplier'] * atr * (-1 if side == 'SELL' else 1))
         
         print(f"{SUCCESS_COLOR}🚀 Ejecutando orden {side} de {quantity} {SYMBOL}")
         
@@ -350,20 +434,23 @@ def execute_order(signal, price, atr):
         
         entry_price = float(order['avgPrice'])
         
-        # Take Profit con 0.1% de margen para ejecución
+        # Stop Loss dinámico
+        sl_order = client.futures_create_order(
+            symbol=SYMBOL,
+            side='SELL' if side == 'BUY' else 'BUY',
+            type='STOP_MARKET',
+            quantity=quantity,
+            stopPrice=round(stop_loss_price, price_precision),
+            closePosition=True,
+            workingType='MARK_PRICE'
+        )
+        print(f"{ERROR_COLOR}⛔ SL colocado en {stop_loss_price:.2f}")
+
+        # Take Profit escalonado
         for i, multiplier in enumerate(TRADING_PARAMS['take_profit_multipliers']):
             ratio = TRADING_PARAMS['profit_ratios'][i]
-            tp_qty = adjust_precision(quantity * ratio, qty_precision)
-            
-            if side == 'BUY':
-                trigger_price = entry_price + (multiplier * atr)
-                limit_price = trigger_price * 1.001  # +0.1% para asegurar ejecución
-            else:
-                trigger_price = entry_price - (multiplier * atr)
-                limit_price = trigger_price * 0.999  # -0.1% para asegurar ejecución
-                
-            trigger_price = adjust_precision(trigger_price, price_precision)
-            limit_price = adjust_precision(limit_price, price_precision)
+            tp_qty = round(quantity * ratio, qty_precision)
+            tp_price = entry_price + (multiplier * atr * (1 if side == 'BUY' else -1))
             
             client.futures_create_order(
                 symbol=SYMBOL,
@@ -371,29 +458,24 @@ def execute_order(signal, price, atr):
                 type='TAKE_PROFIT',
                 timeInForce='GTC',
                 quantity=tp_qty,
-                price=limit_price,
-                stopPrice=trigger_price,
-                workingType='MARK_PRICE'  # Necesario para futuros
+                price=round(tp_price, price_precision),
+                stopPrice=round(tp_price * (0.999 if side == 'BUY' else 1.001), price_precision),
+                workingType='MARK_PRICE'
             )
-            print(f"{SUCCESS_COLOR}🎯 TP{i+1} colocado en {limit_price} (Trigger: {trigger_price})")
-        
-        # Trailing Stop con parámetros correctos
-        callback_rate = round(TRADING_PARAMS['trailing_stop_multiplier'] * (atr / entry_price) * 100, 1)
-        
+            print(f"{SUCCESS_COLOR}🎯 TP{i+1} colocado en {tp_price:.2f}")
+
+        # Trailing Stop
         trailing_order = client.futures_create_order(
             symbol=SYMBOL,
             side='SELL' if side == 'BUY' else 'BUY',
             type='TRAILING_STOP_MARKET',
             quantity=quantity,
-            activationPrice=adjust_precision(
-                entry_price * (0.995 if side == 'BUY' else 1.005),  # 0.5% de margen inicial
-                price_precision
-            ),
-            callbackRate=str(callback_rate),  # Debe ser string con 1 decimal
+            activationPrice=round(price * (1.005 if side == 'BUY' else 0.995), price_precision),
+            callbackRate=str(round(TRADING_PARAMS['trailing_stop_multiplier'] * (atr / price) * 100, 1)),
             workingType='MARK_PRICE'
         )
-        
-        print(f"{SUCCESS_COLOR}🔒 Trailing Stop: {callback_rate}% desde {trailing_order['activationPrice']}")
+        print(f"{SUCCESS_COLOR}🔒 Trailing Stop activo desde {trailing_order['activationPrice']}")
+
         return True
         
     except Exception as e:
@@ -406,19 +488,24 @@ def execute_order(signal, price, atr):
 def main_loop():
     monitor = PriceMonitor(SYMBOL)
     monitor.start()
-    last_update = 0
-    trade_active = False
+    last_signal_check = 0
+    last_position_check = 0
     
     try:
         while True:
             current_time = time.time()
             
             try:
+                # Actualizar posiciones regularmente
+                if current_time - last_position_check > TRADING_PARAMS['position_refresh_interval']:
+                    position_manager.update_positions()
+                    last_position_check = current_time
+                
                 if monitor.bid is None or monitor.ask is None:
                     time.sleep(1)
                     continue
                     
-                if current_time - last_update >= 60:
+                if current_time - last_signal_check >= 60:
                     signal, score = get_market_signal()
                     price = monitor.ask if signal == 'BULLISH' else monitor.bid
                     balance = get_available_balance()
@@ -431,13 +518,14 @@ def main_loop():
                             atr_value = df['atr'].iloc[-1]
                     
                     log_status(signal, score, price, balance)
-                    last_update = current_time
+                    last_signal_check = current_time
                     
-                    if not trade_active and signal != 'NEUTRAL':
+                    # Verificar si ya hay posición abierta
+                    position = position_manager.get_position_info()
+                    
+                    if not position and signal != 'NEUTRAL':
                         if atr_value > 0:
-                            if execute_order(signal, price, atr_value):
-                                trade_active = True
-                                print(f"{SUCCESS_COLOR}🎉 Operación activa: {signal}")
+                            execute_order(signal, price, atr_value)
                         else:
                             print(f"{WARNING_COLOR}⚠️ ATR inválido, omitiendo operación")
                             
