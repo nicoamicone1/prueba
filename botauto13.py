@@ -18,6 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Input, LSTM, Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
+from dotenv import load_dotenv
 
 # ===========================
 # CONFIGURACIÓN INICIAL
@@ -52,45 +53,50 @@ print_encabezado()
 # CONFIGURACIÓN DE BINANCE
 # ===========================
 try:
-    from dotenv import load_dotenv
     load_dotenv()
     print(f"{COLORES['status']}🔑 Variables de entorno cargadas")
 except Exception as e:
     print(f"{COLORES['error']}❌ Error cargando variables: {e}")
-    exit(1)
+    sys.exit(1)
 
 try:
     client = Client(os.getenv('BINANCE_API'), os.getenv('BINANCE_SECRET'))
     print(f"{COLORES['success']}✅ Conexión exitosa con Binance Futures")
 except Exception as e:
     print(f"{COLORES['error']}❌ Error de conexión: {e}")
-    exit(1)
+    sys.exit(1)
 
 # ===========================
-# PARÁMETROS DE SCALPING (AJUSTADOS)
+# PARÁMETROS DE SCALPING
 # ===========================
 SIMBOLO = "ETHUSDT"
-TIMEFRAMES = ['5m', '3m', '1m']        # Análisis en 3 marcos temporales
-PESOS = [0.3, 0.4, 0.3]                 # Mayor énfasis en 3m y 1m
+TIMEFRAMES = ['1m', '3m', '5m']
+PESOS = [0.4, 0.4, 0.2]
 
 PARAMETROS = {
     'riesgo_por_operacion': 1.0,
     'periodo_atr': 14,
     'apalancamiento_maximo': 10,
     'notional_minimo': 20,
-    'stop_loss_pct': 0.5,              # Se reemplaza por cálculo dinámico usando ATR
-    'take_profit_pct': [0.5, 1.0],     # Se derivan del ATR
-    'ratios_profit': [0.7, 0.3],       # División de la posición para TP escalonado
-    'duracion_maxima_operacion': 60,   # Operaciones de corta duración (segundos)
-    'intervalo_actualizacion': 5,      # Actualización cada 5 segundos
+    'stop_loss_pct': 0.5,  # Se reemplaza por niveles calculados con ATR
+    'take_profit_pct': [0.5, 1.0],
+    'ratios_profit': [0.7, 0.3],
+    'intervalo_actualizacion': 60,        # Chequeo de señales cada 1 minuto
+    'intervalo_actualizacion_modelo': 180,  # Reentrenamiento del modelo cada 3 minutos
     'longitud_secuencia_lstm': 60,
     'ventana_prediccion_lstm': 5,
-    # Ajustes en indicadores técnicos:
-    'umbral_adx': 15,                # Se reduce para captar tendencias moderadas
-    'umbral_rsi_compra': 45,         # RSI menor a 45 para condiciones de compra
-    'umbral_rsi_venta': 55,          # RSI mayor a 55 para condiciones de venta
-    'umbral_macd': 0.1
+    'umbral_adx': 15,
+    'umbral_rsi_compra': 45,
+    'umbral_rsi_venta': 55,
+    'umbral_macd': 0.1,
+    'trailing_factor': 0.5,              # Factor para trailing stop (múltiplo de ATR)
+    'tp_multiplier': 2.0,                # Multiplicador para Take Profit
+    'sl_multiplier': 1.0                 # Multiplicador para Stop Loss
 }
+
+# Variables globales para seguimiento de trade
+trade_entry_time = None
+trade_entry_price = None
 
 # ===========================
 # MODELO LSTM MEJORADO
@@ -99,15 +105,15 @@ class PredictorLSTM:
     def __init__(self):
         self.modelo = self.construir_modelo()
         self.escalador = MinMaxScaler(feature_range=(0, 1))
-        
+    
     def construir_modelo(self):
         modelo = Sequential([
-            Input(shape=(PARAMETROS['longitud_secuencia_lstm'], 7)),  # open, high, low, close, volume, rsi, macd
+            Input(shape=(PARAMETROS['longitud_secuencia_lstm'], 7)),
             LSTM(96, return_sequences=True),
             Dropout(0.4),
             LSTM(64),
             Dropout(0.3),
-            Dense(PARAMETROS['ventana_prediccion_lstm'] * 3)  # 5 periodos x 3 columnas (high, low, close)
+            Dense(PARAMETROS['ventana_prediccion_lstm'] * 3)
         ])
         modelo.compile(optimizer='adam', loss='mse')
         return modelo
@@ -115,30 +121,32 @@ class PredictorLSTM:
     def preparar_datos(self, df):
         try:
             df = df.dropna()
+            # Seleccionamos las columnas necesarias
             datos = df[['open', 'high', 'low', 'close', 'volume', 'rsi', 'macd']].values
             datos_escalados = self.escalador.fit_transform(datos)
-            
             X, y = [], []
-            for i in range(len(datos_escalados) - PARAMETROS['longitud_secuencia_lstm'] - PARAMETROS['ventana_prediccion_lstm']):
+            total_length = PARAMETROS['longitud_secuencia_lstm'] + PARAMETROS['ventana_prediccion_lstm']
+            for i in range(len(datos_escalados) - total_length):
                 X.append(datos_escalados[i:i+PARAMETROS['longitud_secuencia_lstm']])
                 y.append(datos_escalados[i+PARAMETROS['longitud_secuencia_lstm']:
-                                         i+PARAMETROS['longitud_secuencia_lstm']+PARAMETROS['ventana_prediccion_lstm'], 1:4].flatten())
-            
+                                         i+total_length, 1:4].flatten())
             return np.array(X), np.array(y)
         except Exception as e:
             print(f"{COLORES['error']}❌ Error preparando datos: {e}")
             return None, None
     
     def entrenar(self, df):
-        try:
-            X, y = self.preparar_datos(df)
-            if X is not None and y is not None:
-                print(f"{COLORES['ai']}🧠 Entrenando modelo LSTM...")
+        X, y = self.preparar_datos(df)
+        if X is not None and y is not None and len(X) > 0:
+            try:
+                print(f"{COLORES['ai']}🧠 Entrenando modelo LSTM con {len(X)} muestras...")
                 early_stop = EarlyStopping(monitor='loss', patience=5, restore_best_weights=True)
                 self.modelo.fit(X, y, epochs=20, batch_size=32, verbose=0, callbacks=[early_stop])
                 print(f"{COLORES['success']}✅ Modelo entrenado correctamente")
-        except Exception as e:
-            print(f"{COLORES['error']}❌ Error entrenando modelo: {e}")
+            except Exception as e:
+                print(f"{COLORES['error']}❌ Error entrenando modelo: {e}")
+        else:
+            print(f"{COLORES['error']}❌ No hay datos suficientes para entrenar el modelo")
     
     def predecir(self, df):
         try:
@@ -150,7 +158,7 @@ class PredictorLSTM:
             X = datos_escalados.reshape(1, PARAMETROS['longitud_secuencia_lstm'], 7)
             pred = self.modelo.predict(X, verbose=0)[0]
             pred = pred.reshape(PARAMETROS['ventana_prediccion_lstm'], 3)
-            # Inversión de la transformación para high, low, close
+            # Desescalamos la predicción usando el rango del escalador para las columnas high, low, close
             inv_pred = (pred - self.escalador.min_[1:4]) / self.escalador.scale_[1:4]
             return inv_pred
         except Exception as e:
@@ -183,8 +191,8 @@ class MonitorPrecios(Thread):
                     try:
                         datos = json.loads(self.ws.recv())
                         with self.bloqueo:
-                            self.bid = float(datos['b'])
-                            self.ask = float(datos['a'])
+                            self.bid = float(datos.get('b', self.bid or 0))
+                            self.ask = float(datos.get('a', self.ask or 0))
                     except Exception as e:
                         print(f"{COLORES['error']}⚠️ Error recibiendo datos: {e}")
                         break
@@ -194,23 +202,40 @@ class MonitorPrecios(Thread):
             finally:
                 if self.ws:
                     self.ws.close()
-
+                    
     def detener(self):
         self.ejecutando = False
 
 # ===========================
-# FUNCIÓN PARA CANCELAR TODAS LAS ÓRDENES ABIERTAS
+# FUNCIONES DE GESTIÓN DE ÓRDENES Y POSICIONES
 # ===========================
 def cancelar_todas_las_ordenes():
     try:
         result = client.futures_cancel_all_open_orders(symbol=SIMBOLO)
-        print(f"{COLORES['success']}Todas las órdenes abiertas han sido canceladas: {result}")
+        print(f"{COLORES['success']}Órdenes canceladas: {result}")
     except Exception as e:
-        print(f"{COLORES['error']}Error cancelando todas las órdenes: {e}")
+        print(f"{COLORES['error']}Error cancelando órdenes: {e}")
 
-# ===========================
-# FUNCIÓN PARA REVISAR SI HAY POSICIÓN ABIERTA
-# ===========================
+def cerrar_posicion():
+    global trade_entry_time, trade_entry_price
+    try:
+        positions = client.futures_position_information(symbol=SIMBOLO)
+        for p in positions:
+            amt = float(p['positionAmt'])
+            if amt != 0:
+                side = "SELL" if amt > 0 else "BUY"
+                order = client.futures_create_order(
+                    symbol=SIMBOLO,
+                    side=side,
+                    type="MARKET",
+                    quantity=abs(amt)
+                )
+                print(f"{COLORES['success']}Posición cerrada: {order}")
+        trade_entry_time = None
+        trade_entry_price = None
+    except Exception as e:
+        print(f"{COLORES['error']}Error cerrando posición: {e}")
+
 def hay_posicion_abierta():
     try:
         positions = client.futures_position_information(symbol=SIMBOLO)
@@ -219,17 +244,23 @@ def hay_posicion_abierta():
                 return True
         return False
     except Exception as e:
-        print(f"{COLORES['error']}❌ Error al obtener información de posición: {e}")
+        print(f"{COLORES['error']}❌ Error obteniendo posición: {e}")
         return False
 
-# ===========================
-# FUNCIÓN DE EJECUCIÓN DE ÓRDENES CON TP y SL DINÁMICOS
-# ===========================
+def obtener_direccion_posicion():
+    try:
+        positions = client.futures_position_information(symbol=SIMBOLO)
+        for p in positions:
+            amt = float(p['positionAmt'])
+            if amt != 0:
+                return 'BULLISH' if amt > 0 else 'BEARISH'
+        return None
+    except Exception as e:
+        print(f"{COLORES['error']}❌ Error obteniendo dirección de posición: {e}")
+        return None
+
 def ejecutar_orden(simbolo, direccion, precio, df):
-    """
-    Calcula el SL y TP usando el ATR del dataframe y ejecuta órdenes de entrada,
-    stop loss y dos niveles de take profit (según los ratios definidos).
-    """
+    global trade_entry_time, trade_entry_price
     try:
         atr = df['atr'].iloc[-1]
     except Exception as e:
@@ -242,19 +273,17 @@ def ejecutar_orden(simbolo, direccion, precio, df):
     qty = round(qty, 3)
 
     if direccion == 'BULLISH':
-        SL = precio - atr
-        TP1 = precio + atr
-        TP2 = precio + (atr * 2)
+        SL = precio - atr * PARAMETROS['sl_multiplier']
+        TP = precio + atr * PARAMETROS['tp_multiplier']
         side_entry = Client.SIDE_BUY
         side_exit = Client.SIDE_SELL
     else:
-        SL = precio + atr
-        TP1 = precio - atr
-        TP2 = precio - (atr * 2)
+        SL = precio + atr * PARAMETROS['sl_multiplier']
+        TP = precio - atr * PARAMETROS['tp_multiplier']
         side_entry = Client.SIDE_SELL
         side_exit = Client.SIDE_BUY
 
-    print(f"{COLORES['success']}Ejecutando orden {direccion}: Entrada={precio}, SL={SL:.2f}, TP1={TP1:.2f}, TP2={TP2:.2f}, Cantidad={qty}")
+    print(f"{COLORES['success']}Ejecutando orden {direccion}: Entrada={precio}, SL={SL:.2f}, TP={TP:.2f}, Cantidad={qty}")
 
     try:
         entry_order = client.futures_create_order(
@@ -264,6 +293,8 @@ def ejecutar_orden(simbolo, direccion, precio, df):
             quantity=qty
         )
         print(f"{COLORES['success']}Orden de entrada ejecutada: {entry_order}")
+        trade_entry_time = time.time()
+        trade_entry_price = precio
     except Exception as e:
         print(f"{COLORES['error']}Error en orden de entrada: {e}")
         return
@@ -280,203 +311,79 @@ def ejecutar_orden(simbolo, direccion, precio, df):
     except Exception as e:
         print(f"{COLORES['error']}Error en orden SL: {e}")
 
-    qty_tp1 = round(qty * PARAMETROS['ratios_profit'][0], 3)
-    qty_tp2 = round(qty - qty_tp1, 3)
     try:
-        tp_order1 = client.futures_create_order(
+        tp_order = client.futures_create_order(
             symbol=simbolo,
             side=side_exit,
             type="TAKE_PROFIT_MARKET",
-            stopPrice=round(TP1, 2),
+            stopPrice=round(TP, 2),
             closePosition=False,
-            quantity=qty_tp1
+            quantity=qty
         )
-        print(f"{COLORES['success']}Orden TP1 ejecutada: {tp_order1}")
+        print(f"{COLORES['success']}Orden TP ejecutada: {tp_order}")
     except Exception as e:
-        print(f"{COLORES['error']}Error en orden TP1: {e}")
-    try:
-        tp_order2 = client.futures_create_order(
-            symbol=simbolo,
-            side=side_exit,
-            type="TAKE_PROFIT_MARKET",
-            stopPrice=round(TP2, 2),
-            closePosition=False,
-            quantity=qty_tp2
-        )
-        print(f"{COLORES['success']}Orden TP2 ejecutada: {tp_order2}")
-    except Exception as e:
-        print(f"{COLORES['error']}Error en orden TP2: {e}")
+        print(f"{COLORES['error']}Error en orden TP: {e}")
 
-# ===========================
-# FUNCIÓN PARA REVISAR Y RECOLOCAR ÓRDENES EN POSICIONES ABIERTAS
-# ===========================
-def revisar_y_recolocar_ordenes():
-    """
-    Si existe posición abierta, revisa si faltan órdenes de STOP_MARKET o TAKE_PROFIT_MARKET y las coloca.
-    Si no hay posición abierta, cancela todas las órdenes pendientes.
-    """
+def actualizar_ordenes_dinamicamente():
     try:
-        open_orders = client.futures_get_open_orders(symbol=SIMBOLO)
         positions = client.futures_position_information(symbol=SIMBOLO)
         pos = None
         for p in positions:
             if float(p['positionAmt']) != 0:
                 pos = p
                 break
-
         if pos is None:
-            if open_orders:
-                for order in open_orders:
-                    try:
-                        client.futures_cancel_order(symbol=SIMBOLO, orderId=order['orderId'])
-                        print(f"{COLORES['success']}Orden cancelada: {order['orderId']}")
-                    except Exception as e:
-                        print(f"{COLORES['error']}Error cancelando orden {order['orderId']}: {e}")
-            else:
-                print(f"{COLORES['status']}No hay posición abierta y no existen órdenes pendientes.")
             return
 
-        # Si hay posición abierta, recalcular niveles
-        df_actual = obtener_datos_historicos(SIMBOLO, '1m', 500)
-        if df_actual is None:
-            print(f"{COLORES['error']}No se pudieron obtener datos para recalcular SL/TP")
+        trade_direction = "BULLISH" if float(pos['positionAmt']) > 0 else "BEARISH"
+        df = obtener_datos_historicos(SIMBOLO, '1m', 500)
+        if df is None:
             return
-        df_actual = calcular_indicadores_completos(df_actual)
-        atr = df_actual['atr'].iloc[-1]
-        precio_actual = df_actual['close'].iloc[-1]
-        
-        pos_amt = float(pos['positionAmt'])
-        if pos_amt > 0:
-            SL = precio_actual - atr
-            TP1 = precio_actual + atr
-            TP2 = precio_actual + (atr * 2)
+        df = calcular_indicadores_completos(df)
+        atr = df['atr'].iloc[-1]
+        precio_actual = df['close'].iloc[-1]
+        if trade_direction == "BULLISH":
+            new_SL = precio_actual - atr * PARAMETROS['sl_multiplier']
+            new_TP = precio_actual + atr * PARAMETROS['tp_multiplier']
             side_exit = "SELL"
         else:
-            SL = precio_actual + atr
-            TP1 = precio_actual - atr
-            TP2 = precio_actual - (atr * 2)
+            new_SL = precio_actual + atr * PARAMETROS['sl_multiplier']
+            new_TP = precio_actual - atr * PARAMETROS['tp_multiplier']
             side_exit = "BUY"
-        
-        # Revisar orden de SL
-        sl_order_exists = any(order['type'] == "STOP_MARKET" for order in open_orders)
-        if not sl_order_exists:
-            try:
-                sl_order = client.futures_create_order(
-                    symbol=SIMBOLO,
-                    side=side_exit,
-                    type="STOP_MARKET",
-                    stopPrice=round(SL, 2),
-                    closePosition=True
-                )
-                print(f"{COLORES['success']}Orden SL re-colocada: {sl_order}")
-            except Exception as e:
-                print(f"{COLORES['error']}Error al colocar orden SL: {e}")
-
-        # Revisar órdenes TP
-        tp_orders = [order for order in open_orders if order['type'] == "TAKE_PROFIT_MARKET"]
-        if len(tp_orders) < 2:
-            for order in tp_orders:
-                try:
-                    client.futures_cancel_order(symbol=SIMBOLO, orderId=order['orderId'])
-                except Exception as e:
-                    print(f"{COLORES['error']}Error al cancelar orden TP existente: {e}")
-            positions_info = client.futures_position_information(symbol=SIMBOLO)
-            pos = None
-            for p in positions_info:
-                if float(p['positionAmt']) != 0:
-                    pos = p
-                    break
-            if pos is None:
-                print(f"{COLORES['status']}No hay posición abierta para colocar TP")
-                return
-            qty = abs(float(pos['positionAmt']))
-            qty_tp1 = round(qty * PARAMETROS['ratios_profit'][0], 3)
-            qty_tp2 = round(qty - qty_tp1, 3)
-            try:
-                tp_order1 = client.futures_create_order(
-                    symbol=SIMBOLO,
-                    side=side_exit,
-                    type="TAKE_PROFIT_MARKET",
-                    stopPrice=round(TP1, 2),
-                    closePosition=False,
-                    quantity=qty_tp1
-                )
-                print(f"{COLORES['success']}Orden TP1 re-colocada: {tp_order1}")
-            except Exception as e:
-                print(f"{COLORES['error']}Error al colocar orden TP1: {e}")
-            try:
-                tp_order2 = client.futures_create_order(
-                    symbol=SIMBOLO,
-                    side=side_exit,
-                    type="TAKE_PROFIT_MARKET",
-                    stopPrice=round(TP2, 2),
-                    closePosition=False,
-                    quantity=qty_tp2
-                )
-                print(f"{COLORES['success']}Orden TP2 re-colocada: {tp_order2}")
-            except Exception as e:
-                print(f"{COLORES['error']}Error al colocar orden TP2: {e}")
+        cancelar_todas_las_ordenes()
+        sl_order = client.futures_create_order(
+            symbol=SIMBOLO,
+            side=side_exit,
+            type="STOP_MARKET",
+            stopPrice=round(new_SL, 2),
+            closePosition=True
+        )
+        pos_amt = float(pos['positionAmt'])
+        tp_order = client.futures_create_order(
+            symbol=SIMBOLO,
+            side=side_exit,
+            type="TAKE_PROFIT_MARKET",
+            stopPrice=round(new_TP, 2),
+            closePosition=False,
+            quantity=abs(pos_amt)
+        )
+        print(f"{COLORES['success']}Órdenes actualizadas: SL={round(new_SL,2)}, TP={round(new_TP,2)}")
     except Exception as e:
-        print(f"{COLORES['error']}Error en revisar y recolocar órdenes: {e}")
+        print(f"{COLORES['error']}Error actualizando órdenes dinámicamente: {e}")
 
 # ===========================
-# NUEVA LÓGICA DE SEÑALES
-# ===========================
-def obtener_señal_efectiva():
-    try:
-        puntaje_total = 0
-        for tf, peso in zip(TIMEFRAMES, PESOS):
-            df = obtener_datos_historicos(SIMBOLO, tf, 500)
-            if df is not None:
-                df = calcular_indicadores_completos(df)
-                señal_lstm, prediccion = analizar_con_lstm(df)
-                if señal_lstm == 'BULLISH':
-                    puntaje_total += 5 * peso
-                elif señal_lstm == 'BEARISH':
-                    puntaje_total -= 5 * peso
-
-                rsi = df['rsi'].iloc[-1]
-                macd = df['macd'].iloc[-1]
-                adx = df['adx'].iloc[-1]
-
-                if adx > PARAMETROS['umbral_adx']:
-                    puntaje_total += 2 * peso
-                if rsi < PARAMETROS['umbral_rsi_compra'] and macd > PARAMETROS['umbral_macd']:
-                    puntaje_total += 3 * peso
-                elif rsi > PARAMETROS['umbral_rsi_venta'] and macd < -PARAMETROS['umbral_macd']:
-                    puntaje_total -= 3 * peso
-
-                print(f"{COLORES['ai']}📊 [{tf}] | RSI: {rsi:.1f} | MACD: {macd:.4f} | ADX: {adx:.1f}")
-                if prediccion is not None:
-                    print(f"{COLORES['ai']}   🎯 LSTM Predicción (último high): {prediccion[-1][0]:.2f}")
-                    log_recursos()
-
-        print(f"{COLORES['ai']}🔥 Puntaje Total: {puntaje_total:.2f}")
-        if puntaje_total >= 2:
-            return 'BULLISH'
-        elif puntaje_total <= -2:
-            return 'BEARISH'
-        return 'NEUTRAL'
-    except Exception as e:
-        print(f"{COLORES['error']}❌ Error en análisis: {e}")
-        return 'NEUTRAL'
-
-# ===========================
-# FUNCIONES AUXILIARES
+# FUNCIONES PARA OBTENER DATOS E INDICADORES
 # ===========================
 def obtener_datos_historicos(simbolo, intervalo, limite=500):
     try:
-        velas = client.futures_klines(
-            symbol=simbolo,
-            interval=intervalo,
-            limit=limite
-        )
+        velas = client.futures_klines(symbol=simbolo, interval=intervalo, limit=limite)
         df = pd.DataFrame(velas, columns=[
             'timestamp', 'open', 'high', 'low', 'close', 'volume',
             'close_time', 'quote_asset_volume', 'trades',
             'taker_buy_base', 'taker_buy_quote', 'ignore'
         ])
-        return df[['timestamp', 'open', 'high', 'low', 'close', 'volume']].astype(float)
+        df[['timestamp', 'open', 'high', 'low', 'close', 'volume']] = df[['timestamp', 'open', 'high', 'low', 'close', 'volume']].astype(float)
+        return df[['timestamp', 'open', 'high', 'low', 'close', 'volume']]
     except Exception as e:
         print(f"{COLORES['error']}❌ Error obteniendo datos: {e}")
         return None
@@ -502,8 +409,8 @@ def analizar_con_lstm(df):
             return 'NEUTRAL', None
         
         precio_actual = df['close'].iloc[-1]
-        precio_predicho = prediccion[-1][2]
-        umbral_lstm = 0.002
+        precio_predicho = prediccion[-1][2]  # Usamos la predicción del "close"
+        umbral_lstm = 0.02  # Diferencia mínima del 2%
         
         if precio_predicho > precio_actual * (1 + umbral_lstm):
             return 'BULLISH', prediccion
@@ -513,6 +420,45 @@ def analizar_con_lstm(df):
     except Exception as e:
         print(f"{COLORES['error']}❌ Error en IA: {e}")
         return 'NEUTRAL', None
+
+def obtener_señal_efectiva():
+    try:
+        puntaje_total = 0
+        for tf_interval, peso in zip(TIMEFRAMES, PESOS):
+            df = obtener_datos_historicos(SIMBOLO, tf_interval, 500)
+            if df is not None:
+                df = calcular_indicadores_completos(df)
+                señal_lstm, prediccion = analizar_con_lstm(df)
+                if señal_lstm == 'BULLISH':
+                    puntaje_total += 5 * peso
+                elif señal_lstm == 'BEARISH':
+                    puntaje_total -= 5 * peso
+
+                rsi = df['rsi'].iloc[-1]
+                macd = df['macd'].iloc[-1]
+                adx = df['adx'].iloc[-1]
+
+                if adx > PARAMETROS['umbral_adx']:
+                    puntaje_total += 2 * peso
+                if rsi < PARAMETROS['umbral_rsi_compra'] and macd > PARAMETROS['umbral_macd']:
+                    puntaje_total += 3 * peso
+                elif rsi > PARAMETROS['umbral_rsi_venta'] and macd < -PARAMETROS['umbral_macd']:
+                    puntaje_total -= 3 * peso
+
+                print(f"{COLORES['ai']}📊 [{tf_interval}] | RSI: {rsi:.1f} | MACD: {macd:.4f} | ADX: {adx:.1f}")
+                if prediccion is not None:
+                    print(f"{COLORES['ai']}   🎯 LSTM Predicción (último high): {prediccion[-1][0]:.2f}")
+                    log_recursos()
+
+        print(f"{COLORES['ai']}🔥 Puntaje Total: {puntaje_total:.2f}")
+        if puntaje_total >= 3:
+            return 'BULLISH'
+        elif puntaje_total <= -3:
+            return 'BEARISH'
+        return 'NEUTRAL'
+    except Exception as e:
+        print(f"{COLORES['error']}❌ Error en análisis: {e}")
+        return 'NEUTRAL'
 
 def log_recursos():
     cpu = psutil.cpu_percent(interval=1)
@@ -531,7 +477,8 @@ def actualizar_modelo():
             datos_historicos = calcular_indicadores_completos(datos_historicos)
             predictor_lstm.entrenar(datos_historicos)
             print(f"{COLORES['success']}✅ Modelo LSTM actualizado")
-        revisar_y_recolocar_ordenes()
+        if hay_posicion_abierta():
+            actualizar_ordenes_dinamicamente()
     except Exception as e:
         print(f"{COLORES['error']}❌ Error actualizando el modelo: {e}")
 
@@ -543,24 +490,33 @@ def ejecucion_principal():
     monitor.start()
     
     ultimo_entrenamiento = time.time()
-    intervalo_entrenamiento = 300  # Actualización cada 5 minutos
+    intervalo_actualizacion_modelo = PARAMETROS['intervalo_actualizacion_modelo']
 
     try:
         while True:
-            if time.time() - ultimo_entrenamiento > intervalo_entrenamiento:
+            if time.time() - ultimo_entrenamiento > intervalo_actualizacion_modelo:
                 actualizar_modelo()
                 ultimo_entrenamiento = time.time()
             
             señal = obtener_señal_efectiva()
-            precio = monitor.ask if señal == 'BULLISH' else monitor.bid
+            with monitor.bloqueo:
+                precio = monitor.ask if señal == 'BULLISH' else monitor.bid
             
             if señal != 'NEUTRAL' and precio is not None:
-                if hay_posicion_abierta():
-                    print(f"{COLORES['warning']}Ya hay posición abierta. Revisando y actualizando órdenes SL/TP...")
-                    revisar_y_recolocar_ordenes()
+                posicion = obtener_direccion_posicion()
+                if posicion is None:
+                    print(f"{COLORES['success']}🚀 Señal detectada: {señal} | Precio: {precio} (Sin posición abierta)")
+                    cancelar_todas_las_ordenes()
+                    df_actual = obtener_datos_historicos(SIMBOLO, '1m', 500)
+                    if df_actual is not None:
+                        df_actual = calcular_indicadores_completos(df_actual)
+                        ejecutar_orden(SIMBOLO, señal, precio, df_actual)
+                elif posicion == señal:
+                    print(f"{COLORES['warning']}Posición abierta en misma dirección ({posicion}). Actualizando órdenes de protección...")
+                    actualizar_ordenes_dinamicamente()
                 else:
-                    print(f"{COLORES['success']}🚀 Señal detectada: {señal} | Precio: {precio}")
-                    # Antes de abrir una nueva posición, cancelar todas las órdenes pendientes
+                    print(f"{COLORES['warning']}Posición abierta en dirección opuesta ({posicion}). Cerrando posición y abriendo nueva operación...")
+                    cerrar_posicion()
                     cancelar_todas_las_ordenes()
                     df_actual = obtener_datos_historicos(SIMBOLO, '1m', 500)
                     if df_actual is not None:
