@@ -1,0 +1,391 @@
+2025-02-24 18:31:04,551 - INFO - No se encontró 'minNotional' en el filtro NOTIONAL. Se asigna el valor por defecto 10.0
+2025-02-24 18:31:04,551 - INFO - Parámetros de mercado actualizados: Tick Size = 0.01, Lot Size = 0.001, Min Notional = 10.0
+2025-02-24 18:31:10,320 - INFO - No se encontró 'minNotional' en el filtro NOTIONAL. Se asigna el valor por defecto 10.0
+2025-02-24 18:31:10,320 - INFO - Parámetros de mercado actualizados: Tick Size = 0.01, Lot Size = 0.001, Min Notional = 10.0
+2025-02-24 18:31:10,639 - INFO - Conexión a Binance Futures exitosa.
+2025-02-24 18:31:10,639 - WARNING - El parámetro 'futures' no es soportado en esta versión, se omitirá.
+2025-02-24 18:31:11,455 - INFO - Stream de precios en tiempo real iniciado.
+2025-02-24 18:31:11,456 - INFO - Iniciando ETH Trading Bot...
+2025-02-24 18:31:11,802 - INFO - Indicadores actuales: stoch_k: 85.04, stoch_d: 61.34, SMA: 2658.82, PSAR: 2665.70, RSI: 51.09, ATR: 17.34, MACD: -6.48, MACD_Signal: -7.91, MACD_Diff: 1.43
+2025-02-24 18:31:11,804 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:31:11,805 - INFO - Volumen: Actual = 2251.30, Promedio = 49078.86
+2025-02-24 18:31:11,805 - INFO - Señal: HOLD
+2025-02-24 18:31:11,806 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:32:12,150 - INFO - Indicadores actuales: stoch_k: 82.91, stoch_d: 60.62, SMA: 2658.79, PSAR: 2665.70, RSI: 50.73, ATR: 17.36, MACD: -6.55, MACD_Signal: -7.92, MACD_Diff: 1.37
+2025-02-24 18:32:12,150 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:32:12,150 - INFO - Volumen: Actual = 4766.22, Promedio = 49104.01
+2025-02-24 18:32:12,150 - INFO - Señal: HOLD
+2025-02-24 18:32:12,150 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:33:12,508 - INFO - Indicadores actuales: stoch_k: 85.18, stoch_d: 61.38, SMA: 2658.82, PSAR: 2665.70, RSI: 51.12, ATR: 17.36, MACD: -6.48, MACD_Signal: -7.91, MACD_Diff: 1.43
+2025-02-24 18:33:12,508 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:33:12,508 - INFO - Volumen: Actual = 6353.63, Promedio = 49119.89
+2025-02-24 18:33:12,508 - INFO - Señal: HOLD
+2025-02-24 18:33:12,508 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:34:12,858 - INFO - Indicadores actuales: stoch_k: 86.31, stoch_d: 61.76, SMA: 2658.84, PSAR: 2665.70, RSI: 51.31, ATR: 17.36, MACD: -6.44, MACD_Signal: -7.90, MACD_Diff: 1.46
+2025-02-24 18:34:12,860 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:34:12,861 - INFO - Volumen: Actual = 8008.36, Promedio = 49136.43
+2025-02-24 18:34:12,862 - INFO - Señal: HOLD
+2025-02-24 18:34:12,862 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:35:13,207 - INFO - Indicadores actuales: stoch_k: 79.65, stoch_d: 59.54, SMA: 2658.75, PSAR: 2665.70, RSI: 50.15, ATR: 17.36, MACD: -6.66, MACD_Signal: -7.94, MACD_Diff: 1.28
+2025-02-24 18:35:13,209 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:35:13,210 - INFO - Volumen: Actual = 9311.01, Promedio = 49149.46
+2025-02-24 18:35:13,210 - INFO - Señal: HOLD
+2025-02-24 18:35:13,211 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:36:13,549 - INFO - Indicadores actuales: stoch_k: 75.76, stoch_d: 58.24, SMA: 2658.71, PSAR: 2665.70, RSI: 49.46, ATR: 17.39, MACD: -6.79, MACD_Signal: -7.97, MACD_Diff: 1.18
+2025-02-24 18:36:13,551 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:36:13,552 - INFO - Volumen: Actual = 10572.46, Promedio = 49162.08
+2025-02-24 18:36:13,553 - INFO - Señal: HOLD
+2025-02-24 18:36:13,554 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:37:13,898 - INFO - Indicadores actuales: stoch_k: 80.92, stoch_d: 59.96, SMA: 2658.77, PSAR: 2665.70, RSI: 50.38, ATR: 17.39, MACD: -6.62, MACD_Signal: -7.94, MACD_Diff: 1.32
+2025-02-24 18:37:13,898 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:37:13,898 - INFO - Volumen: Actual = 11278.78, Promedio = 49169.14
+2025-02-24 18:37:13,898 - INFO - Señal: HOLD
+2025-02-24 18:37:13,898 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:38:14,263 - INFO - Indicadores actuales: stoch_k: 78.59, stoch_d: 59.19, SMA: 2658.74, PSAR: 2665.70, RSI: 49.97, ATR: 17.39, MACD: -6.70, MACD_Signal: -7.95, MACD_Diff: 1.25
+2025-02-24 18:38:14,264 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:38:14,265 - INFO - Volumen: Actual = 11955.27, Promedio = 49175.90
+2025-02-24 18:38:14,266 - INFO - Señal: HOLD
+2025-02-24 18:38:14,266 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:39:14,601 - INFO - Indicadores actuales: stoch_k: 78.90, stoch_d: 59.29, SMA: 2658.75, PSAR: 2665.70, RSI: 50.02, ATR: 17.39, MACD: -6.69, MACD_Signal: -7.95, MACD_Diff: 1.26
+2025-02-24 18:39:14,601 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:39:14,601 - INFO - Volumen: Actual = 12749.10, Promedio = 49183.84
+2025-02-24 18:39:14,601 - INFO - Señal: HOLD
+2025-02-24 18:39:14,601 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:40:14,961 - INFO - Indicadores actuales: stoch_k: 73.60, stoch_d: 57.52, SMA: 2658.68, PSAR: 2665.70, RSI: 49.08, ATR: 17.39, MACD: -6.86, MACD_Signal: -7.98, MACD_Diff: 1.12
+2025-02-24 18:40:14,962 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:40:14,963 - INFO - Volumen: Actual = 13388.21, Promedio = 49190.23
+2025-02-24 18:40:14,964 - INFO - Señal: HOLD
+2025-02-24 18:40:14,964 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:41:15,483 - INFO - Indicadores actuales: stoch_k: 70.58, stoch_d: 56.52, SMA: 2658.64, PSAR: 2665.70, RSI: 48.56, ATR: 17.40, MACD: -6.96, MACD_Signal: -8.00, MACD_Diff: 1.04
+2025-02-24 18:41:15,485 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:41:15,487 - INFO - Volumen: Actual = 14970.07, Promedio = 49206.05
+2025-02-24 18:41:15,488 - INFO - Señal: HOLD
+2025-02-24 18:41:15,495 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:42:15,860 - INFO - Indicadores actuales: stoch_k: 72.38, stoch_d: 57.12, SMA: 2658.67, PSAR: 2665.70, RSI: 48.87, ATR: 17.40, MACD: -6.90, MACD_Signal: -7.99, MACD_Diff: 1.09
+2025-02-24 18:42:15,861 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:42:15,862 - INFO - Volumen: Actual = 16232.28, Promedio = 49218.67
+2025-02-24 18:42:15,863 - INFO - Señal: HOLD
+2025-02-24 18:42:15,864 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:43:16,208 - INFO - Indicadores actuales: stoch_k: 64.23, stoch_d: 54.40, SMA: 2658.57, PSAR: 2665.70, RSI: 47.50, ATR: 17.43, MACD: -7.18, MACD_Signal: -8.05, MACD_Diff: 0.87
+2025-02-24 18:43:16,209 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:43:16,210 - INFO - Volumen: Actual = 17111.33, Promedio = 49227.46
+2025-02-24 18:43:16,211 - INFO - Señal: HOLD
+2025-02-24 18:43:16,211 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:44:16,542 - INFO - Indicadores actuales: stoch_k: 66.89, stoch_d: 55.29, SMA: 2658.60, PSAR: 2665.70, RSI: 47.94, ATR: 17.45, MACD: -7.09, MACD_Signal: -8.03, MACD_Diff: 0.94
+2025-02-24 18:44:16,542 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 18:44:16,542 - INFO - Volumen: Actual = 18371.30, Promedio = 49240.06
+2025-02-24 18:44:16,542 - INFO - Señal: HOLD
+2025-02-24 18:44:16,542 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:45:16,897 - INFO - Indicadores actuales: stoch_k: 69.10, stoch_d: 71.49, SMA: 2657.50, PSAR: 2664.09, RSI: 48.34, ATR: 17.37, MACD: -6.39, MACD_Signal: -7.69, MACD_Diff: 1.30
+2025-02-24 18:45:16,897 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:45:16,897 - INFO - Volumen: Actual = 162.35, Promedio = 49079.59
+2025-02-24 18:45:16,897 - INFO - Señal GENERADA: SELL
+2025-02-24 18:45:17,213 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:45:17,213 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:46:17,554 - INFO - Indicadores actuales: stoch_k: 54.64, stoch_d: 66.67, SMA: 2657.32, PSAR: 2664.09, RSI: 45.80, ATR: 17.45, MACD: -6.87, MACD_Signal: -7.79, MACD_Diff: 0.92
+2025-02-24 18:46:17,554 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:46:17,569 - INFO - Volumen: Actual = 1676.91, Promedio = 49094.74
+2025-02-24 18:46:17,569 - INFO - Señal GENERADA: SELL
+2025-02-24 18:46:17,882 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:46:17,882 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:47:18,231 - INFO - Indicadores actuales: stoch_k: 56.89, stoch_d: 67.43, SMA: 2657.35, PSAR: 2664.09, RSI: 46.18, ATR: 17.46, MACD: -6.80, MACD_Signal: -7.77, MACD_Diff: 0.98
+2025-02-24 18:47:18,232 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:47:18,233 - INFO - Volumen: Actual = 4758.65, Promedio = 49125.56
+2025-02-24 18:47:18,234 - INFO - Señal GENERADA: SELL
+2025-02-24 18:47:18,550 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:47:18,551 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:48:18,897 - INFO - Indicadores actuales: stoch_k: 38.96, stoch_d: 61.45, SMA: 2657.13, PSAR: 2664.09, RSI: 43.35, ATR: 17.55, MACD: -7.39, MACD_Signal: -7.89, MACD_Diff: 0.50
+2025-02-24 18:48:18,897 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:48:18,897 - INFO - Volumen: Actual = 7930.90, Promedio = 49157.28
+2025-02-24 18:48:18,897 - INFO - Señal GENERADA: SELL
+2025-02-24 18:48:19,213 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:48:19,213 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:49:19,561 - INFO - Indicadores actuales: stoch_k: 37.16, stoch_d: 60.85, SMA: 2657.11, PSAR: 2664.09, RSI: 43.09, ATR: 17.56, MACD: -7.45, MACD_Signal: -7.90, MACD_Diff: 0.45
+2025-02-24 18:49:19,562 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:49:19,563 - INFO - Volumen: Actual = 10611.64, Promedio = 49184.09
+2025-02-24 18:49:19,564 - INFO - Señal GENERADA: SELL
+2025-02-24 18:49:19,878 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:49:19,879 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:50:20,227 - INFO - Indicadores actuales: stoch_k: 41.26, stoch_d: 62.22, SMA: 2657.16, PSAR: 2664.09, RSI: 43.69, ATR: 17.56, MACD: -7.32, MACD_Signal: -7.88, MACD_Diff: 0.56
+2025-02-24 18:50:20,228 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:50:20,229 - INFO - Volumen: Actual = 12826.90, Promedio = 49206.24
+2025-02-24 18:50:20,230 - INFO - Señal GENERADA: SELL
+2025-02-24 18:50:20,542 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:50:20,543 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:51:20,894 - INFO - Indicadores actuales: stoch_k: 39.42, stoch_d: 61.60, SMA: 2657.13, PSAR: 2664.09, RSI: 43.42, ATR: 17.56, MACD: -7.38, MACD_Signal: -7.89, MACD_Diff: 0.51
+2025-02-24 18:51:20,895 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:51:20,897 - INFO - Volumen: Actual = 15050.22, Promedio = 49228.47
+2025-02-24 18:51:20,897 - INFO - Señal GENERADA: SELL
+2025-02-24 18:51:21,213 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:51:21,214 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:52:21,565 - INFO - Indicadores actuales: stoch_k: 46.56, stoch_d: 63.98, SMA: 2657.22, PSAR: 2664.09, RSI: 44.51, ATR: 17.56, MACD: -7.14, MACD_Signal: -7.84, MACD_Diff: 0.70
+2025-02-24 18:52:21,566 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:52:21,567 - INFO - Volumen: Actual = 16447.69, Promedio = 49242.45
+2025-02-24 18:52:21,568 - INFO - Señal GENERADA: SELL
+2025-02-24 18:52:21,883 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:52:21,884 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:53:22,231 - INFO - Indicadores actuales: stoch_k: 46.18, stoch_d: 63.85, SMA: 2657.22, PSAR: 2664.09, RSI: 44.45, ATR: 17.56, MACD: -7.15, MACD_Signal: -7.84, MACD_Diff: 0.69
+2025-02-24 18:53:22,233 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:53:22,234 - INFO - Volumen: Actual = 17911.70, Promedio = 49257.09
+2025-02-24 18:53:22,234 - INFO - Señal GENERADA: SELL
+2025-02-24 18:53:22,544 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:53:22,545 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:54:22,897 - INFO - Indicadores actuales: stoch_k: 56.15, stoch_d: 67.18, SMA: 2657.34, PSAR: 2664.09, RSI: 46.06, ATR: 17.56, MACD: -6.82, MACD_Signal: -7.78, MACD_Diff: 0.96
+2025-02-24 18:54:22,897 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:54:22,897 - INFO - Volumen: Actual = 18841.26, Promedio = 49266.38
+2025-02-24 18:54:22,897 - INFO - Señal GENERADA: SELL
+2025-02-24 18:54:23,214 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:54:23,214 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:55:23,565 - INFO - Indicadores actuales: stoch_k: 59.91, stoch_d: 68.43, SMA: 2657.39, PSAR: 2664.09, RSI: 46.69, ATR: 17.56, MACD: -6.69, MACD_Signal: -7.75, MACD_Diff: 1.06
+2025-02-24 18:55:23,566 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:55:23,567 - INFO - Volumen: Actual = 20561.84, Promedio = 49283.59
+2025-02-24 18:55:23,568 - INFO - Señal GENERADA: SELL
+2025-02-24 18:55:23,880 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:55:23,881 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:56:24,230 - INFO - Indicadores actuales: stoch_k: 58.07, stoch_d: 67.82, SMA: 2657.36, PSAR: 2664.09, RSI: 46.38, ATR: 17.56, MACD: -6.76, MACD_Signal: -7.77, MACD_Diff: 1.01
+2025-02-24 18:56:24,231 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:56:24,233 - INFO - Volumen: Actual = 21669.55, Promedio = 49294.66
+2025-02-24 18:56:24,233 - INFO - Señal GENERADA: SELL
+2025-02-24 18:56:24,548 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:56:24,549 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:57:24,894 - INFO - Indicadores actuales: stoch_k: 48.91, stoch_d: 64.76, SMA: 2657.25, PSAR: 2664.09, RSI: 44.88, ATR: 17.56, MACD: -7.06, MACD_Signal: -7.83, MACD_Diff: 0.77
+2025-02-24 18:57:24,896 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:57:24,897 - INFO - Volumen: Actual = 22394.81, Promedio = 49301.92
+2025-02-24 18:57:24,897 - INFO - Señal GENERADA: SELL
+2025-02-24 18:57:25,214 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:57:25,215 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:58:25,553 - INFO - Indicadores actuales: stoch_k: 40.83, stoch_d: 62.07, SMA: 2657.15, PSAR: 2664.09, RSI: 43.63, ATR: 17.56, MACD: -7.33, MACD_Signal: -7.88, MACD_Diff: 0.55
+2025-02-24 18:58:25,553 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:58:25,553 - INFO - Volumen: Actual = 23810.51, Promedio = 49316.07
+2025-02-24 18:58:25,553 - INFO - Señal GENERADA: SELL
+2025-02-24 18:58:25,867 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:58:25,867 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 18:59:26,224 - INFO - Indicadores actuales: stoch_k: 33.71, stoch_d: 59.70, SMA: 2657.06, PSAR: 2664.09, RSI: 42.59, ATR: 17.57, MACD: -7.57, MACD_Signal: -7.93, MACD_Diff: 0.36
+2025-02-24 18:59:26,225 - INFO - Desglose de señales: BUY = 0, SELL = 3
+2025-02-24 18:59:26,226 - INFO - Volumen: Actual = 26556.88, Promedio = 49343.54
+2025-02-24 18:59:26,227 - INFO - Señal GENERADA: SELL
+2025-02-24 18:59:26,536 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 18:59:26,537 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:00:26,884 - INFO - Indicadores actuales: stoch_k: 24.97, stoch_d: 42.56, SMA: 2655.62, PSAR: 2662.54, RSI: 41.99, ATR: 17.39, MACD: -7.99, MACD_Signal: -7.94, MACD_Diff: -0.05
+2025-02-24 19:00:26,886 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:00:26,887 - INFO - Volumen: Actual = 1272.85, Promedio = 49225.02
+2025-02-24 19:00:26,887 - INFO - Señal GENERADA: SELL
+2025-02-24 19:00:27,201 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:00:27,202 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:01:27,547 - INFO - Indicadores actuales: stoch_k: 13.14, stoch_d: 38.62, SMA: 2655.48, PSAR: 2662.54, RSI: 40.38, ATR: 17.45, MACD: -8.36, MACD_Signal: -8.01, MACD_Diff: -0.35
+2025-02-24 19:01:27,549 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:01:27,550 - INFO - Volumen: Actual = 6824.86, Promedio = 49280.54
+2025-02-24 19:01:27,550 - INFO - Señal GENERADA: SELL
+2025-02-24 19:01:27,865 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:01:27,867 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:02:28,208 - INFO - Indicadores actuales: stoch_k: 0.00, stoch_d: 34.24, SMA: 2655.18, PSAR: 2662.54, RSI: 37.22, ATR: 17.59, MACD: -9.17, MACD_Signal: -8.17, MACD_Diff: -1.00
+2025-02-24 19:02:28,208 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:02:28,208 - INFO - Volumen: Actual = 25350.69, Promedio = 49465.80
+2025-02-24 19:02:28,208 - INFO - Señal GENERADA: SELL
+2025-02-24 19:02:28,519 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:02:28,519 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:03:28,872 - INFO - Indicadores actuales: stoch_k: 25.95, stoch_d: 42.89, SMA: 2654.12, PSAR: 2662.54, RSI: 29.18, ATR: 18.50, MACD: -12.04, MACD_Signal: -8.75, MACD_Diff: -3.29
+2025-02-24 19:03:28,874 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:03:28,874 - INFO - Volumen: Actual = 174745.90, Promedio = 50959.75
+2025-02-24 19:03:28,875 - INFO - Señal GENERADA: SELL
+2025-02-24 19:03:29,188 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:03:29,189 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:04:29,523 - INFO - Indicadores actuales: stoch_k: 37.61, stoch_d: 46.77, SMA: 2654.41, PSAR: 2662.54, RSI: 30.98, ATR: 18.57, MACD: -11.27, MACD_Signal: -8.59, MACD_Diff: -2.67
+2025-02-24 19:04:29,523 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:04:29,523 - INFO - Volumen: Actual = 253494.67, Promedio = 51747.24
+2025-02-24 19:04:29,523 - INFO - Señal GENERADA: SELL
+2025-02-24 19:04:29,834 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:04:29,834 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:05:30,198 - INFO - Indicadores actuales: stoch_k: 30.97, stoch_d: 44.56, SMA: 2654.19, PSAR: 2662.54, RSI: 29.56, ATR: 18.57, MACD: -11.86, MACD_Signal: -8.71, MACD_Diff: -3.15
+2025-02-24 19:05:30,199 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:05:30,200 - INFO - Volumen: Actual = 290554.75, Promedio = 52117.84
+2025-02-24 19:05:30,201 - INFO - Señal GENERADA: SELL
+2025-02-24 19:05:30,516 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:05:30,517 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:06:30,851 - INFO - Indicadores actuales: stoch_k: 37.61, stoch_d: 46.77, SMA: 2654.41, PSAR: 2662.54, RSI: 30.98, ATR: 18.57, MACD: -11.27, MACD_Signal: -8.59, MACD_Diff: -2.67
+2025-02-24 19:06:30,866 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:06:30,866 - INFO - Volumen: Actual = 316541.02, Promedio = 52377.70
+2025-02-24 19:06:30,866 - INFO - Señal GENERADA: SELL
+2025-02-24 19:06:31,177 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:06:31,177 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:07:31,524 - INFO - Indicadores actuales: stoch_k: 27.99, stoch_d: 43.57, SMA: 2654.09, PSAR: 2662.54, RSI: 28.97, ATR: 18.57, MACD: -12.13, MACD_Signal: -8.77, MACD_Diff: -3.37
+2025-02-24 19:07:31,526 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:07:31,527 - INFO - Volumen: Actual = 335990.65, Promedio = 52572.20
+2025-02-24 19:07:31,527 - INFO - Señal GENERADA: SELL
+2025-02-24 19:07:31,845 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:07:31,845 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:08:32,196 - INFO - Indicadores actuales: stoch_k: 30.72, stoch_d: 44.48, SMA: 2654.18, PSAR: 2662.54, RSI: 29.51, ATR: 18.57, MACD: -11.89, MACD_Signal: -8.72, MACD_Diff: -3.17
+2025-02-24 19:08:32,197 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:08:32,198 - INFO - Volumen: Actual = 351347.98, Promedio = 52725.77
+2025-02-24 19:08:32,199 - INFO - Señal GENERADA: SELL
+2025-02-24 19:08:32,514 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:08:32,515 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:09:32,862 - INFO - Indicadores actuales: stoch_k: 28.03, stoch_d: 43.58, SMA: 2654.09, PSAR: 2662.54, RSI: 28.98, ATR: 18.57, MACD: -12.13, MACD_Signal: -8.76, MACD_Diff: -3.36
+2025-02-24 19:09:32,863 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:09:32,864 - INFO - Volumen: Actual = 368394.53, Promedio = 52896.24
+2025-02-24 19:09:32,865 - INFO - Señal GENERADA: SELL
+2025-02-24 19:09:33,179 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:09:33,180 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:10:33,523 - INFO - Indicadores actuales: stoch_k: 13.44, stoch_d: 38.72, SMA: 2653.06, PSAR: 2662.54, RSI: 23.96, ATR: 18.88, MACD: -14.92, MACD_Signal: -9.32, MACD_Diff: -5.60
+2025-02-24 19:10:33,524 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:10:33,525 - INFO - Volumen: Actual = 440430.57, Promedio = 53616.60
+2025-02-24 19:10:33,526 - INFO - Señal GENERADA: SELL
+2025-02-24 19:10:33,846 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:10:33,847 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:11:34,180 - INFO - Indicadores actuales: stoch_k: 27.49, stoch_d: 43.40, SMA: 2653.62, PSAR: 2662.54, RSI: 26.42, ATR: 18.88, MACD: -13.42, MACD_Signal: -9.02, MACD_Diff: -4.40
+2025-02-24 19:11:34,180 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:11:34,180 - INFO - Volumen: Actual = 482362.81, Promedio = 54035.92
+2025-02-24 19:11:34,180 - INFO - Señal GENERADA: SELL
+2025-02-24 19:11:34,492 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:11:34,492 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:12:34,842 - INFO - Indicadores actuales: stoch_k: 29.32, stoch_d: 44.01, SMA: 2653.69, PSAR: 2662.54, RSI: 26.78, ATR: 18.88, MACD: -13.22, MACD_Signal: -8.98, MACD_Diff: -4.24
+2025-02-24 19:12:34,844 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:12:34,845 - INFO - Volumen: Actual = 503947.55, Promedio = 54251.77
+2025-02-24 19:12:34,845 - INFO - Señal GENERADA: SELL
+2025-02-24 19:12:35,162 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:12:35,163 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:13:35,523 - INFO - Indicadores actuales: stoch_k: 29.40, stoch_d: 44.04, SMA: 2653.69, PSAR: 2662.54, RSI: 26.80, ATR: 18.88, MACD: -13.22, MACD_Signal: -8.98, MACD_Diff: -4.23
+2025-02-24 19:13:35,523 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:13:35,523 - INFO - Volumen: Actual = 518805.76, Promedio = 54400.35
+2025-02-24 19:13:35,523 - INFO - Señal GENERADA: SELL
+2025-02-24 19:13:35,847 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:13:35,847 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:14:36,194 - INFO - Indicadores actuales: stoch_k: 26.27, stoch_d: 42.99, SMA: 2653.57, PSAR: 2662.54, RSI: 26.19, ATR: 18.88, MACD: -13.55, MACD_Signal: -9.05, MACD_Diff: -4.50
+2025-02-24 19:14:36,195 - INFO - Desglose de señales: BUY = 0, SELL = 4
+2025-02-24 19:14:36,196 - INFO - Volumen: Actual = 531751.19, Promedio = 54529.81
+2025-02-24 19:14:36,197 - INFO - Señal GENERADA: SELL
+2025-02-24 19:14:36,509 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:14:36,510 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:15:36,834 - INFO - Indicadores actuales: stoch_k: 28.23, stoch_d: 29.89, SMA: 2650.45, PSAR: 2655.30, RSI: 27.14, ATR: 19.98, MACD: -17.86, MACD_Signal: -10.80, MACD_Diff: -7.06
+2025-02-24 19:15:36,850 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:15:36,850 - INFO - Volumen: Actual = 10075.09, Promedio = 54588.11
+2025-02-24 19:15:36,850 - INFO - Señal GENERADA: SELL
+2025-02-24 19:15:37,161 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:15:37,161 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:16:37,524 - INFO - Indicadores actuales: stoch_k: 32.22, stoch_d: 31.22, SMA: 2650.61, PSAR: 2655.30, RSI: 29.35, ATR: 20.09, MACD: -17.43, MACD_Signal: -10.72, MACD_Diff: -6.72
+2025-02-24 19:16:37,526 - INFO - Desglose de señales: BUY = 2, SELL = 2
+2025-02-24 19:16:37,527 - INFO - Volumen: Actual = 25949.44, Promedio = 54746.85
+2025-02-24 19:16:37,527 - INFO - Señal: HOLD
+2025-02-24 19:16:37,528 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:17:37,866 - INFO - Indicadores actuales: stoch_k: 26.60, stoch_d: 29.35, SMA: 2650.38, PSAR: 2655.30, RSI: 26.25, ATR: 20.09, MACD: -18.04, MACD_Signal: -10.84, MACD_Diff: -7.20
+2025-02-24 19:17:37,867 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:17:37,868 - INFO - Volumen: Actual = 36251.13, Promedio = 54849.87
+2025-02-24 19:17:37,869 - INFO - Señal GENERADA: SELL
+2025-02-24 19:17:38,187 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:17:38,187 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:18:38,533 - INFO - Indicadores actuales: stoch_k: 22.49, stoch_d: 27.98, SMA: 2650.22, PSAR: 2655.30, RSI: 25.42, ATR: 20.10, MACD: -18.47, MACD_Signal: -10.92, MACD_Diff: -7.55
+2025-02-24 19:18:38,534 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:18:38,535 - INFO - Volumen: Actual = 51374.35, Promedio = 55001.10
+2025-02-24 19:18:38,536 - INFO - Señal GENERADA: SELL
+2025-02-24 19:18:38,856 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:18:38,857 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:19:39,199 - INFO - Indicadores actuales: stoch_k: 32.14, stoch_d: 31.20, SMA: 2650.60, PSAR: 2655.30, RSI: 29.31, ATR: 20.10, MACD: -17.44, MACD_Signal: -10.72, MACD_Diff: -6.72
+2025-02-24 19:19:39,200 - INFO - Desglose de señales: BUY = 2, SELL = 2
+2025-02-24 19:19:39,201 - INFO - Volumen: Actual = 58896.49, Promedio = 55076.32
+2025-02-24 19:19:39,202 - INFO - Señal: HOLD
+2025-02-24 19:19:39,202 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:20:39,539 - INFO - Indicadores actuales: stoch_k: 27.39, stoch_d: 29.61, SMA: 2650.42, PSAR: 2655.30, RSI: 26.66, ATR: 20.10, MACD: -17.95, MACD_Signal: -10.82, MACD_Diff: -7.13
+2025-02-24 19:20:39,539 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:20:39,539 - INFO - Volumen: Actual = 66994.14, Promedio = 55157.30
+2025-02-24 19:20:39,539 - INFO - Señal GENERADA: SELL
+2025-02-24 19:20:39,853 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:20:39,853 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:21:40,207 - INFO - Indicadores actuales: stoch_k: 28.02, stoch_d: 29.82, SMA: 2650.44, PSAR: 2655.30, RSI: 27.02, ATR: 20.10, MACD: -17.88, MACD_Signal: -10.81, MACD_Diff: -7.08
+2025-02-24 19:21:40,209 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:21:40,210 - INFO - Volumen: Actual = 74256.94, Promedio = 55229.93
+2025-02-24 19:21:40,211 - INFO - Señal GENERADA: SELL
+2025-02-24 19:21:40,526 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:21:40,527 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:22:40,866 - INFO - Indicadores actuales: stoch_k: 29.55, stoch_d: 30.33, SMA: 2650.50, PSAR: 2655.30, RSI: 27.89, ATR: 20.10, MACD: -17.72, MACD_Signal: -10.77, MACD_Diff: -6.95
+2025-02-24 19:22:40,866 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:22:40,866 - INFO - Volumen: Actual = 81080.24, Promedio = 55298.16
+2025-02-24 19:22:40,866 - INFO - Señal GENERADA: SELL
+2025-02-24 19:22:41,180 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:22:41,180 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:23:41,550 - INFO - Indicadores actuales: stoch_k: 28.37, stoch_d: 29.94, SMA: 2650.45, PSAR: 2655.30, RSI: 27.22, ATR: 20.10, MACD: -17.85, MACD_Signal: -10.80, MACD_Diff: -7.05
+2025-02-24 19:23:41,552 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:23:41,554 - INFO - Volumen: Actual = 86315.96, Promedio = 55350.52
+2025-02-24 19:23:41,554 - INFO - Señal GENERADA: SELL
+2025-02-24 19:23:41,873 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:23:41,874 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:24:42,212 - INFO - Indicadores actuales: stoch_k: 30.54, stoch_d: 30.66, SMA: 2650.54, PSAR: 2655.30, RSI: 28.44, ATR: 20.10, MACD: -17.61, MACD_Signal: -10.75, MACD_Diff: -6.86
+2025-02-24 19:24:42,212 - INFO - Desglose de señales: BUY = 1, SELL = 3
+2025-02-24 19:24:42,212 - INFO - Volumen: Actual = 89885.99, Promedio = 55386.22
+2025-02-24 19:24:42,212 - INFO - Señal GENERADA: SELL
+2025-02-24 19:24:42,554 - INFO - Balance USDT obtenido: 25.51018275
+2025-02-24 19:24:42,554 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:25:42,903 - INFO - Indicadores actuales: stoch_k: 39.42, stoch_d: 33.62, SMA: 2650.89, PSAR: 2655.30, RSI: 33.01, ATR: 20.17, MACD: -16.66, MACD_Signal: -10.56, MACD_Diff: -6.10
+2025-02-24 19:25:42,904 - INFO - Desglose de señales: BUY = 2, SELL = 2
+2025-02-24 19:25:42,905 - INFO - Volumen: Actual = 101032.20, Promedio = 55497.68
+2025-02-24 19:25:42,906 - INFO - Señal: HOLD
+2025-02-24 19:25:42,907 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:26:18,618 - INFO - Detención del bot por parte del usuario.
+2025-02-24 19:26:49,186 - INFO - No se encontró 'minNotional' en el filtro NOTIONAL. Se asigna el valor por defecto 10.0
+2025-02-24 19:26:49,186 - INFO - Parámetros de mercado actualizados: Tick Size = 0.01, Lot Size = 0.001, Min Notional = 10.0
+2025-02-24 19:26:49,500 - INFO - Conexión a Binance Futures exitosa.
+2025-02-24 19:26:49,501 - WARNING - El parámetro 'futures' no es soportado en esta versión, se omitirá.
+2025-02-24 19:26:50,308 - INFO - Stream de precios en tiempo real iniciado.
+2025-02-24 19:26:50,309 - INFO - Iniciando ETH Trading Bot...
+2025-02-24 19:26:50,664 - INFO - Indicadores actuales: stoch_k: 44.73, stoch_d: 35.39, SMA: 2651.10, PSAR: 2655.30, RSI: 35.48, ATR: 20.26, MACD: -16.09, MACD_Signal: -10.45, MACD_Diff: -5.65
+2025-02-24 19:26:50,665 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:26:50,666 - INFO - Volumen: Actual = 114275.11, Promedio = 55630.11
+2025-02-24 19:26:50,666 - INFO - Señal: HOLD
+2025-02-24 19:26:50,666 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:27:51,007 - INFO - Indicadores actuales: stoch_k: 36.89, stoch_d: 32.78, SMA: 2650.79, PSAR: 2655.30, RSI: 31.77, ATR: 20.26, MACD: -16.93, MACD_Signal: -10.62, MACD_Diff: -6.32
+2025-02-24 19:27:51,007 - INFO - Desglose de señales: BUY = 2, SELL = 2
+2025-02-24 19:27:51,007 - INFO - Volumen: Actual = 122488.56, Promedio = 55712.24
+2025-02-24 19:27:51,007 - INFO - Señal: HOLD
+2025-02-24 19:27:51,022 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:28:51,383 - INFO - Indicadores actuales: stoch_k: 39.57, stoch_d: 33.67, SMA: 2650.90, PSAR: 2655.30, RSI: 33.09, ATR: 20.26, MACD: -16.65, MACD_Signal: -10.56, MACD_Diff: -6.09
+2025-02-24 19:28:51,384 - INFO - Desglose de señales: BUY = 2, SELL = 2
+2025-02-24 19:28:51,385 - INFO - Volumen: Actual = 128334.71, Promedio = 55770.70
+2025-02-24 19:28:51,386 - INFO - Señal: HOLD
+2025-02-24 19:28:51,387 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:29:51,764 - INFO - Indicadores actuales: stoch_k: 40.04, stoch_d: 33.83, SMA: 2650.92, PSAR: 2655.30, RSI: 33.31, ATR: 20.26, MACD: -16.60, MACD_Signal: -10.55, MACD_Diff: -6.05
+2025-02-24 19:29:51,767 - INFO - Desglose de señales: BUY = 2, SELL = 2
+2025-02-24 19:29:51,770 - INFO - Volumen: Actual = 131244.12, Promedio = 55799.80
+2025-02-24 19:29:51,772 - INFO - Señal: HOLD
+2025-02-24 19:29:51,773 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:30:52,141 - INFO - Indicadores actuales: stoch_k: 38.83, stoch_d: 34.85, SMA: 2648.21, PSAR: 2648.45, RSI: 32.76, ATR: 21.25, MACD: -19.05, MACD_Signal: -12.27, MACD_Diff: -6.78
+2025-02-24 19:30:52,142 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:30:52,144 - INFO - Volumen: Actual = 2655.63, Promedio = 55774.31
+2025-02-24 19:30:52,145 - INFO - Señal: HOLD
+2025-02-24 19:30:52,145 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:31:52,488 - INFO - Indicadores actuales: stoch_k: 43.80, stoch_d: 36.50, SMA: 2648.41, PSAR: 2648.45, RSI: 35.26, ATR: 21.33, MACD: -18.52, MACD_Signal: -12.16, MACD_Diff: -6.36
+2025-02-24 19:31:52,489 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:31:52,490 - INFO - Volumen: Actual = 6638.45, Promedio = 55814.14
+2025-02-24 19:31:52,490 - INFO - Señal: HOLD
+2025-02-24 19:31:52,491 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:32:52,857 - INFO - Indicadores actuales: stoch_k: 44.65, stoch_d: 36.79, SMA: 2648.44, PSAR: 2648.45, RSI: 35.68, ATR: 21.34, MACD: -18.43, MACD_Signal: -12.15, MACD_Diff: -6.28
+2025-02-24 19:32:52,859 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:32:52,860 - INFO - Volumen: Actual = 10534.25, Promedio = 55853.09
+2025-02-24 19:32:52,861 - INFO - Señal: HOLD
+2025-02-24 19:32:52,862 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:33:53,235 - INFO - Indicadores actuales: stoch_k: 44.54, stoch_d: 36.75, SMA: 2648.44, PSAR: 2648.45, RSI: 35.62, ATR: 21.39, MACD: -18.44, MACD_Signal: -12.15, MACD_Diff: -6.29
+2025-02-24 19:33:53,239 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:33:53,242 - INFO - Volumen: Actual = 16217.50, Promedio = 55909.93
+2025-02-24 19:33:53,244 - INFO - Señal: HOLD
+2025-02-24 19:33:53,246 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:34:16,921 - INFO - Detención del bot por parte del usuario.
+2025-02-24 19:35:38,819 - INFO - No se encontró 'minNotional' en el filtro NOTIONAL. Se asigna el valor por defecto 10.0
+2025-02-24 19:35:38,819 - INFO - Parámetros de mercado actualizados: Tick Size = 0.01, Lot Size = 0.001, Min Notional = 10.0
+2025-02-24 19:35:39,124 - INFO - Conexión a Binance Futures exitosa.
+2025-02-24 19:35:39,124 - WARNING - El parámetro 'futures' no es soportado en esta versión, se omitirá.
+2025-02-24 19:35:39,944 - INFO - Stream de precios en tiempo real iniciado.
+2025-02-24 19:35:39,945 - INFO - Iniciando ETH Trading Bot...
+2025-02-24 19:35:40,332 - INFO - Indicadores actuales: stoch_k: 45.71, stoch_d: 37.14, SMA: 2648.49, PSAR: 2648.45, RSI: 36.19, ATR: 21.39, MACD: -18.32, MACD_Signal: -12.12, MACD_Diff: -6.19
+2025-02-24 19:35:40,348 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:35:40,348 - INFO - Volumen: Actual = 23089.68, Promedio = 55978.65
+2025-02-24 19:35:40,348 - INFO - Señal: HOLD
+2025-02-24 19:35:40,348 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:36:40,721 - INFO - Indicadores actuales: stoch_k: 45.62, stoch_d: 37.11, SMA: 2648.48, PSAR: 2648.45, RSI: 36.15, ATR: 21.39, MACD: -18.33, MACD_Signal: -12.13, MACD_Diff: -6.20
+2025-02-24 19:36:40,723 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:36:40,724 - INFO - Volumen: Actual = 25568.14, Promedio = 56003.43
+2025-02-24 19:36:40,725 - INFO - Señal: HOLD
+2025-02-24 19:36:40,725 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:37:41,080 - INFO - Indicadores actuales: stoch_k: 42.98, stoch_d: 36.23, SMA: 2648.38, PSAR: 2648.45, RSI: 34.85, ATR: 21.39, MACD: -18.61, MACD_Signal: -12.18, MACD_Diff: -6.43
+2025-02-24 19:37:41,081 - INFO - Desglose de señales: BUY = 1, SELL = 2
+2025-02-24 19:37:41,082 - INFO - Volumen: Actual = 30772.52, Promedio = 56055.48
+2025-02-24 19:37:41,083 - INFO - Señal: HOLD
+2025-02-24 19:37:41,084 - INFO - Rendimiento: Trades = 0, Wins = 0, Losses = 0, PnL Total = 0.00, Sharpe Ratio = 0.00
+2025-02-24 19:38:02,547 - INFO - Detención del bot por parte del usuario.

@@ -1,0 +1,550 @@
+2025-02-24 18:15:21,820 - INFO - [32mConexi�n a Binance exitosa.[0m
+2025-02-24 18:15:22,635 - INFO - [32mStream de precios en tiempo real iniciado.[0m
+2025-02-24 18:15:24,995 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.74[0m
+2025-02-24 18:15:25,996 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.07[0m
+2025-02-24 18:15:26,998 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.17[0m
+2025-02-24 18:15:27,998 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.20[0m
+2025-02-24 18:15:29,000 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.40[0m
+2025-02-24 18:15:29,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.40[0m
+2025-02-24 18:15:30,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.39[0m
+2025-02-24 18:15:31,998 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.39[0m
+2025-02-24 18:15:33,001 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.40[0m
+2025-02-24 18:15:33,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.39[0m
+2025-02-24 18:15:34,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.69[0m
+2025-02-24 18:15:35,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.86[0m
+2025-02-24 18:15:36,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.97[0m
+2025-02-24 18:15:37,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.79[0m
+2025-02-24 18:15:39,002 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.51[0m
+2025-02-24 18:15:40,003 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.60[0m
+2025-02-24 18:15:41,004 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.85[0m
+2025-02-24 18:15:42,004 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.71[0m
+2025-02-24 18:15:43,004 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.70[0m
+2025-02-24 18:15:43,999 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.71[0m
+2025-02-24 18:15:45,005 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.10[0m
+2025-02-24 18:15:46,005 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.30[0m
+2025-02-24 18:15:47,007 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.79[0m
+2025-02-24 18:15:48,005 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.79[0m
+2025-02-24 18:15:48,998 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.80[0m
+2025-02-24 18:15:50,007 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.80[0m
+2025-02-24 18:15:51,007 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.80[0m
+2025-02-24 18:15:52,007 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.80[0m
+2025-02-24 18:15:53,008 - INFO - [36mPrecio actualizado v�a WebSocket: 2632.98[0m
+2025-02-24 18:15:54,009 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.19[0m
+2025-02-24 18:15:55,007 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.59[0m
+2025-02-24 18:15:56,009 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.41[0m
+2025-02-24 18:15:57,011 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.59[0m
+2025-02-24 18:15:58,008 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.59[0m
+2025-02-24 18:15:59,006 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.62[0m
+2025-02-24 18:16:00,000 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.64[0m
+2025-02-24 18:16:01,012 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.60[0m
+2025-02-24 18:16:02,013 - INFO - [36mPrecio actualizado v�a WebSocket: 2633.87[0m
+2025-02-24 18:16:03,012 - INFO - [36mPrecio actualizado v�a WebSocket: 2634.07[0m
+2025-02-24 18:22:55,917 - INFO - [36mConfiguración de mercado:
+➤ Precisión precio: [37m[1m0.01
+➤ Tamaño lote: [37m[1m0.0001
+➤ Mínimo operación: [37m[1m5.00 USDT[0m
+2025-02-24 18:22:56,232 - INFO - [32mConexión con Binance exitosa[0m
+2025-02-24 18:22:56,233 - CRITICAL - [31mError inicial: 'EnhancedETHTradingBot' object has no attribute 'start_price_stream'[0m
+2025-02-24 18:27:52,325 - INFO - [36m⚙️ Parámetros Mercado:
+➤ Tick Size: [37m[1m0.01
+➤ Lot Size: [37m[1m0.0001
+➤ Mín. Operación: [37m[1m5.00 USDT[0m
+2025-02-24 18:27:52,643 - INFO - [32m✅ Conexión Binance OK[0m
+2025-02-24 18:27:53,447 - INFO - [32m📡 Stream de precios activado[0m
+2025-02-24 18:27:53,448 - INFO - [32m🚀 Bot Configuración Inicial 🚀
+[36m• Par: [37m[1mETHUSDT
+[36m• Riesgo/Operación: [37m[1m2.0%
+[36m• Stop Dinámico: [37m[1m0.75%
+[36m• Timeframe: [37m[1m15m[0m
+2025-02-24 18:27:53,751 - INFO - [34m[1m💰 Balance Disponible: [37m[1m0.00 USDT[0m
+2025-02-24 18:27:53,766 - INFO - [32m🚀 Iniciando operaciones...[0m
+2025-02-24 18:27:54,107 - INFO - [33m🔍 Análisis Técnico:
+➤ Estocástico: COMPRA
+➤ SMA: VENTA
+➤ PSAR: VENTA
+➤ RSI: NEUTRO
+➤ MACD: COMPRA
+➤ Volumen: BAJO[0m
+2025-02-24 18:27:54,107 - INFO - [34m[1m📊 Rendimiento Actual:
+➤ Operaciones: 0
+➤ Éxitos: [32m0[0m | Pérdidas: [31m0[0m
+➤ PnL Total: [37m[1m0.00 USDT[0m
+➤ Ratio Sharpe: [37m[1m0.00[0m
+2025-02-24 18:28:09,307 - INFO - [33m👋 Bot detenido manualmente[0m
+2025-02-24 19:38:21,809 - ERROR - Error mercado: 
+2025-02-24 19:38:24,426 - ERROR - Error mercado: 
+2025-02-24 19:38:26,757 - ERROR - Error mercado: 
+2025-02-24 19:38:28,758 - CRITICAL - Error inicial: Failed to get market info
+2025-02-24 19:42:45,217 - WARNING - Usando valor por defecto para minNotional
+2025-02-24 19:42:45,218 - INFO - Par�metros actualizados | Tick: 0.01 | Lote: 0.001 | M�nimo: 5.0
+2025-02-24 19:42:45,538 - INFO - Conexi�n exitosa con Binance | Latencia: 316.00ms
+2025-02-24 19:42:46,667 - INFO - WebSocket iniciado
+2025-02-24 19:42:47,764 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:42:48,124 - ERROR - Indicator error: IchimokuIndicator.__init__() got an unexpected keyword argument 'window_conversion'
+2025-02-24 19:42:48,124 - ERROR - Error bucle principal: IchimokuIndicator.__init__() got an unexpected keyword argument 'window_conversion'
+2025-02-24 19:43:18,130 - ERROR - Error bucle principal: operands could not be broadcast together with shapes (9,) (10,) 
+2025-02-24 19:43:38,015 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:43:38,017 - INFO - Detenci�n manual
+2025-02-24 19:43:50,392 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 19:43:51,530 - INFO - WebSocket iniciado
+2025-02-24 19:43:52,505 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:43:52,849 - ERROR - Indicator error: IchimokuIndicator.__init__() got an unexpected keyword argument 'window_conversion'
+2025-02-24 19:43:52,850 - ERROR - Error bucle principal: IchimokuIndicator.__init__() got an unexpected keyword argument 'window_conversion'
+2025-02-24 19:43:56,765 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:43:56,767 - INFO - Detenci�n manual
+2025-02-24 19:46:48,851 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 19:46:49,165 - INFO - ✅ Conexión Binance OK
+2025-02-24 19:46:49,975 - INFO - WebSocket iniciado
+2025-02-24 19:46:49,977 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 19:46:50,934 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:46:51,312 - INFO - 🔎 Procesando señal HOLD a 2569.57
+2025-02-24 19:46:51,313 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:47:51,315 - ERROR - Error bucle principal: operands could not be broadcast together with shapes (9,) (10,) 
+2025-02-24 19:48:21,316 - ERROR - Error bucle principal: operands could not be broadcast together with shapes (9,) (10,) 
+2025-02-24 19:48:31,991 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:48:31,992 - INFO - Detención manual
+2025-02-24 19:49:01,805 - ERROR - Chat ID inválido: Bad Request: chat not found
+2025-02-24 19:49:01,806 - ERROR - Error validando chat ID: Chat ID de Telegram inválido
+2025-02-24 19:49:01,806 - CRITICAL - Error inicial: Chat ID de Telegram inválido
+2025-02-24 19:50:12,488 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 19:50:12,794 - INFO - ✅ Conexión Binance OK
+2025-02-24 19:50:13,614 - INFO - WebSocket iniciado
+2025-02-24 19:50:13,615 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 19:50:14,580 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:50:14,944 - INFO - 🔎 Procesando señal SELL a 2553.72
+2025-02-24 19:50:14,944 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:51:15,390 - INFO - 🔎 Procesando señal SELL a 2558.86
+2025-02-24 19:51:15,391 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:52:15,741 - INFO - 🔎 Procesando señal SELL a 2558.78
+2025-02-24 19:52:15,742 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:53:16,080 - INFO - 🔎 Procesando señal SELL a 2550.35
+2025-02-24 19:53:16,096 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:54:16,566 - INFO - 🔎 Procesando señal SELL a 2543.41
+2025-02-24 19:54:16,568 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:54:36,546 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:54:36,546 - INFO - Detención manual
+2025-02-24 19:54:51,784 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 19:54:52,124 - INFO - ✅ Conexión Binance OK
+2025-02-24 19:54:52,932 - INFO - WebSocket iniciado
+2025-02-24 19:54:52,933 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 19:54:53,871 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:54:54,315 - INFO - 🔎 Procesando señal SELL a 2552.16
+2025-02-24 19:54:54,652 - ERROR - Error bucle principal: 'atr'
+2025-02-24 19:55:25,020 - INFO - 🔎 Procesando señal SELL a 2548.39
+2025-02-24 19:55:25,350 - ERROR - Error bucle principal: 'atr'
+2025-02-24 19:55:55,744 - INFO - 🔎 Procesando señal SELL a 2547.35
+2025-02-24 19:55:56,084 - ERROR - Error bucle principal: 'atr'
+2025-02-24 19:56:26,443 - INFO - 🔎 Procesando señal SELL a 2542.00
+2025-02-24 19:56:26,767 - ERROR - Error bucle principal: 'atr'
+2025-02-24 19:56:39,288 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:56:39,288 - INFO - Detención manual
+2025-02-24 19:56:51,786 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 19:56:52,107 - INFO - ✅ Conexión Binance OK
+2025-02-24 19:56:52,914 - INFO - WebSocket iniciado
+2025-02-24 19:56:52,916 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 19:56:53,895 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:56:54,255 - INFO - 🔎 Procesando señal SELL a 2540.98
+2025-02-24 19:56:54,913 - ERROR - Error cálculo tamaño: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+2025-02-24 19:56:54,913 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:57:55,312 - INFO - 🔎 Procesando señal SELL a 2532.38
+2025-02-24 19:57:55,987 - ERROR - Error cálculo tamaño: unsupported operand type(s) for *: 'decimal.Decimal' and 'float'
+2025-02-24 19:57:55,988 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 19:58:43,454 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:58:43,525 - INFO - Detención manual
+2025-02-24 19:59:01,366 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 19:59:01,689 - INFO - ✅ Conexión Binance OK
+2025-02-24 19:59:02,498 - INFO - WebSocket iniciado
+2025-02-24 19:59:02,499 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 19:59:03,455 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:59:03,919 - INFO - 🔎 Procesando señal SELL a 2510.72
+2025-02-24 19:59:04,675 - INFO - Tamaño posición calculado: 0.011
+2025-02-24 19:59:05,600 - INFO - Trailing stop SHORT actualizado: 2535.48
+2025-02-24 19:59:06,161 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 19:59:06,163 - INFO - Posición SHORT abierta exitosamente
+2025-02-24 19:59:06,164 - INFO - Trailing stop SHORT actualizado: 2529.55
+2025-02-24 19:59:06,165 - INFO - Métricas actualizadas: {'trades': 1, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0.0, 'max_drawdown': 0.0}
+2025-02-24 19:59:24,600 - INFO - Trailing stop SHORT actualizado: 2528.32
+2025-02-24 19:59:26,597 - INFO - Trailing stop SHORT actualizado: 2527.92
+2025-02-24 19:59:57,604 - INFO - Trailing stop SHORT actualizado: 2526.73
+2025-02-24 20:00:06,506 - INFO - 🔎 Procesando señal HOLD a 2507.76
+2025-02-24 20:00:09,032 - INFO - Trailing stop SHORT actualizado: 2526.57
+2025-02-24 20:00:09,032 - INFO - Métricas actualizadas: {'trades': 1, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0.0, 'max_drawdown': 0.0}
+2025-02-24 20:00:18,606 - INFO - Trailing stop SHORT actualizado: 2526.49
+2025-02-24 20:00:19,599 - INFO - Trailing stop SHORT actualizado: 2523.83
+2025-02-24 20:00:22,606 - INFO - Trailing stop SHORT actualizado: 2523.58
+2025-02-24 20:00:23,607 - INFO - Trailing stop SHORT actualizado: 2519.20
+2025-02-24 20:00:24,607 - INFO - Trailing stop SHORT actualizado: 2515.09
+2025-02-24 20:00:25,605 - INFO - Trailing stop SHORT actualizado: 2511.14
+2025-02-24 20:00:26,608 - INFO - Trailing stop SHORT actualizado: 2504.01
+2025-02-24 20:00:27,612 - INFO - Trailing stop SHORT actualizado: 2497.53
+2025-02-24 20:00:28,607 - INFO - Trailing stop SHORT actualizado: 2492.60
+2025-02-24 20:00:29,610 - INFO - Trailing stop SHORT actualizado: 2490.43
+2025-02-24 20:00:58,943 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:01:00,272 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:01:01,601 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:01:02,930 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:01:03,748 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:01:03,748 - INFO - Detención manual
+2025-02-24 20:01:04,252 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:01:05,581 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:01:06,909 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:02:24,533 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 20:02:24,853 - INFO - ✅ Conexión Binance OK
+2025-02-24 20:02:25,174 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 20:02:25,982 - INFO - WebSocket iniciado
+2025-02-24 20:02:25,983 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 20:02:26,943 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:02:27,302 - INFO - 🔎 Procesando señal HOLD a 2506.91
+2025-02-24 20:02:27,650 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:03:27,998 - INFO - 🔎 Procesando señal HOLD a 2512.99
+2025-02-24 20:03:28,357 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:04:28,699 - INFO - 🔎 Procesando señal HOLD a 2524.59
+2025-02-24 20:04:29,046 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:05:29,397 - INFO - 🔎 Procesando señal HOLD a 2522.39
+2025-02-24 20:05:29,742 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:06:30,093 - INFO - 🔎 Procesando señal HOLD a 2526.94
+2025-02-24 20:06:30,434 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:07:30,765 - INFO - 🔎 Procesando señal HOLD a 2536.00
+2025-02-24 20:07:31,114 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:08:31,444 - INFO - 🔎 Procesando señal HOLD a 2533.69
+2025-02-24 20:08:31,802 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:09:32,148 - INFO - 🔎 Procesando señal HOLD a 2537.66
+2025-02-24 20:09:32,486 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:10:32,831 - INFO - 🔎 Procesando señal HOLD a 2531.30
+2025-02-24 20:10:33,167 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:11:33,509 - INFO - 🔎 Procesando señal HOLD a 2539.08
+2025-02-24 20:11:33,845 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:12:34,194 - INFO - 🔎 Procesando señal HOLD a 2537.91
+2025-02-24 20:12:34,535 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:13:34,895 - INFO - 🔎 Procesando señal HOLD a 2543.36
+2025-02-24 20:13:35,243 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:14:35,644 - INFO - 🔎 Procesando señal HOLD a 2538.26
+2025-02-24 20:14:36,064 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:15:36,417 - INFO - 🔎 Procesando señal HOLD a 2530.10
+2025-02-24 20:15:36,766 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:16:37,108 - INFO - 🔎 Procesando señal HOLD a 2538.18
+2025-02-24 20:16:37,465 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:17:37,810 - INFO - 🔎 Procesando señal HOLD a 2542.00
+2025-02-24 20:17:38,158 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:18:38,500 - INFO - 🔎 Procesando señal HOLD a 2545.26
+2025-02-24 20:18:38,841 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:19:39,188 - INFO - 🔎 Procesando señal HOLD a 2543.50
+2025-02-24 20:19:39,527 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:20:39,883 - INFO - 🔎 Procesando señal HOLD a 2544.09
+2025-02-24 20:20:40,218 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:21:40,556 - INFO - 🔎 Procesando señal HOLD a 2539.21
+2025-02-24 20:21:40,897 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:22:41,243 - INFO - 🔎 Procesando señal HOLD a 2537.42
+2025-02-24 20:22:41,591 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:23:41,925 - INFO - 🔎 Procesando señal HOLD a 2529.78
+2025-02-24 20:23:42,262 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:24:42,627 - INFO - 🔎 Procesando señal HOLD a 2533.06
+2025-02-24 20:24:42,970 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:25:43,333 - INFO - 🔎 Procesando señal HOLD a 2524.01
+2025-02-24 20:25:43,687 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:26:44,027 - INFO - 🔎 Procesando señal HOLD a 2526.02
+2025-02-24 20:26:44,383 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:27:44,716 - INFO - 🔎 Procesando señal HOLD a 2522.36
+2025-02-24 20:27:45,067 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:28:45,410 - INFO - 🔎 Procesando señal SELL a 2514.85
+2025-02-24 20:28:46,071 - INFO - Tamaño posición calculado: 0.278
+2025-02-24 20:28:46,398 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:28:47,716 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:28:49,051 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:28:50,053 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:29:50,405 - INFO - 🔎 Procesando señal SELL a 2515.32
+2025-02-24 20:29:51,076 - INFO - Tamaño posición calculado: 0.278
+2025-02-24 20:29:51,403 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:29:52,727 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:29:54,054 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 20:29:55,056 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:30:41,103 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:30:41,103 - INFO - Detención manual
+2025-02-24 20:31:44,206 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 20:31:44,533 - INFO - ✅ Conexión Binance OK
+2025-02-24 20:31:44,850 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 20:31:45,665 - INFO - WebSocket iniciado
+2025-02-24 20:31:45,665 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 20:31:46,585 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:31:46,963 - INFO - 🔎 Procesando señal HOLD a 2523.32
+2025-02-24 20:31:47,308 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:32:47,651 - INFO - 🔎 Procesando señal HOLD a 2522.44
+2025-02-24 20:32:48,291 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:33:48,649 - INFO - 🔎 Procesando señal HOLD a 2510.09
+2025-02-24 20:33:48,988 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:34:30,540 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:34:30,540 - INFO - Detención manual
+2025-02-24 20:34:40,992 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 20:34:41,304 - INFO - ✅ Conexión Binance OK
+2025-02-24 20:34:41,614 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 20:34:42,420 - INFO - WebSocket iniciado
+2025-02-24 20:34:42,421 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 20:34:43,360 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:34:43,705 - INFO - 🔎 Procesando señal HOLD a 2504.33
+2025-02-24 20:34:44,045 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:35:44,404 - INFO - 🔎 Procesando señal SELL a 2498.73
+2025-02-24 20:35:45,066 - INFO - Tamaño posición calculado: 0.10978951167192934
+2025-02-24 20:35:45,381 - ERROR - Error orden SELL al abrir posición: APIError(code=-1111): Precision is over the maximum defined for this asset.
+2025-02-24 20:35:46,706 - ERROR - Error orden SELL al abrir posición: APIError(code=-1111): Precision is over the maximum defined for this asset.
+2025-02-24 20:35:48,031 - ERROR - Error orden SELL al abrir posición: APIError(code=-1111): Precision is over the maximum defined for this asset.
+2025-02-24 20:35:49,032 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:36:49,386 - INFO - 🔎 Procesando señal HOLD a 2501.81
+2025-02-24 20:36:49,746 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:37:50,114 - INFO - 🔎 Procesando señal SELL a 2497.75
+2025-02-24 20:37:50,788 - INFO - Tamaño posición calculado: 0.10983258792913622
+2025-02-24 20:37:51,100 - ERROR - Error orden SELL al abrir posición: APIError(code=-1111): Precision is over the maximum defined for this asset.
+2025-02-24 20:37:52,429 - ERROR - Error orden SELL al abrir posición: APIError(code=-1111): Precision is over the maximum defined for this asset.
+2025-02-24 20:37:54,015 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:37:54,017 - INFO - Detención manual
+2025-02-24 20:38:03,293 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 20:38:03,676 - INFO - ✅ Conexión Binance OK
+2025-02-24 20:38:04,021 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 20:38:04,828 - INFO - WebSocket iniciado
+2025-02-24 20:38:04,829 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 20:38:05,757 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:38:06,118 - INFO - 🔎 Procesando señal HOLD a 2501.48
+2025-02-24 20:38:06,469 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:39:06,910 - INFO - 🔎 Procesando señal HOLD a 2508.55
+2025-02-24 20:39:07,325 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:40:07,663 - INFO - 🔎 Procesando señal HOLD a 2517.88
+2025-02-24 20:40:08,016 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:40:56,193 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 20:40:56,195 - INFO - Detención manual
+2025-02-24 20:41:06,263 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 20:41:06,579 - INFO - ✅ Conexión Binance OK
+2025-02-24 20:41:06,897 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 20:41:07,703 - INFO - WebSocket iniciado
+2025-02-24 20:41:07,704 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 20:41:08,420 - ERROR - Error Telegram: {"ok":false,"error_code":404,"description":"Not Found"}
+2025-02-24 20:41:08,798 - INFO - 🔎 Procesando señal HOLD a 2524.87
+2025-02-24 20:41:09,159 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:41:31,911 - ERROR - Error Telegram: {"ok":false,"error_code":404,"description":"Not Found"}
+2025-02-24 20:41:31,913 - INFO - Detención manual
+2025-02-24 20:41:40,662 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 20:41:40,986 - INFO - ✅ Conexión Binance OK
+2025-02-24 20:41:41,309 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 20:41:42,117 - INFO - WebSocket iniciado
+2025-02-24 20:41:42,118 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 20:41:42,883 - ERROR - Error Telegram: {"ok":false,"error_code":404,"description":"Not Found"}
+2025-02-24 20:41:43,235 - INFO - 🔎 Procesando señal HOLD a 2529.68
+2025-02-24 20:41:43,581 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:42:43,913 - INFO - 🔎 Procesando señal HOLD a 2527.35
+2025-02-24 20:42:44,248 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:43:44,758 - INFO - 🔎 Procesando señal HOLD a 2520.47
+2025-02-24 20:43:45,205 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:44:45,539 - INFO - 🔎 Procesando señal HOLD a 2527.81
+2025-02-24 20:44:45,883 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:45:46,233 - INFO - 🔎 Procesando señal HOLD a 2525.10
+2025-02-24 20:45:46,566 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:46:46,897 - INFO - 🔎 Procesando señal HOLD a 2522.52
+2025-02-24 20:46:47,239 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:47:47,585 - INFO - 🔎 Procesando señal HOLD a 2519.66
+2025-02-24 20:47:47,915 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:48:48,243 - INFO - 🔎 Procesando señal HOLD a 2519.64
+2025-02-24 20:48:48,590 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:49:48,938 - INFO - 🔎 Procesando señal HOLD a 2516.19
+2025-02-24 20:49:49,402 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:50:49,735 - INFO - 🔎 Procesando señal HOLD a 2508.08
+2025-02-24 20:50:50,068 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:51:50,406 - INFO - 🔎 Procesando señal HOLD a 2505.85
+2025-02-24 20:51:50,748 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:52:51,083 - INFO - 🔎 Procesando señal HOLD a 2505.60
+2025-02-24 20:52:51,410 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:53:51,748 - INFO - 🔎 Procesando señal HOLD a 2513.43
+2025-02-24 20:53:52,134 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:54:52,467 - INFO - 🔎 Procesando señal HOLD a 2512.44
+2025-02-24 20:54:52,810 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:55:53,147 - INFO - 🔎 Procesando señal HOLD a 2512.54
+2025-02-24 20:55:53,482 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:56:53,818 - INFO - 🔎 Procesando señal HOLD a 2509.69
+2025-02-24 20:56:54,145 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:57:54,471 - INFO - 🔎 Procesando señal HOLD a 2507.64
+2025-02-24 20:57:54,956 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:58:55,286 - INFO - 🔎 Procesando señal HOLD a 2513.90
+2025-02-24 20:58:55,614 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 20:59:55,952 - INFO - 🔎 Procesando señal HOLD a 2513.23
+2025-02-24 20:59:56,284 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:00:56,651 - INFO - 🔎 Procesando señal HOLD a 2520.69
+2025-02-24 21:00:57,021 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:01:57,353 - INFO - 🔎 Procesando señal HOLD a 2523.51
+2025-02-24 21:01:57,687 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:02:58,018 - INFO - 🔎 Procesando señal HOLD a 2528.38
+2025-02-24 21:02:58,350 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:03:58,688 - INFO - 🔎 Procesando señal HOLD a 2526.11
+2025-02-24 21:03:59,022 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:04:48,957 - ERROR - Error Telegram: {"ok":false,"error_code":404,"description":"Not Found"}
+2025-02-24 21:04:48,958 - INFO - Detención manual
+2025-02-24 21:05:01,228 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 21:05:01,537 - INFO - ✅ Conexión Binance OK
+2025-02-24 21:05:01,946 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 21:05:03,365 - INFO - WebSocket iniciado
+2025-02-24 21:05:03,366 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 21:05:04,353 - ERROR - Error Telegram: {"ok":false,"error_code":400,"description":"Bad Request: chat not found"}
+2025-02-24 21:05:04,710 - INFO - 🔎 Procesando señal HOLD a 2517.06
+2025-02-24 21:05:05,091 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:06:05,424 - INFO - 🔎 Procesando señal HOLD a 2516.74
+2025-02-24 21:06:05,774 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:07:06,111 - INFO - 🔎 Procesando señal HOLD a 2502.51
+2025-02-24 21:07:06,444 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:08:06,775 - INFO - 🔎 Procesando señal HOLD a 2498.98
+2025-02-24 21:08:07,137 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:09:07,474 - INFO - 🔎 Procesando señal HOLD a 2495.27
+2025-02-24 21:09:07,811 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:10:08,141 - INFO - 🔎 Procesando señal HOLD a 2495.15
+2025-02-24 21:10:08,474 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:10:15,162 - INFO - Detención manual
+2025-02-24 21:10:23,839 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 21:10:24,158 - INFO - ✅ Conexión Binance OK
+2025-02-24 21:10:24,480 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-24 21:10:25,286 - INFO - WebSocket iniciado
+2025-02-24 21:10:25,286 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 21:10:26,481 - INFO - 🔎 Procesando señal HOLD a 2493.80
+2025-02-24 21:10:26,827 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:11:27,148 - INFO - 🔎 Procesando señal HOLD a 2484.97
+2025-02-24 21:11:27,492 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:12:27,832 - INFO - 🔎 Procesando señal HOLD a 2488.19
+2025-02-24 21:12:28,171 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:13:28,513 - INFO - 🔎 Procesando señal HOLD a 2479.40
+2025-02-24 21:13:28,850 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:14:29,195 - INFO - 🔎 Procesando señal SELL a 2472.22
+2025-02-24 21:14:29,855 - INFO - Tamaño posición calculado: 0.11096680170049592
+2025-02-24 21:14:30,177 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 21:14:31,513 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 21:14:32,851 - ERROR - Error orden SELL al abrir posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 21:14:33,862 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:15:34,197 - INFO - 🔎 Procesando señal HOLD a 2478.06
+2025-02-24 21:15:34,538 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:16:34,880 - INFO - 🔎 Procesando señal HOLD a 2486.62
+2025-02-24 21:16:35,220 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:17:35,854 - INFO - 🔎 Procesando señal HOLD a 2492.93
+2025-02-24 21:17:36,195 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:18:36,545 - INFO - 🔎 Procesando señal HOLD a 2494.75
+2025-02-24 21:18:36,891 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:19:37,241 - INFO - 🔎 Procesando señal HOLD a 2510.49
+2025-02-24 21:19:37,598 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:20:37,927 - INFO - 🔎 Procesando señal HOLD a 2515.84
+2025-02-24 21:20:38,281 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:21:38,619 - INFO - 🔎 Procesando señal HOLD a 2511.78
+2025-02-24 21:21:38,958 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:21:49,867 - INFO - Detención manual
+2025-02-24 21:22:08,089 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 21:22:08,389 - INFO - ✅ Conexión Binance OK
+2025-02-24 21:22:08,724 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-24 21:22:09,533 - INFO - WebSocket iniciado
+2025-02-24 21:22:09,534 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-24 21:22:10,763 - INFO - 🔎 Procesando señal HOLD a 2513.57
+2025-02-24 21:22:11,107 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:23:11,454 - INFO - 🔎 Procesando señal HOLD a 2513.63
+2025-02-24 21:23:11,788 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:24:12,122 - INFO - 🔎 Procesando señal HOLD a 2522.55
+2025-02-24 21:24:12,455 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:25:12,788 - INFO - 🔎 Procesando señal HOLD a 2521.15
+2025-02-24 21:25:13,118 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:26:13,458 - INFO - 🔎 Procesando señal HOLD a 2516.41
+2025-02-24 21:26:13,791 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:27:14,127 - INFO - 🔎 Procesando señal HOLD a 2517.76
+2025-02-24 21:27:14,461 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:28:14,799 - INFO - 🔎 Procesando señal HOLD a 2506.96
+2025-02-24 21:28:15,134 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:29:15,467 - INFO - 🔎 Procesando señal HOLD a 2507.21
+2025-02-24 21:29:15,813 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:30:16,149 - INFO - 🔎 Procesando señal HOLD a 2510.40
+2025-02-24 21:30:16,483 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:31:16,820 - INFO - 🔎 Procesando señal HOLD a 2513.99
+2025-02-24 21:31:17,151 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:32:17,487 - INFO - 🔎 Procesando señal HOLD a 2500.11
+2025-02-24 21:32:17,824 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:33:18,151 - INFO - 🔎 Procesando señal HOLD a 2501.59
+2025-02-24 21:33:18,485 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:34:18,819 - INFO - 🔎 Procesando señal HOLD a 2499.11
+2025-02-24 21:34:19,151 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:35:19,489 - INFO - 🔎 Procesando señal HOLD a 2498.81
+2025-02-24 21:35:19,833 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:36:20,165 - INFO - 🔎 Procesando señal HOLD a 2502.23
+2025-02-24 21:36:20,510 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:37:20,847 - INFO - 🔎 Procesando señal HOLD a 2505.85
+2025-02-24 21:37:21,189 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:38:21,528 - INFO - 🔎 Procesando señal HOLD a 2495.64
+2025-02-24 21:38:21,859 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:39:22,208 - INFO - 🔎 Procesando señal HOLD a 2493.80
+2025-02-24 21:39:22,548 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:40:22,888 - INFO - 🔎 Procesando señal HOLD a 2501.33
+2025-02-24 21:40:23,223 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:41:23,562 - INFO - 🔎 Procesando señal HOLD a 2495.30
+2025-02-24 21:41:23,890 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:42:24,233 - INFO - 🔎 Procesando señal HOLD a 2500.37
+2025-02-24 21:42:24,568 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:43:24,906 - INFO - 🔎 Procesando señal HOLD a 2488.25
+2025-02-24 21:43:25,243 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:44:25,585 - INFO - 🔎 Procesando señal HOLD a 2490.36
+2025-02-24 21:44:25,920 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:45:26,254 - INFO - 🔎 Procesando señal HOLD a 2485.02
+2025-02-24 21:45:26,590 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:46:27,007 - INFO - 🔎 Procesando señal HOLD a 2489.72
+2025-02-24 21:46:27,446 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:47:27,776 - INFO - 🔎 Procesando señal HOLD a 2496.90
+2025-02-24 21:47:28,119 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:48:28,448 - INFO - 🔎 Procesando señal HOLD a 2502.61
+2025-02-24 21:48:28,788 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:49:29,128 - INFO - 🔎 Procesando señal HOLD a 2495.88
+2025-02-24 21:49:29,469 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:50:29,807 - INFO - 🔎 Procesando señal HOLD a 2504.60
+2025-02-24 21:50:30,152 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:51:30,500 - INFO - 🔎 Procesando señal HOLD a 2508.96
+2025-02-24 21:51:30,837 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:52:31,164 - INFO - 🔎 Procesando señal HOLD a 2507.68
+2025-02-24 21:52:31,502 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:53:31,841 - INFO - 🔎 Procesando señal HOLD a 2509.09
+2025-02-24 21:53:32,171 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:54:32,510 - INFO - 🔎 Procesando señal HOLD a 2501.84
+2025-02-24 21:54:32,835 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:55:33,179 - INFO - 🔎 Procesando señal HOLD a 2504.81
+2025-02-24 21:55:33,520 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:56:33,869 - INFO - 🔎 Procesando señal HOLD a 2506.08
+2025-02-24 21:56:34,219 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:57:34,562 - INFO - 🔎 Procesando señal HOLD a 2501.90
+2025-02-24 21:57:34,882 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:58:35,233 - INFO - 🔎 Procesando señal HOLD a 2498.26
+2025-02-24 21:58:35,565 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 21:59:35,900 - INFO - 🔎 Procesando señal HOLD a 2497.56
+2025-02-24 21:59:36,231 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:00:36,575 - INFO - 🔎 Procesando señal HOLD a 2495.39
+2025-02-24 22:00:36,908 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:01:37,247 - INFO - 🔎 Procesando señal HOLD a 2487.00
+2025-02-24 22:01:37,581 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:02:37,925 - INFO - 🔎 Procesando señal HOLD a 2494.65
+2025-02-24 22:02:38,269 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:03:38,610 - INFO - 🔎 Procesando señal HOLD a 2491.20
+2025-02-24 22:03:38,944 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:04:39,273 - INFO - 🔎 Procesando señal HOLD a 2483.77
+2025-02-24 22:04:39,620 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:05:39,960 - INFO - 🔎 Procesando señal HOLD a 2483.71
+2025-02-24 22:05:40,309 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:06:40,641 - INFO - 🔎 Procesando señal HOLD a 2488.00
+2025-02-24 22:06:40,978 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:07:41,310 - INFO - 🔎 Procesando señal HOLD a 2488.96
+2025-02-24 22:07:41,644 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:08:41,981 - INFO - 🔎 Procesando señal HOLD a 2484.66
+2025-02-24 22:08:42,320 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:09:42,661 - INFO - 🔎 Procesando señal HOLD a 2481.75
+2025-02-24 22:09:42,996 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:10:43,337 - INFO - 🔎 Procesando señal HOLD a 2483.18
+2025-02-24 22:10:43,670 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:11:44,006 - INFO - 🔎 Procesando señal HOLD a 2474.02
+2025-02-24 22:11:44,338 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:12:44,672 - INFO - 🔎 Procesando señal HOLD a 2483.81
+2025-02-24 22:12:45,007 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:13:45,342 - INFO - 🔎 Procesando señal HOLD a 2489.52
+2025-02-24 22:13:45,959 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:14:46,302 - INFO - 🔎 Procesando señal HOLD a 2489.76
+2025-02-24 22:14:46,636 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:15:46,968 - INFO - 🔎 Procesando señal HOLD a 2500.65
+2025-02-24 22:15:47,303 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:16:47,642 - INFO - 🔎 Procesando señal HOLD a 2494.33
+2025-02-24 22:16:47,980 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:17:48,314 - INFO - 🔎 Procesando señal HOLD a 2493.03
+2025-02-24 22:17:48,643 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:18:48,972 - INFO - 🔎 Procesando señal HOLD a 2482.82
+2025-02-24 22:18:49,308 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:19:49,647 - INFO - 🔎 Procesando señal HOLD a 2490.36
+2025-02-24 22:19:49,975 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
