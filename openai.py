@@ -413,6 +413,8 @@ class EnhancedETHTradingBot:
         Cierra la posición abierta.
         Si la posición es LONG se envía una orden SELL; si es SHORT se envía una orden BUY.
         Se consulta la posición real desde la cuenta y se utiliza esa cantidad para cerrar.
+        En caso de obtener el error "ReduceOnly Order is rejected" (que indica que la posición ya se cerró),
+        se ignora ese error y se actualizan las métricas.
         """
         if self.symbol not in self.positions:
             return
@@ -471,8 +473,27 @@ class EnhancedETHTradingBot:
                     logger.info("Posición cerrada exitosamente")
                     break
             except Exception as e:
-                logger.error(f"Error al cerrar posición: {str(e)}")
-                time.sleep(1)
+                if "ReduceOnly Order is rejected" in str(e):
+                    logger.info("La posición se cerró, error 'ReduceOnly' ignorado.")
+                    pnl = (price - pos['entry']) * pos['size'] if pos['side'] == 'LONG' else (pos['entry'] - price) * pos['size']
+                    self.metrics['total_pnl'] += pnl
+                    if pnl > 0:
+                        self.metrics['wins'] += 1
+                    else:
+                        self.metrics['losses'] += 1
+                    del self.positions[self.symbol]
+                    profit_msg = (
+                        f"💰 *Resultado Operación* \n"
+                        f"• PnL: ${pnl:.2f}\n"
+                        f"• Duración: {(datetime.now() - pos['time']).seconds // 60} mins\n"
+                        f"• Balance Actual: ${self.get_portfolio_balance():.2f}"
+                    )
+                    self.telegram.send(order_msg)
+                    self.telegram.send(profit_msg)
+                    break
+                else:
+                    logger.error(f"Error al cerrar posición: {str(e)}")
+                    time.sleep(1)
 
     def execute_trade(self, signal: str, price: float):
         """
