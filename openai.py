@@ -15,6 +15,7 @@ from ta.volume import OnBalanceVolumeIndicator
 from typing import Dict
 from dotenv import load_dotenv
 from colorama import init, Fore, Style
+import argparse
 
 # Inicializar colorama
 init(autoreset=True)
@@ -318,7 +319,6 @@ class EnhancedETHTradingBot:
                 logger.error("Balance inválido")
                 return 0.0
                 
-            # Se usa el risk_per_trade (1 para usar el 100% del balance, pero se puede ajustar)
             risk = self.dynamic_risk_management()
             risk_amount = balance * risk
             risk_per_unit = abs(price - stop_loss)
@@ -328,7 +328,6 @@ class EnhancedETHTradingBot:
                 return 0.0
                 
             raw_size = risk_amount / risk_per_unit
-            # Calcular el tamaño máximo permitido según el margen disponible:
             leverage = 5
             margin_safety_factor = 0.95  # Deja un 5% de colchón
             max_size = balance * leverage * margin_safety_factor / price
@@ -413,13 +412,29 @@ class EnhancedETHTradingBot:
         """
         Cierra la posición abierta.
         Si la posición es LONG se envía una orden SELL; si es SHORT se envía una orden BUY.
+        Se consulta la posición real desde la cuenta y se utiliza esa cantidad para cerrar.
         """
         if self.symbol not in self.positions:
             return
         pos = self.positions[self.symbol]
-        quantity = self.round_down_quantity(pos['size'])
-        quantity_str = format(quantity, 'f')
         order_side = Client.SIDE_SELL if pos['side'] == 'LONG' else Client.SIDE_BUY
+
+        # Consultar la posición actual desde la cuenta
+        try:
+            pos_info = self.client.futures_position_information(symbol=self.symbol)
+            for p in pos_info:
+                if p['symbol'] == self.symbol:
+                    pos_amt = abs(float(p['positionAmt']))
+                    break
+            else:
+                pos_amt = pos['size']
+        except Exception as e:
+            logger.error(f"Error obteniendo información de posición: {str(e)}")
+            pos_amt = pos['size']
+
+        quantity = self.round_down_quantity(pos_amt)
+        quantity_str = format(quantity, 'f')
+
         order_msg = (
             f"🔻 *Cierre de Posición ({pos['side']})* \n"
             f"• Par: {self.symbol}\n"
@@ -434,6 +449,7 @@ class EnhancedETHTradingBot:
                     side=order_side,
                     type=Client.ORDER_TYPE_MARKET,
                     quantity=quantity_str,
+                    reduceOnly=True,
                     recvWindow=5000
                 )
                 if order['status'] == 'FILLED':
@@ -465,7 +481,6 @@ class EnhancedETHTradingBot:
           - 'SELL': Si no hay posición abre SHORT; si hay posición LONG, la cierra y abre SHORT.
         """
         logger.info(f"🔎 Procesando señal {signal} a {price:.2f}")
-        # Para obtener ATR es necesario recalcular los indicadores
         df = self.calculate_indicators(self.get_data(100))
         atr = df['atr'].iloc[-1]
         if signal == 'BUY':
@@ -593,21 +608,50 @@ class EnhancedETHTradingBot:
             logger.critical(f"Error fatal: {str(e)}")
             raise
 
+def main():
+    # Configuración de argumentos de línea de comandos
+    parser = argparse.ArgumentParser(description="Enhanced ETH Trading Bot")
+    parser.add_argument("--forcebuy", action="store_true", help="Forzar compra para testing.")
+    parser.add_argument("--forcesell", action="store_true", help="Forzar venta para testing.")
+    args = parser.parse_args()
+
+    # Cargar variables de entorno y configurar el notificador de Telegram
+    telegram = TelegramNotifier(
+        token=os.getenv('TELEGRAM_TOKEN'),
+        chat_id=os.getenv('TELEGRAM_CHAT_ID')
+    )
+
+    # Inicializar el bot
+    bot = EnhancedETHTradingBot(
+        api_key=os.getenv('API_KEY'),
+        api_secret=os.getenv('API_SECRET'),
+        symbol='ETHUSDT',
+        telegram=telegram,
+        risk_per_trade=1,          # Usar el 100% del balance para testing (ajusta según convenga)
+        base_trailing_stop=0.0075
+    )
+
+    # Obtener datos actuales para poder calcular indicadores y extraer el precio y el ATR
+    df = bot.get_data(100)
+    df = bot.calculate_indicators(df)
+    current_price = df['close'].iloc[-1]
+    atr = df['atr'].iloc[-1]
+
+    if args.forcebuy:
+        logger.info("Forzando orden de compra (LONG) para testing.")
+        bot.open_position("LONG", current_price, atr)
+        return
+
+    if args.forcesell:
+        if bot.symbol not in bot.positions:
+            logger.info("No existe posición abierta. Abriendo posición LONG para luego forzar venta.")
+            bot.open_position("LONG", current_price, atr)
+            time.sleep(2)
+        logger.info("Forzando orden de venta (cierre de posición) para testing.")
+        bot.close_position("SELL", current_price)
+        return
+
+    bot.run()
+
 if __name__ == "__main__":
-    try:
-        telegram = TelegramNotifier(
-            token=os.getenv('TELEGRAM_TOKEN'),
-            chat_id=os.getenv('TELEGRAM_CHAT_ID')
-        )
-        
-        bot = EnhancedETHTradingBot(
-            api_key=os.getenv('API_KEY'),
-            api_secret=os.getenv('API_SECRET'),
-            symbol='ETHUSDT',
-            telegram=telegram,
-            risk_per_trade=1,  # Usar el 100% del balance (ajustar si es necesario)
-            base_trailing_stop=0.0075
-        )
-        bot.run()
-    except Exception as e:
-        logger.critical(f"Error inicial: {str(e)}")
+    main()

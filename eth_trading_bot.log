@@ -548,3 +548,92 @@
 2025-02-24 22:18:49,308 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
 2025-02-24 22:19:49,647 - INFO - 🔎 Procesando señal HOLD a 2490.36
 2025-02-24 22:19:49,975 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-24 22:54:20,437 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 22:54:20,756 - INFO - ✅ Conexión Binance OK
+2025-02-24 22:54:21,089 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-24 22:54:21,894 - INFO - WebSocket iniciado
+2025-02-24 22:54:22,241 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
+2025-02-24 22:54:22,571 - INFO - Tamaño posición calculado: 0.052
+2025-02-24 22:54:23,812 - INFO - Posición LONG abierta exitosamente
+2025-02-24 22:54:24,127 - INFO - Trailing stop LONG actualizado: 2469.81
+2025-02-24 22:54:25,813 - INFO - Forzando orden de venta (cierre de posición) para testing.
+2025-02-24 22:54:26,793 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 22:54:52,133 - INFO - Trailing stop LONG actualizado: 2470.12
+2025-02-24 22:54:55,134 - INFO - Trailing stop LONG actualizado: 2470.51
+2025-02-24 22:54:56,133 - INFO - Trailing stop LONG actualizado: 2470.70
+2025-02-24 22:55:01,135 - INFO - Trailing stop LONG actualizado: 2470.92
+2025-02-24 22:55:02,136 - INFO - Trailing stop LONG actualizado: 2471.33
+2025-02-24 22:55:20,136 - INFO - Trailing stop LONG actualizado: 2471.45
+2025-02-24 22:55:21,140 - INFO - Trailing stop LONG actualizado: 2472.11
+2025-02-24 22:55:36,138 - INFO - Trailing stop LONG actualizado: 2472.29
+2025-02-24 22:55:37,140 - INFO - Trailing stop LONG actualizado: 2472.43
+2025-02-24 22:55:41,142 - INFO - Trailing stop LONG actualizado: 2472.90
+2025-02-24 22:56:55,892 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 22:56:56,204 - INFO - ✅ Conexión Binance OK
+2025-02-24 22:56:56,523 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-24 22:56:57,328 - INFO - WebSocket iniciado
+2025-02-24 22:56:57,667 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
+2025-02-24 22:56:57,986 - INFO - Tamaño posición calculado: 0.051
+2025-02-24 22:56:59,162 - INFO - Trailing stop LONG actualizado: 2473.10
+2025-02-24 22:56:59,184 - INFO - Posición LONG abierta exitosamente
+2025-02-24 22:57:00,162 - INFO - Trailing stop LONG actualizado: 2473.70
+2025-02-24 22:57:01,185 - INFO - Forzando orden de venta (cierre de posición) para testing.
+2025-02-24 22:57:01,849 - ERROR - Error al cerrar posición: APIError(code=-2022): ReduceOnly Order is rejected.
+2025-02-24 22:57:03,188 - ERROR - Error al cerrar posición: APIError(code=-2022): ReduceOnly Order is rejected.
+2025-02-24 22:59:18,660 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 22:59:18,964 - INFO - ✅ Conexión Binance OK
+2025-02-24 22:59:19,285 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-24 22:59:19,995 - INFO - WebSocket iniciado
+2025-02-24 22:59:20,331 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
+2025-02-24 22:59:20,627 - INFO - Tamaño posición calculado: 0.051
+2025-02-24 22:59:21,789 - INFO - Posición LONG abierta exitosamente
+2025-02-24 22:59:22,199 - INFO - Trailing stop LONG actualizado: 2475.80
+2025-02-24 22:59:23,796 - INFO - Forzando orden de venta (cierre de posición) para testing.
+2025-02-24 22:59:24,104 - ERROR - Error al cerrar posición: APIError(code=-4136): Target strategy invalid for orderType MARKET,closePosition true
+2025-02-24 22:59:24,210 - INFO - Trailing stop LONG actualizado: 2475.81
+2025-02-24 22:59:25,412 - ERROR - Error al cerrar posición: APIError(code=-4136): Target strategy invalid for orderType MARKET,closePosition true
+2025-02-24 22:59:26,202 - INFO - Trailing stop LONG actualizado: 2477.02
+2025-02-24 22:59:26,720 - ERROR - Error al cerrar posición: APIError(code=-4136): Target strategy invalid for orderType MARKET,closePosition true
+2025-02-24 22:59:29,210 - INFO - Trailing stop LONG actualizado: 2477.53
+2025-02-24 22:59:30,211 - INFO - Trailing stop LONG actualizado: 2477.96
+2025-02-24 23:01:49,603 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 23:01:49,922 - INFO - ✅ Conexión Binance OK
+2025-02-24 23:01:50,238 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-24 23:01:51,043 - INFO - WebSocket iniciado
+2025-02-24 23:01:51,386 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
+2025-02-24 23:01:51,708 - INFO - Tamaño posición calculado: 0.05
+2025-02-24 23:01:52,900 - INFO - Posición LONG abierta exitosamente
+2025-02-24 23:01:53,036 - INFO - Trailing stop LONG actualizado: 2482.25
+2025-02-24 23:01:54,026 - INFO - Trailing stop LONG actualizado: 2482.73
+2025-02-24 23:01:54,906 - INFO - Forzando orden de venta (cierre de posición) para testing.
+2025-02-24 23:01:55,040 - INFO - Trailing stop LONG actualizado: 2483.56
+2025-02-24 23:01:55,869 - ERROR - Error al cerrar posición: APIError(code=-2022): ReduceOnly Order is rejected.
+2025-02-24 23:01:56,040 - INFO - Trailing stop LONG actualizado: 2483.57
+2025-02-24 23:01:57,186 - ERROR - Error al cerrar posición: APIError(code=-2022): ReduceOnly Order is rejected.
+2025-02-24 23:01:58,033 - INFO - Trailing stop LONG actualizado: 2484.17
+2025-02-24 23:01:59,041 - INFO - Trailing stop LONG actualizado: 2484.18
+2025-02-24 23:02:02,038 - INFO - Trailing stop LONG actualizado: 2484.49
+2025-02-24 23:05:09,088 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-24 23:05:09,459 - INFO - ✅ Conexión Binance OK
+2025-02-24 23:05:09,781 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-24 23:05:10,585 - INFO - WebSocket iniciado
+2025-02-24 23:05:10,944 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
+2025-02-24 23:05:11,287 - INFO - Tamaño posición calculado: 0.05
+2025-02-24 23:05:12,277 - INFO - Trailing stop LONG actualizado: 2485.42
+2025-02-24 23:05:12,477 - INFO - Posición LONG abierta exitosamente
+2025-02-24 23:05:14,284 - INFO - Trailing stop LONG actualizado: 2485.95
+2025-02-24 23:05:14,487 - INFO - Forzando orden de venta (cierre de posición) para testing.
+2025-02-24 23:05:15,284 - INFO - Trailing stop LONG actualizado: 2486.32
+2025-02-24 23:05:15,804 - ERROR - Error al cerrar posición: APIError(code=-2019): Margin is insufficient.
+2025-02-24 23:05:16,279 - INFO - Trailing stop LONG actualizado: 2486.70
+2025-02-24 23:05:17,283 - INFO - Trailing stop LONG actualizado: 2487.20
+2025-02-24 23:05:18,284 - INFO - Trailing stop LONG actualizado: 2487.54
+2025-02-24 23:05:19,284 - INFO - Trailing stop LONG actualizado: 2487.55
+2025-02-24 23:05:28,282 - INFO - Trailing stop LONG actualizado: 2488.20
+2025-02-24 23:05:29,290 - INFO - Trailing stop LONG actualizado: 2488.58
+2025-02-24 23:05:30,286 - INFO - Trailing stop LONG actualizado: 2488.69
+2025-02-24 23:05:37,289 - INFO - Trailing stop LONG actualizado: 2488.88
+2025-02-24 23:05:38,289 - INFO - Trailing stop LONG actualizado: 2488.97
+2025-02-24 23:05:39,284 - INFO - Trailing stop LONG actualizado: 2489.10
+2025-02-24 23:05:40,290 - INFO - Trailing stop LONG actualizado: 2489.19
+2025-02-24 23:05:43,296 - INFO - Trailing stop LONG actualizado: 2489.28
