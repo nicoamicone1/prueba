@@ -1,0 +1,49 @@
+2025-02-25 16:01:22,304 - INFO - [ETHUSDT] Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 16:01:22,619 - INFO - [ETHUSDT] ✅ Conexión Binance OK
+2025-02-25 16:01:22,937 - INFO - [ETHUSDT] Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-25 16:01:23,744 - INFO - [ETHUSDT] WebSocket iniciado
+2025-02-25 16:01:24,508 - INFO - [BNBUSDT] Market Params | Tick: 0.01 | Lot: 0.01 | Min Notional: 10.0
+2025-02-25 16:01:24,802 - INFO - [BNBUSDT] ✅ Conexión Binance OK
+2025-02-25 16:01:25,119 - INFO - [BNBUSDT] Apalancamiento configurado: {'symbol': 'BNBUSDT', 'leverage': 5, 'maxNotionalValue': '30000000'}
+2025-02-25 16:03:17,292 - INFO - [ETHUSDT] Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 16:03:17,613 - INFO - [ETHUSDT] ✅ Conexión Binance OK
+2025-02-25 16:03:17,938 - INFO - [ETHUSDT] Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-25 16:03:18,700 - INFO - [BNBUSDT] Market Params | Tick: 0.01 | Lot: 0.01 | Min Notional: 10.0
+2025-02-25 16:03:19,019 - INFO - [BNBUSDT] ✅ Conexión Binance OK
+2025-02-25 16:03:19,335 - INFO - [BNBUSDT] Apalancamiento configurado: {'symbol': 'BNBUSDT', 'leverage': 5, 'maxNotionalValue': '30000000'}
+2025-02-25 16:03:20,089 - INFO - [SOLUSDT] Market Params | Tick: 0.01 | Lot: 1.0 | Min Notional: 10.0
+2025-02-25 16:03:20,400 - INFO - [SOLUSDT] ✅ Conexión Binance OK
+2025-02-25 16:03:20,734 - INFO - [SOLUSDT] Apalancamiento configurado: {'symbol': 'SOLUSDT', 'leverage': 5, 'maxNotionalValue': '80000000'}
+2025-02-25 16:03:21,542 - INFO - [ETHUSDT] 🚀 Iniciando Trading Bot
+2025-02-25 16:03:21,544 - INFO - [BNBUSDT] 🚀 Iniciando Trading Bot
+2025-02-25 16:03:21,547 - INFO - [SOLUSDT] 🚀 Iniciando Trading Bot
+2025-02-25 16:03:22,816 - INFO - [ETHUSDT] 🔎 Procesando señal HOLD a 2425.17
+2025-02-25 16:03:22,832 - INFO - [SOLUSDT] 🔎 Procesando señal HOLD a 141.41
+2025-02-25 16:03:23,038 - INFO - [BNBUSDT] 🔎 Procesando señal HOLD a 613.13
+2025-02-25 16:03:23,163 - INFO - [ETHUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:03:23,208 - INFO - [SOLUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:03:23,377 - INFO - [BNBUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:04:23,517 - INFO - [ETHUSDT] 🔎 Procesando señal HOLD a 2426.50
+2025-02-25 16:04:23,551 - INFO - [SOLUSDT] 🔎 Procesando señal HOLD a 141.34
+2025-02-25 16:04:23,716 - INFO - [BNBUSDT] 🔎 Procesando señal HOLD a 613.40
+2025-02-25 16:04:23,861 - INFO - [ETHUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:04:23,892 - INFO - [SOLUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:04:24,067 - INFO - [BNBUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:05:24,188 - INFO - [ETHUSDT] 🔎 Procesando señal HOLD a 2427.15
+2025-02-25 16:05:24,232 - INFO - [SOLUSDT] 🔎 Procesando señal HOLD a 141.42
+2025-02-25 16:05:24,393 - INFO - [BNBUSDT] 🔎 Procesando señal HOLD a 613.48
+2025-02-25 16:05:24,529 - INFO - [ETHUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:05:24,565 - INFO - [SOLUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:05:24,724 - INFO - [BNBUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:06:24,873 - INFO - [ETHUSDT] 🔎 Procesando señal HOLD a 2428.00
+2025-02-25 16:06:24,930 - INFO - [SOLUSDT] 🔎 Procesando señal HOLD a 141.43
+2025-02-25 16:06:25,087 - INFO - [BNBUSDT] 🔎 Procesando señal HOLD a 613.70
+2025-02-25 16:06:25,229 - INFO - [ETHUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:06:25,274 - INFO - [SOLUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:06:25,421 - INFO - [BNBUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:07:25,570 - INFO - [ETHUSDT] 🔎 Procesando señal HOLD a 2428.86
+2025-02-25 16:07:25,609 - INFO - [SOLUSDT] 🔎 Procesando señal HOLD a 141.38
+2025-02-25 16:07:25,761 - INFO - [BNBUSDT] 🔎 Procesando señal HOLD a 613.53
+2025-02-25 16:07:25,913 - INFO - [ETHUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:07:25,957 - INFO - [SOLUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:07:26,093 - INFO - [BNBUSDT] Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}

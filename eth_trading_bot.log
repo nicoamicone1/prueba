@@ -1,23 +1,167 @@
-2025-02-25 11:39:37,156 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
-2025-02-25 11:39:37,478 - INFO - ✅ Conexión Binance OK
-2025-02-25 11:39:37,795 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
-2025-02-25 11:39:38,615 - INFO - WebSocket iniciado
-2025-02-25 11:39:38,994 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
-2025-02-25 11:39:39,311 - INFO - Tamaño posición calculado: 0.055
-2025-02-25 11:39:40,217 - INFO - Trailing stop LONG actualizado: 2382.00
-2025-02-25 11:39:40,534 - INFO - Posición LONG abierta exitosamente
-2025-02-25 11:39:42,536 - INFO - Forzando orden de venta (cierre de posición) para testing.
-2025-02-25 11:39:43,472 - ERROR - Error al cerrar posición: APIError(code=-2022): ReduceOnly Order is rejected.
-2025-02-25 11:39:44,789 - ERROR - Error al cerrar posición: APIError(code=-2022): ReduceOnly Order is rejected.
-2025-02-25 11:39:46,219 - INFO - Trailing stop LONG actualizado: 2382.01
-2025-02-25 11:43:58,214 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
-2025-02-25 11:43:58,529 - INFO - ✅ Conexión Binance OK
-2025-02-25 11:43:58,849 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
-2025-02-25 11:43:59,659 - INFO - WebSocket iniciado
-2025-02-25 11:44:00,008 - INFO - No existe posición abierta. Abriendo posición LONG para luego forzar venta.
-2025-02-25 11:44:00,327 - INFO - Tamaño posición calculado: 0.055
-2025-02-25 11:44:01,538 - INFO - Posición LONG abierta exitosamente
-2025-02-25 11:44:01,938 - INFO - Trailing stop LONG actualizado: 2374.26
-2025-02-25 11:44:02,939 - INFO - Trailing stop LONG actualizado: 2374.32
-2025-02-25 11:44:03,539 - INFO - Forzando orden de venta (cierre de posición) para testing.
-2025-02-25 11:44:04,499 - INFO - La posición se cerró, error 'ReduceOnly' ignorado.
+2025-02-25 15:31:18,349 - INFO - Market Params para ETHUSDT | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 15:31:18,723 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:31:19,136 - INFO - Apalancamiento configurado para ETHUSDT: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-25 15:31:20,257 - INFO - WebSocket iniciado para ETHUSDT
+2025-02-25 15:31:21,056 - INFO - Market Params para SOLUSDT | Tick: 0.01 | Lot: 1.0 | Min Notional: 10.0
+2025-02-25 15:31:21,373 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:31:21,706 - INFO - Apalancamiento configurado para SOLUSDT: {'symbol': 'SOLUSDT', 'leverage': 10, 'maxNotionalValue': '40000000'}
+2025-02-25 15:34:21,457 - INFO - Market Params para ETHUSDT | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 15:34:21,777 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:34:22,082 - INFO - Apalancamiento configurado para ETHUSDT: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-25 15:34:22,899 - INFO - WebSocket iniciado para ETHUSDT
+2025-02-25 15:34:23,669 - INFO - Market Params para SOLUSDT | Tick: 0.01 | Lot: 1.0 | Min Notional: 10.0
+2025-02-25 15:34:23,997 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:34:24,300 - INFO - Apalancamiento configurado para SOLUSDT: {'symbol': 'SOLUSDT', 'leverage': 10, 'maxNotionalValue': '40000000'}
+2025-02-25 15:37:41,198 - INFO - Market Params para ETHUSDT | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 15:37:41,510 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:37:41,826 - INFO - Apalancamiento configurado para ETHUSDT: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-25 15:37:42,596 - INFO - Market Params para SOLUSDT | Tick: 0.01 | Lot: 1.0 | Min Notional: 10.0
+2025-02-25 15:37:42,908 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:37:43,225 - INFO - Apalancamiento configurado para SOLUSDT: {'symbol': 'SOLUSDT', 'leverage': 10, 'maxNotionalValue': '40000000'}
+2025-02-25 15:37:43,959 - INFO - Market Params para XRPUSDT | Tick: 0.0001 | Lot: 0.1 | Min Notional: 10.0
+2025-02-25 15:37:44,270 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:37:44,590 - INFO - Apalancamiento configurado para XRPUSDT: {'symbol': 'XRPUSDT', 'leverage': 10, 'maxNotionalValue': '10000000'}
+2025-02-25 15:37:46,423 - INFO - WebSocket iniciado para SOLUSDT
+2025-02-25 15:37:46,423 - INFO - WebSocket iniciado para ETHUSDT
+2025-02-25 15:37:46,424 - INFO - 🚀 Iniciando Trading Bot para SOLUSDT
+2025-02-25 15:37:46,424 - INFO - WebSocket iniciado para XRPUSDT
+2025-02-25 15:37:46,426 - INFO - 🚀 Iniciando Trading Bot para ETHUSDT
+2025-02-25 15:37:46,429 - INFO - 🚀 Iniciando Trading Bot para XRPUSDT
+2025-02-25 15:37:47,634 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:37:47,709 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.22
+2025-02-25 15:37:47,737 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2414.07
+2025-02-25 15:37:48,034 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:37:48,107 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:37:48,116 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:38:33,739 - INFO - Market Params para ETHUSDT | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 15:38:34,058 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:38:34,380 - INFO - Apalancamiento configurado para ETHUSDT: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-25 15:38:35,110 - INFO - Market Params para SOLUSDT | Tick: 0.01 | Lot: 1.0 | Min Notional: 10.0
+2025-02-25 15:38:35,431 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:38:35,741 - INFO - Apalancamiento configurado para SOLUSDT: {'symbol': 'SOLUSDT', 'leverage': 10, 'maxNotionalValue': '40000000'}
+2025-02-25 15:38:36,491 - INFO - Market Params para XRPUSDT | Tick: 0.0001 | Lot: 0.1 | Min Notional: 10.0
+2025-02-25 15:38:36,823 - INFO - ✅ Conexión Binance OK
+2025-02-25 15:38:37,141 - INFO - Apalancamiento configurado para XRPUSDT: {'symbol': 'XRPUSDT', 'leverage': 10, 'maxNotionalValue': '10000000'}
+2025-02-25 15:38:38,963 - INFO - WebSocket iniciado para ETHUSDT
+2025-02-25 15:38:38,963 - INFO - 🚀 Iniciando Trading Bot para ETHUSDT
+2025-02-25 15:38:38,965 - INFO - WebSocket iniciado para XRPUSDT
+2025-02-25 15:38:38,966 - INFO - WebSocket iniciado para SOLUSDT
+2025-02-25 15:38:38,968 - INFO - 🚀 Iniciando Trading Bot para XRPUSDT
+2025-02-25 15:38:38,970 - INFO - 🚀 Iniciando Trading Bot para SOLUSDT
+2025-02-25 15:38:40,181 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.45
+2025-02-25 15:38:40,232 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2418.00
+2025-02-25 15:38:40,250 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:38:40,595 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:38:40,636 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:38:40,653 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:39:40,941 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:39:41,009 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.45
+2025-02-25 15:39:41,025 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2417.94
+2025-02-25 15:39:41,278 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:39:41,376 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:39:41,399 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:40:41,621 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:40:41,762 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.66
+2025-02-25 15:40:41,780 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2419.64
+2025-02-25 15:40:41,957 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:40:42,123 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:40:42,144 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:41:42,308 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:41:42,469 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2419.01
+2025-02-25 15:41:42,498 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.51
+2025-02-25 15:41:42,644 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:41:42,851 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:41:42,878 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:42:42,993 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.20
+2025-02-25 15:42:43,192 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2413.73
+2025-02-25 15:42:43,234 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 140.83
+2025-02-25 15:42:43,333 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:42:43,540 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:42:43,586 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:43:43,679 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:43:43,914 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2418.39
+2025-02-25 15:43:43,948 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.06
+2025-02-25 15:43:44,019 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:43:44,287 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:43:44,310 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:44:44,366 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:44:44,635 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.06
+2025-02-25 15:44:44,678 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2419.98
+2025-02-25 15:44:44,707 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:44:44,997 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:44:45,313 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:45:45,044 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:45:45,339 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.17
+2025-02-25 15:45:45,384 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:45:45,696 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2425.33
+2025-02-25 15:45:45,719 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:45:46,053 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:46:45,730 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.20
+2025-02-25 15:46:46,109 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 140.70
+2025-02-25 15:46:46,130 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:46:46,470 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2418.89
+2025-02-25 15:46:46,500 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:46:46,848 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:47:46,488 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.20
+2025-02-25 15:47:46,838 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:47:46,864 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 140.80
+2025-02-25 15:47:47,224 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:47:47,252 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2419.64
+2025-02-25 15:47:47,597 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:48:47,190 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:48:47,530 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:48:47,572 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.03
+2025-02-25 15:48:47,910 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:48:47,935 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2421.67
+2025-02-25 15:48:48,285 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:49:47,877 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.20
+2025-02-25 15:49:48,218 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:49:48,262 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 140.72
+2025-02-25 15:49:48,649 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:49:48,679 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2417.75
+2025-02-25 15:49:49,026 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:50:48,565 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.20
+2025-02-25 15:50:48,909 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:50:48,989 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 140.69
+2025-02-25 15:50:49,334 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:50:49,375 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2419.44
+2025-02-25 15:50:49,724 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:51:49,257 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.20
+2025-02-25 15:51:49,604 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:51:49,670 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 140.53
+2025-02-25 15:51:50,008 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:51:50,074 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2417.99
+2025-02-25 15:51:50,432 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:52:49,957 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:52:50,306 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:52:50,360 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.19
+2025-02-25 15:52:50,702 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:52:50,779 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2424.00
+2025-02-25 15:52:51,131 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:53:50,658 - INFO - 🔎 Procesando señal HOLD en XRPUSDT a 2.21
+2025-02-25 15:53:51,007 - INFO - Métricas actualizadas para XRPUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:53:51,051 - INFO - 🔎 Procesando señal HOLD en SOLUSDT a 141.31
+2025-02-25 15:53:51,401 - INFO - Métricas actualizadas para SOLUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 15:53:51,475 - INFO - 🔎 Procesando señal HOLD en ETHUSDT a 2425.56
+2025-02-25 15:53:51,833 - INFO - Métricas actualizadas para ETHUSDT: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:08:02,146 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 16:08:02,456 - INFO - ✅ Conexión Binance OK
+2025-02-25 16:08:02,784 - INFO - Apalancamiento configurado: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-25 16:08:03,691 - INFO - WebSocket iniciado
+2025-02-25 16:08:04,021 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-25 16:08:05,305 - INFO - 🔎 Procesando señal HOLD a 2430.13
+2025-02-25 16:08:05,638 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:09:05,980 - INFO - 🔎 Procesando señal HOLD a 2432.32
+2025-02-25 16:09:06,318 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:10:06,659 - INFO - 🔎 Procesando señal HOLD a 2431.62
+2025-02-25 16:10:06,995 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:11:07,344 - INFO - 🔎 Procesando señal HOLD a 2426.92
+2025-02-25 16:11:07,681 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 16:11:42,311 - INFO - Detención manual
+2025-02-25 16:18:19,766 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 16:18:20,079 - INFO - ✅ Conexión Binance OK
+2025-02-25 16:18:20,405 - INFO - Apalancamiento configurado a x10: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-25 16:18:21,213 - INFO - WebSocket iniciado
+2025-02-25 16:18:21,568 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-25 16:18:22,779 - INFO - 🔎 Procesando señal HOLD a 2418.06
+2025-02-25 16:18:23,125 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
