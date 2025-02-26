@@ -165,3 +165,131 @@
 2025-02-25 16:18:21,568 - INFO - 🚀 Iniciando ETH Trading Bot
 2025-02-25 16:18:22,779 - INFO - 🔎 Procesando señal HOLD a 2418.06
 2025-02-25 16:18:23,125 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:35:45,474 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 20:35:45,789 - INFO - ✅ Conexión Binance OK
+2025-02-25 20:35:46,126 - INFO - Apalancamiento configurado a x10: {'symbol': 'ETHUSDT', 'leverage': 10, 'maxNotionalValue': '150000000'}
+2025-02-25 20:35:46,934 - INFO - WebSocket iniciado
+2025-02-25 20:35:47,311 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-25 20:35:48,564 - INFO - 🔎 Procesando señal HOLD a 2500.75
+2025-02-25 20:35:48,897 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:36:20,489 - INFO - Detención manual
+2025-02-25 20:36:42,205 - INFO - Market Params | Tick: 0.01 | Lot: 0.001 | Min Notional: 10.0
+2025-02-25 20:36:42,536 - INFO - ✅ Conexión Binance OK
+2025-02-25 20:36:43,429 - INFO - Apalancamiento configurado a x5: {'symbol': 'ETHUSDT', 'leverage': 5, 'maxNotionalValue': '320000000'}
+2025-02-25 20:36:44,235 - INFO - WebSocket iniciado
+2025-02-25 20:36:44,569 - INFO - 🚀 Iniciando ETH Trading Bot
+2025-02-25 20:36:45,833 - INFO - 🔎 Procesando señal HOLD a 2501.20
+2025-02-25 20:36:46,163 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:37:46,504 - INFO - 🔎 Procesando señal HOLD a 2499.43
+2025-02-25 20:37:46,836 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:38:47,751 - INFO - 🔎 Procesando señal HOLD a 2497.39
+2025-02-25 20:38:48,085 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:39:48,418 - INFO - 🔎 Procesando señal HOLD a 2496.86
+2025-02-25 20:39:48,752 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:40:49,376 - INFO - 🔎 Procesando señal HOLD a 2496.71
+2025-02-25 20:40:49,712 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:41:50,044 - INFO - 🔎 Procesando señal HOLD a 2496.05
+2025-02-25 20:41:50,378 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:42:50,714 - INFO - 🔎 Procesando señal HOLD a 2497.29
+2025-02-25 20:42:51,048 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:43:51,404 - INFO - 🔎 Procesando señal HOLD a 2498.49
+2025-02-25 20:43:51,738 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:44:52,075 - INFO - 🔎 Procesando señal HOLD a 2497.47
+2025-02-25 20:44:52,412 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:45:52,751 - INFO - 🔎 Procesando señal HOLD a 2495.60
+2025-02-25 20:45:53,092 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:46:53,430 - INFO - 🔎 Procesando señal HOLD a 2496.50
+2025-02-25 20:46:53,748 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:47:54,105 - INFO - 🔎 Procesando señal HOLD a 2496.59
+2025-02-25 20:47:54,733 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:48:55,071 - INFO - 🔎 Procesando señal HOLD a 2499.47
+2025-02-25 20:48:55,410 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:49:55,742 - INFO - 🔎 Procesando señal HOLD a 2497.83
+2025-02-25 20:49:56,075 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:50:56,410 - INFO - 🔎 Procesando señal HOLD a 2496.55
+2025-02-25 20:50:56,748 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:51:57,089 - INFO - 🔎 Procesando señal HOLD a 2497.10
+2025-02-25 20:51:57,418 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:52:57,757 - INFO - 🔎 Procesando señal HOLD a 2498.01
+2025-02-25 20:52:58,092 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:53:58,432 - INFO - 🔎 Procesando señal HOLD a 2496.22
+2025-02-25 20:53:58,768 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:54:59,104 - INFO - 🔎 Procesando señal HOLD a 2493.69
+2025-02-25 20:54:59,446 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:55:59,786 - INFO - 🔎 Procesando señal HOLD a 2495.28
+2025-02-25 20:56:00,116 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:57:00,449 - INFO - 🔎 Procesando señal HOLD a 2493.95
+2025-02-25 20:57:00,781 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:58:01,103 - INFO - 🔎 Procesando señal HOLD a 2495.31
+2025-02-25 20:58:01,442 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 20:59:01,781 - INFO - 🔎 Procesando señal HOLD a 2495.06
+2025-02-25 20:59:02,118 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:00:02,454 - INFO - 🔎 Procesando señal HOLD a 2494.46
+2025-02-25 21:00:02,789 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:01:03,132 - INFO - 🔎 Procesando señal HOLD a 2494.60
+2025-02-25 21:01:03,469 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:02:03,803 - INFO - 🔎 Procesando señal HOLD a 2495.07
+2025-02-25 21:02:04,137 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:03:04,475 - INFO - 🔎 Procesando señal HOLD a 2498.21
+2025-02-25 21:03:04,810 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:04:05,155 - INFO - 🔎 Procesando señal HOLD a 2496.58
+2025-02-25 21:04:05,497 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:05:05,837 - INFO - 🔎 Procesando señal HOLD a 2494.72
+2025-02-25 21:05:06,175 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:06:06,508 - INFO - 🔎 Procesando señal HOLD a 2492.25
+2025-02-25 21:06:06,841 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:06:45,470 - INFO - Informe de status enviado al Telegram
+2025-02-25 21:07:07,180 - INFO - 🔎 Procesando señal HOLD a 2495.78
+2025-02-25 21:07:07,517 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:08:07,852 - INFO - 🔎 Procesando señal HOLD a 2491.69
+2025-02-25 21:08:08,193 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:09:08,534 - INFO - 🔎 Procesando señal HOLD a 2490.72
+2025-02-25 21:09:08,864 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:10:09,223 - INFO - 🔎 Procesando señal HOLD a 2489.84
+2025-02-25 21:10:09,557 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:11:09,963 - INFO - 🔎 Procesando señal HOLD a 2488.07
+2025-02-25 21:11:10,366 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:12:10,700 - INFO - 🔎 Procesando señal HOLD a 2485.22
+2025-02-25 21:12:11,033 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:13:11,366 - INFO - 🔎 Procesando señal HOLD a 2487.47
+2025-02-25 21:13:11,701 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:14:12,032 - INFO - 🔎 Procesando señal HOLD a 2486.16
+2025-02-25 21:14:12,370 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:15:12,709 - INFO - 🔎 Procesando señal HOLD a 2487.38
+2025-02-25 21:15:13,041 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:16:13,377 - INFO - 🔎 Procesando señal HOLD a 2488.93
+2025-02-25 21:16:13,734 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:17:14,069 - INFO - 🔎 Procesando señal HOLD a 2482.70
+2025-02-25 21:17:14,408 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:18:14,746 - INFO - 🔎 Procesando señal HOLD a 2483.86
+2025-02-25 21:18:15,081 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:19:15,421 - INFO - 🔎 Procesando señal HOLD a 2481.76
+2025-02-25 21:19:15,761 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:20:16,103 - INFO - 🔎 Procesando señal HOLD a 2480.87
+2025-02-25 21:20:16,445 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:21:16,784 - INFO - 🔎 Procesando señal HOLD a 2483.77
+2025-02-25 21:21:17,123 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:22:17,461 - INFO - 🔎 Procesando señal HOLD a 2483.72
+2025-02-25 21:22:17,804 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:23:18,143 - INFO - 🔎 Procesando señal HOLD a 2485.16
+2025-02-25 21:23:18,479 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:24:18,823 - INFO - 🔎 Procesando señal HOLD a 2485.62
+2025-02-25 21:24:19,167 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:25:19,512 - INFO - 🔎 Procesando señal HOLD a 2487.64
+2025-02-25 21:25:19,848 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:26:20,188 - INFO - 🔎 Procesando señal HOLD a 2488.95
+2025-02-25 21:26:20,527 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:27:20,862 - INFO - 🔎 Procesando señal HOLD a 2485.50
+2025-02-25 21:27:21,203 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:28:21,544 - INFO - 🔎 Procesando señal HOLD a 2485.98
+2025-02-25 21:28:21,881 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:29:22,220 - INFO - 🔎 Procesando señal HOLD a 2484.01
+2025-02-25 21:29:22,552 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:30:22,908 - INFO - 🔎 Procesando señal HOLD a 2484.80
+2025-02-25 21:30:23,250 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:31:23,649 - INFO - 🔎 Procesando señal HOLD a 2477.41
+2025-02-25 21:31:24,057 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:32:24,410 - INFO - 🔎 Procesando señal HOLD a 2478.95
+2025-02-25 21:32:24,755 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
+2025-02-25 21:33:25,094 - INFO - 🔎 Procesando señal HOLD a 2477.42
+2025-02-25 21:33:25,434 - INFO - Métricas actualizadas: {'trades': 0, 'wins': 0, 'losses': 0, 'total_pnl': 0.0, 'win_rate': 0, 'max_drawdown': 0.0}
