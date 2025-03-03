@@ -4,7 +4,7 @@ import argparse
 import time
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import os
 from dotenv import load_dotenv
 
@@ -63,7 +63,8 @@ def get_futures_balance():
 def fetch_ohlcv():
     ohlcv = exchange.fetch_ohlcv(SYMBOL, TIMEFRAME, limit=100)
     df = pd.DataFrame(ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
-    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
+    # Convertir a datetime con zona horaria UTC
+    df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms', utc=True)
     return df
 
 # Función para calcular el RSI
@@ -136,7 +137,7 @@ def open_short(price):
 # Función para escribir en el log
 def write_log(entry):
     with open(LOG_FILE, "a") as file:
-        file.write(f"{datetime.now()} - {entry}\n")
+        file.write(f"{datetime.now(timezone.utc)} - {entry}\n")
 
 # Bucle principal del bot
 position = None
@@ -149,7 +150,7 @@ while True:
         last_timestamp = df['timestamp'].iloc[-1]
 
         # Esperar hasta un minuto después del cierre de la última vela
-        wait_time = (last_timestamp + timedelta(minutes=1)) - datetime.utcnow()
+        wait_time = (last_timestamp + timedelta(minutes=1)) - datetime.now(timezone.utc)
         if wait_time.total_seconds() > 0:
             time.sleep(wait_time.total_seconds())
 
