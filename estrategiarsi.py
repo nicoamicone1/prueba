@@ -9,14 +9,13 @@ import os
 from dotenv import load_dotenv
 
 # Configuración inicial
-# Reemplaza con tus propias claves API y TELEGRAM_CHAT_ID de Telegram
 load_dotenv()
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 API_KEY = os.getenv('API_KEY')
 API_SECRET = os.getenv('API_SECRET')
 
-# Conexión al exchange (Binance en este caso)
+# Conexión al exchange (Binance)
 exchange = ccxt.binance({
     'apiKey': API_KEY,
     'secret': API_SECRET,
@@ -35,6 +34,7 @@ args = parser.parse_args()
 
 # Parámetros globales
 SYMBOL = 'ETH/USDT'
+BASE_ASSET = SYMBOL.split('/')[0]  # 'ETH'
 TIMEFRAME = '15m'
 RSI_PERIOD = 14
 OVERSOLD = 30
@@ -44,10 +44,16 @@ BALANCE_PERCENTAGE = 0.95
 SL_PERCENTAGE = 0.01  # 1% stop loss
 TP_PERCENTAGE = 0.02  # 2% take profit
 
-# Configurar apalancamiento en el exchange
+# Obtener información del símbolo para precisión
+markets = exchange.fetch_markets()
+symbol_info = next((m for m in markets if m['symbol'] == SYMBOL), None)
+if symbol_info is None:
+    raise ValueError(f"No se encontró información para el símbolo {SYMBOL}")
+
+# Configurar apalancamiento
 exchange.set_leverage(LEVERAGE, SYMBOL)
 
-# Función para obtener el balance disponible en la billetera de futuros
+# Función para obtener el balance disponible en futuros
 def get_futures_balance():
     balance = exchange.fetch_balance({'type': 'future'})
     return balance['USDT']['free']
@@ -84,32 +90,67 @@ def calculate_position_size(price):
     position_size = position_value / price
     return position_size
 
-# Función para abrir una posición larga
+# Función para ajustar precisión de cantidad y precio
+def adjust_precision(value, precision_type):
+    if precision_type == 'amount':
+        return exchange.amount_to_precision(SYMBOL, value)
+    elif precision_type == 'price':
+        return exchange.price_to_precision(SYMBOL, value)
+    else:
+        raise ValueError("precision_type debe ser 'amount' o 'price'")
+
+# Función para abrir una posición larga con SL y TP automáticos
 def open_long(price):
     size = calculate_position_size(price)
-    sl = price * (1 - SL_PERCENTAGE)
-    tp = price * (1 + TP_PERCENTAGE)
+    size = adjust_precision(size, 'amount')
+    sl = adjust_precision(price * (1 - SL_PERCENTAGE), 'price')
+    tp = adjust_precision(price * (1 + TP_PERCENTAGE), 'price')
+    
     exchange.create_market_buy_order(SYMBOL, size)
-    bot.send_message(TELEGRAM_CHAT_ID, f"Long abierto: {size:.4f} {SYMBOL} a {price}\nSL: {sl:.2f}\nTP: {tp:.2f}")
+    
+    # Crear orden SL (venta stop market)
+    exchange.create_order(SYMBOL, 'stop_market', 'sell', size, None, {'stopPrice': sl, 'reduceOnly': True})
+    
+    # Crear orden TP (venta take profit market)
+    exchange.create_order(SYMBOL, 'take_profit_market', 'sell', size, None, {'stopPrice': tp, 'reduceOnly': True})
+    
+    message = (f"¡Se ha abierto una posición larga en {SYMBOL}! "
+               f"Compraste {size} {BASE_ASSET} a {price:.2f} USDT. "
+               f"Tu stop loss está en {sl} USDT y tu take profit en {tp} USDT.")
+    bot.send_message(TELEGRAM_CHAT_ID, message)
     return {'side': 'long', 'entry_price': price, 'size': size, 'sl': sl, 'tp': tp}
 
-# Función para abrir una posición corta
+# Función para abrir una posición corta con SL y TP automáticos
 def open_short(price):
     size = calculate_position_size(price)
-    sl = price * (1 + SL_PERCENTAGE)
-    tp = price * (1 - TP_PERCENTAGE)
+    size = adjust_precision(size, 'amount')
+    sl = adjust_precision(price * (1 + SL_PERCENTAGE), 'price')
+    tp = adjust_precision(price * (1 - TP_PERCENTAGE), 'price')
+    
     exchange.create_market_sell_order(SYMBOL, size)
-    bot.send_message(TELEGRAM_CHAT_ID, f"Short abierto: {size:.4f} {SYMBOL} a {price}\nSL: {sl:.2f}\nTP: {tp:.2f}")
+    
+    # Crear orden SL (compra stop market)
+    exchange.create_order(SYMBOL, 'stop_market', 'buy', size, None, {'stopPrice': sl, 'reduceOnly': True})
+    
+    # Crear orden TP (compra take profit market)
+    exchange.create_order(SYMBOL, 'take_profit_market', 'buy', size, None, {'stopPrice': tp, 'reduceOnly': True})
+    
+    message = (f"¡Se ha abierto una posición corta en {SYMBOL}! "
+               f"Vendiste {size} {BASE_ASSET} a {price:.2f} USDT. "
+               f"Tu stop loss está en {sl} USDT y tu take profit en {tp} USDT.")
+    bot.send_message(TELEGRAM_CHAT_ID, message)
     return {'side': 'short', 'entry_price': price, 'size': size, 'sl': sl, 'tp': tp}
 
-# Función para cerrar una posición
+# Función para cerrar una posición manualmente
 def close_position(position, price):
+    size = adjust_precision(position['size'], 'amount')
     if position['side'] == 'long':
-        exchange.create_market_sell_order(SYMBOL, position['size'])
-        bot.send_message(TELEGRAM_CHAT_ID, f"Long cerrado: {position['size']:.4f} {SYMBOL} a {price}")
+        exchange.create_market_sell_order(SYMBOL, size)
+        message = f"¡Posición cerrada manualmente! Vendiste {size} {BASE_ASSET} a {price:.2f} USDT."
     elif position['side'] == 'short':
-        exchange.create_market_buy_order(SYMBOL, position['size'])
-        bot.send_message(TELEGRAM_CHAT_ID, f"Short cerrado: {position['size']:.4f} {SYMBOL} a {price}")
+        exchange.create_market_buy_order(SYMBOL, size)
+        message = f"¡Posición cerrada manualmente! Compraste {size} {BASE_ASSET} a {price:.2f} USDT."
+    bot.send_message(TELEGRAM_CHAT_ID, message)
 
 # Bucle principal del bot
 position = None
@@ -137,27 +178,6 @@ while True:
                 position = open_long(current_price)
             elif signal == 'sell':
                 position = open_short(current_price)
-
-        # Comprobar stop loss y take profit si hay posición abierta
-        elif position:
-            if position['side'] == 'long':
-                if current_price <= position['sl']:
-                    bot.send_message(TELEGRAM_CHAT_ID, f"Stop Loss alcanzado en Long a {current_price}")
-                    close_position(position, current_price)
-                    position = None
-                elif current_price >= position['tp']:
-                    bot.send_message(TELEGRAM_CHAT_ID, f"Take Profit alcanzado en Long a {current_price}")
-                    close_position(position, current_price)
-                    position = None
-            elif position['side'] == 'short':
-                if current_price >= position['sl']:
-                    bot.send_message(TELEGRAM_CHAT_ID, f"Stop Loss alcanzado en Short a {current_price}")
-                    close_position(position, current_price)
-                    position = None
-                elif current_price <= position['tp']:
-                    bot.send_message(TELEGRAM_CHAT_ID, f"Take Profit alcanzado en Short a {current_price}")
-                    close_position(position, current_price)
-                    position = None
 
         # Esperar hasta el próximo intervalo (15 minutos)
         time.sleep(900)
