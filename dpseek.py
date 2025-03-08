@@ -429,13 +429,11 @@ class TelegramBotThread(threading.Thread):
 
     async def estado(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         status_text = (
-            f"🔍 *Estado del Bot*\n\n"
+            f"🔍 *Estado del Bot*\n"
             f"• Par: {self.bot.symbol}\n"
-            f"• Posición actual: {self.bot.position or 'Ninguna'}\n"
-            f"• Último precio: {self.get_current_price():.4f}\n"
+            f"• Posición: {self.bot.position or 'Ninguna'}\n"
             f"• Balance: {self.bot.get_futures_balance():.2f} USDT\n"
-            f"• Operaciones activas: {'Sí' if self.bot.position else 'No'}\n"
-            f"• Última actualización: {self.bot.last_execution.strftime('%Y-%m-%d %H:%M:%S')}"
+            f"• Última acción: {self.bot.last_execution.strftime('%Y-%m-%d %H:%M:%S')}"
         )
         await update.message.reply_text(status_text, parse_mode='Markdown')
 
@@ -456,7 +454,18 @@ class TelegramBotThread(threading.Thread):
     def run(self):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(self.application.run_polling())
+        
+        try:
+            # Configuración especial para evitar conflictos de señales
+            loop.run_until_complete(
+                self.application.run_polling(
+                    close_loop=False,
+                    stop_signals=None,
+                    allowed_updates=Update.ALL_TYPES
+                )
+            )
+        finally:
+            loop.close()
 
 def main():
     parser = argparse.ArgumentParser(description="Bot de Trading Avanzado para SOLUSDT")
