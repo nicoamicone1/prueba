@@ -158,8 +158,7 @@ class EnhancedTradingBot:
             return pd.DataFrame()
 
     def generate_signal(self, df: pd.DataFrame) -> dict:
-        required_columns = ['EMA_50', 'EMA_200', 'RSI', 'RSI_MA', 
-                          'volume', 'Volume_MA', 'VWAP', 'MACD', 'MACD_Signal']
+        required_columns = ['EMA_50', 'EMA_200', 'RSI', 'VWAP', 'MACD', 'MACD_Signal']
         if not all(col in df.columns for col in required_columns):
             return {'direction': None, 'strength': 0}
         
@@ -168,25 +167,22 @@ class EnhancedTradingBot:
         
         signal = {'direction': None, 'strength': 0}
         
-        # Condiciones LONG
+        # Condiciones LONG ajustadas
         if (current['EMA_50'] > current['EMA_200'] and
-            current['volume'] > current['Volume_MA'] * self.volume_threshold and
             current['close'] > current['VWAP'] and
-            current['RSI'] > 45 and
-            current['RSI'] > current['RSI_MA'] and
+            current['RSI'] > 50 and
             current['MACD'] > current['MACD_Signal'] and
             prev['MACD'] < prev['MACD_Signal']):
             
             signal['direction'] = 'long'
             signal['strength'] = self.calculate_signal_strength(df, 'long')
         
-        # Condiciones SHORT
+        # Condiciones SHORT ajustadas
         elif (current['EMA_50'] < current['EMA_200'] and
-              current['close'] < current['VWAP'] and
-              current['RSI'] < 55 and
-              current['RSI'] < current['RSI_MA'] and
-              current['MACD'] < current['MACD_Signal'] and
-              prev['MACD'] > prev['MACD_Signal']):
+            current['close'] < current['VWAP'] and
+            current['RSI'] < 50 and
+            current['MACD'] < current['MACD_Signal'] and
+            prev['MACD'] > prev['MACD_Signal']):
             
             signal['direction'] = 'short'
             signal['strength'] = self.calculate_signal_strength(df, 'short')
@@ -377,12 +373,12 @@ class EnhancedTradingBot:
                 
                 if self.position:
                     self.monitor_positions(current_price)
-                elif signal['direction'] and signal['strength'] >= 0.6:
+                elif signal['direction'] and signal['strength'] >= 0.5:  # Umbral ajustado de 0.6 a 0.5
                     self.execute_entry(signal, df)
                     
                 self.last_execution = datetime.now()
                 time.sleep(60)
-                
+            
             except Exception as e:
                 logging.error(f"Error en estrategia: {str(e)}")
                 time.sleep(300)
