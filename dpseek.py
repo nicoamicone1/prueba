@@ -50,7 +50,7 @@ def send_telegram_message(message: str):
 class EnhancedTradingBot:
     def __init__(self):
         self.symbol = "SOLUSDT"
-        self.leverage = 10
+        self.leverage = 13
         self.risk_per_trade = 0.95
         self.timeframe = "15m"
         self.ema_fast = 50
