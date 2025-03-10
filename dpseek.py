@@ -199,6 +199,17 @@ class EnhancedTradingBot:
         except:
             return 0.0
 
+    def calculate_required_margin(self, qty: float, price: float) -> float:
+        """
+        Calcula el margen requerido para abrir una posición.
+        En Binance Futures, el margen inicial es aproximadamente qty * price / leverage.
+        """
+        try:
+            return (qty * price) / self.leverage
+        except Exception as e:
+            logging.error(f"Error calculando margen requerido: {str(e)}")
+            return float('inf')  # Valor grande para indicar error
+
     def dynamic_position_sizing(self, df: pd.DataFrame):
         try:
             current_price = df['close'].iloc[-1]
@@ -206,14 +217,34 @@ class EnhancedTradingBot:
             signal = self.generate_signal(df)
             
             balance = self.get_futures_balance()
+            if balance <= 0:
+                logging.error("Balance insuficiente para operar")
+                return 0.0
+            
+            # Calcular el capital en riesgo
             risk_capital = balance * self.risk_per_trade * (1 + signal['strength'])
             
+            # Ajustar por volatilidad
             if (atr / current_price * 100) > 5:
                 risk_capital *= 0.7
-                
-            position_size = (risk_capital * self.leverage) / current_price
-            return self.adjust_quantity(position_size)
-        except:
+            
+            # Calcular tamaño de posición máximo basado en el balance y apalancamiento
+            max_position_size = (balance * self.leverage) / current_price
+            position_size = min((risk_capital * self.leverage) / current_price, max_position_size)
+            
+            # Ajustar la cantidad a la precisión del símbolo
+            qty = self.adjust_quantity(position_size)
+            
+            # Verificar si el margen requerido es menor o igual al balance disponible
+            required_margin = self.calculate_required_margin(qty, current_price)
+            if required_margin > balance:
+                logging.warning(f"Margen requerido ({required_margin:.2f}) excede el balance ({balance:.2f})")
+                qty = self.adjust_quantity((balance * self.leverage) / current_price)
+                logging.info(f"Ajustando qty a {qty} para no exceder el balance")
+            
+            return qty if qty > 0 else 0.0
+        except Exception as e:
+            logging.error(f"Error en cálculo de tamaño de posición: {str(e)}")
             return 0.0
 
     def execute_entry(self, signal: dict, df: pd.DataFrame):
@@ -227,8 +258,13 @@ class EnhancedTradingBot:
             qty = self.dynamic_position_sizing(df)
             
             if qty <= 0:
+                logging.warning("Cantidad calculada <= 0, no se abre posición")
                 return
 
+            # Calcular SL y TP tentativos para logging
+            tentative_sl = self._calculate_initial_sl(signal['direction'], atr)
+            tentative_tp = self._calculate_initial_tp(signal['direction'], atr)
+            
             order = self.client.futures_create_order(
                 symbol=self.symbol,
                 side='BUY' if signal['direction'] == 'long' else 'SELL',
@@ -240,21 +276,32 @@ class EnhancedTradingBot:
                 self.position = signal['direction']
                 self.entry_price = float(order['avgPrice'])
                 self.entry_time = datetime.now()
-                self.stop_loss = self._calculate_initial_sl(signal['direction'], atr)
-                self.take_profit = self._calculate_initial_tp(signal['direction'], atr)
+                self.stop_loss = tentative_sl
+                self.take_profit = tentative_tp
                 self.position_qty = qty
                 
                 msg = (f"📈 *Posición {signal['direction'].upper()} ABIERTA*\n"
-                       f"Entrada: {self.entry_price:.4f}\n"
-                       f"Tamaño: {qty:.2f} contratos\n"
-                       f"SL: {self.stop_loss:.4f}\n"
-                       f"TP: {self.take_profit:.4f}")
+                    f"Entrada: {self.entry_price:.4f}\n"
+                    f"Tamaño: {qty:.2f} contratos\n"
+                    f"SL: {self.stop_loss:.4f}\n"
+                    f"TP: {self.take_profit:.4f}")
                 send_telegram_message(msg)
                 
         except BinanceAPIException as e:
-            logging.error(f"Error entrada: {e}")
+            if "Margin is insufficient" in str(e):
+                logging.error(f"Error: Margen insuficiente para abrir posición")
+                msg = (f"❌ *Error: Margen Insuficiente*\n"
+                    f"Señal: {signal['direction'].upper()}\n"
+                    f"Precio de Entrada Tentativo: {current_price:.4f}\n"
+                    f"Tamaño Tentativo: {qty:.2f} contratos\n"
+                    f"SL Tentativo: {tentative_sl:.4f}\n"
+                    f"TP Tentativo: {tentative_tp:.4f}\n"
+                    f"Balance Actual: {self.get_futures_balance():.2f} USDT")
+                send_telegram_message(msg)
+            else:
+                logging.error(f"Error entrada: {e}")
+                send_telegram_message(f"❌ *Error apertura:* {e}")
             self._reset_position()
-            send_telegram_message(f"❌ *Error apertura:* {e}")
         except Exception as e:
             logging.error(f"Error general entrada: {str(e)}")
             self._reset_position()
