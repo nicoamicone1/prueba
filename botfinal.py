@@ -3,7 +3,7 @@
 
 """
 Bot de Trading Algorítmico Avanzado para SOLUSDT
-Versión 4.2 - Marzo 2025 (Corregida para Balance Bajo)
+Versión 4.2 - Marzo 2025 (Corregida para Balance Bajo y con órdenes SL/TP)
 """
 
 import os
@@ -71,6 +71,10 @@ class EnhancedTradingBot:
         self.position_qty = None
         self.entry_time = None
         self.max_drawdown = 0.20
+
+        # IDs de órdenes SL y TP pendientes
+        self.sl_order_id = None
+        self.tp_order_id = None
         
         self.active = True
         self.last_execution = datetime.now()
@@ -103,7 +107,7 @@ class EnhancedTradingBot:
             balance_info = self.client.futures_account_balance()
             for asset in balance_info:
                 if asset['asset'] == "USDT":
-                    balance = float(asset['availableBalance'])  # Usamos 'availableBalance' para margen disponible
+                    balance = float(asset['availableBalance'])
                     logging.info(f"Balance disponible obtenido: {balance} USDT")
                     return balance
             logging.error("No se encontró USDT en la cuenta de futuros")
@@ -115,7 +119,7 @@ class EnhancedTradingBot:
     def adjust_quantity(self, quantity: float) -> float:
         """Ajusta la cantidad a la precisión del símbolo"""
         _, qty_precision = self.get_precision()
-        step_size = 10 ** -qty_precision  # Ejemplo: 0.001 para SOLUSDT
+        step_size = 10 ** -qty_precision
         adjusted_qty = round(math.floor(quantity / step_size) * step_size, qty_precision)
         logging.info(f"Ajustando cantidad: {quantity} -> {adjusted_qty}")
         return adjusted_qty
@@ -220,6 +224,16 @@ class EnhancedTradingBot:
         except:
             return 0.0
 
+    def cancel_pending_orders(self):
+        """Cancela todas las órdenes pendientes para el símbolo"""
+        try:
+            orders = self.client.futures_get_open_orders(symbol=self.symbol)
+            for order in orders:
+                self.client.futures_cancel_order(symbol=self.symbol, orderId=order['orderId'])
+                logging.info(f"Cancelando orden pendiente: {order['orderId']}")
+        except Exception as e:
+            logging.error(f"Error cancelando órdenes pendientes: {str(e)}")
+
     def dynamic_position_sizing(self, df: pd.DataFrame, simulate=False):
         """Calcula el tamaño de la posición dinámicamente"""
         try:
@@ -228,44 +242,37 @@ class EnhancedTradingBot:
             signal = self.generate_signal(df)
             
             balance = self.get_futures_balance()
-            if balance < 1.0:  # Mínimo razonable para operar
+            if balance < 1.0:
                 logging.error(f"Balance insuficiente para operar: {balance} USDT")
                 return 0.0
             
             logging.info(f"Balance actual: {balance} USDT")
             logging.info(f"Precio actual de {self.symbol}: {current_price} USDT")
             
-            # Capital en riesgo (95% del balance ajustado por fuerza de señal)
             risk_capital = balance * self.risk_per_trade * (1 + signal['strength'])
             logging.info(f"Capital en riesgo: {risk_capital:.4f} USDT")
             
-            # Ajuste por volatilidad
             volatility = (atr / current_price * 100)
             logging.info(f"Volatilidad: {volatility:.2f}%")
             if volatility > 5:
                 risk_capital *= 0.7
                 logging.info(f"Ajuste por volatilidad: {risk_capital:.4f} USDT")
             
-            # Tamaño de posición con apalancamiento
             position_size = (risk_capital * self.leverage) / current_price
             logging.info(f"Tamaño de posición calculado: {position_size:.6f}")
             
-            # Ajustar a la precisión del símbolo
             qty = self.adjust_quantity(position_size)
             logging.info(f"Cantidad ajustada inicial: {qty}")
             
-            # Verificar margen requerido
             required_margin = self.calculate_required_margin(qty, current_price)
             if required_margin > balance:
                 logging.warning(f"Margen requerido ({required_margin:.2f}) excede el balance ({balance:.2f})")
-                # Ajustar qty al máximo posible según balance
                 max_position_size = (balance * self.leverage) / current_price
                 qty = self.adjust_quantity(max_position_size)
                 logging.info(f"Cantidad ajustada al máximo posible: {qty}")
             
-            # Asegurarse de que qty sea mayor que la precisión mínima
             _, qty_precision = self.get_precision()
-            min_qty = 10 ** -qty_precision  # Ejemplo: 0.001 para SOLUSDT
+            min_qty = 10 ** -qty_precision
             if qty < min_qty:
                 logging.warning(f"Cantidad {qty} menor que el mínimo {min_qty}, ajustando a 0")
                 qty = 0.0
@@ -281,7 +288,7 @@ class EnhancedTradingBot:
             return 0.0
 
     def execute_entry(self, signal: dict, df: pd.DataFrame, simulate=False):
-        """Ejecuta la entrada a una posición"""
+        """Ejecuta la entrada a una posición y coloca órdenes de SL y TP"""
         try:
             required_columns = ['ATR', 'close']
             if not all(col in df.columns for col in required_columns):
@@ -295,12 +302,10 @@ class EnhancedTradingBot:
                 logging.warning("Cantidad calculada <= 0, no se abre posición")
                 return
 
-            # Calcular SL y TP tentativos
             tentative_sl = self._calculate_initial_sl(signal['direction'], atr, current_price)
             tentative_tp = self._calculate_initial_tp(signal['direction'], atr, current_price)
             
             if simulate:
-                # Modo simulación: Se simula la señal pero se ejecutan las órdenes reales
                 order = self.client.futures_create_order(
                     symbol=self.symbol,
                     side='BUY' if signal['direction'] == 'long' else 'SELL',
@@ -315,6 +320,37 @@ class EnhancedTradingBot:
                     self.take_profit = tentative_tp
                     self.position_qty = qty
                     
+                    # Colocar órdenes de SL y TP
+                    price_precision, _ = self.get_precision()
+                    self.stop_loss = round(self.stop_loss, price_precision)
+                    self.take_profit = round(self.take_profit, price_precision)
+                    side_order = 'SELL' if signal['direction'] == 'long' else 'BUY'
+                    try:
+                        sl_order = self.client.futures_create_order(
+                            symbol=self.symbol,
+                            side=side_order,
+                            type='STOP_MARKET',
+                            stopPrice=self.stop_loss,
+                            closePosition=True
+                        )
+                        self.sl_order_id = sl_order['orderId']
+                        logging.info(f"Orden SL colocada: {self.sl_order_id}")
+                    except Exception as e:
+                        logging.error(f"Error colocando orden SL: {e}")
+                    
+                    try:
+                        tp_order = self.client.futures_create_order(
+                            symbol=self.symbol,
+                            side=side_order,
+                            type='TAKE_PROFIT_MARKET',
+                            stopPrice=self.take_profit,
+                            closePosition=True
+                        )
+                        self.tp_order_id = tp_order['orderId']
+                        logging.info(f"Orden TP colocada: {self.tp_order_id}")
+                    except Exception as e:
+                        logging.error(f"Error colocando orden TP: {e}")
+                    
                     msg = (f"📈 *Simulación Real: Posición {signal['direction'].upper()} ABIERTA*\n"
                            f"Entrada: {self.entry_price:.4f}\n"
                            f"Tamaño: {qty:.2f} contratos\n"
@@ -322,7 +358,6 @@ class EnhancedTradingBot:
                            f"TP: {self.take_profit:.4f}")
                     send_telegram_message(msg)
             else:
-                # Modo real: ejecuta la orden
                 order = self.client.futures_create_order(
                     symbol=self.symbol,
                     side='BUY' if signal['direction'] == 'long' else 'SELL',
@@ -337,6 +372,37 @@ class EnhancedTradingBot:
                     self.stop_loss = tentative_sl
                     self.take_profit = tentative_tp
                     self.position_qty = qty
+                    
+                    # Colocar órdenes de SL y TP
+                    price_precision, _ = self.get_precision()
+                    self.stop_loss = round(self.stop_loss, price_precision)
+                    self.take_profit = round(self.take_profit, price_precision)
+                    side_order = 'SELL' if signal['direction'] == 'long' else 'BUY'
+                    try:
+                        sl_order = self.client.futures_create_order(
+                            symbol=self.symbol,
+                            side=side_order,
+                            type='STOP_MARKET',
+                            stopPrice=self.stop_loss,
+                            closePosition=True
+                        )
+                        self.sl_order_id = sl_order['orderId']
+                        logging.info(f"Orden SL colocada: {self.sl_order_id}")
+                    except Exception as e:
+                        logging.error(f"Error colocando orden SL: {e}")
+                    
+                    try:
+                        tp_order = self.client.futures_create_order(
+                            symbol=self.symbol,
+                            side=side_order,
+                            type='TAKE_PROFIT_MARKET',
+                            stopPrice=self.take_profit,
+                            closePosition=True
+                        )
+                        self.tp_order_id = tp_order['orderId']
+                        logging.info(f"Orden TP colocada: {self.tp_order_id}")
+                    except Exception as e:
+                        logging.error(f"Error colocando orden TP: {e}")
                     
                     msg = (f"📈 *Posición {signal['direction'].upper()} ABIERTA*\n"
                            f"Entrada: {self.entry_price:.4f}\n"
@@ -394,41 +460,40 @@ class EnhancedTradingBot:
         return False
 
     def execute_exit(self, price: float, simulate=False):
-        """Ejecuta el cierre de una posición"""
+        """Ejecuta el cierre de una posición cancelando órdenes pendientes y cerrando la posición"""
         try:
-            if not self.position or not self.position_qty:
-                logging.error("No hay posición activa")
-                return
-
-            if simulate:
-                # Modo simulación: se ejecuta la orden real para cierre
-                self.client.futures_create_order(
-                    symbol=self.symbol,
-                    side='SELL' if self.position == 'long' else 'BUY',
-                    type='MARKET',
-                    quantity=self.position_qty
-                )
-                
+            # Cancelar órdenes de SL y TP pendientes
+            if self.sl_order_id:
+                try:
+                    self.client.futures_cancel_order(symbol=self.symbol, orderId=self.sl_order_id)
+                    logging.info(f"Orden SL cancelada: {self.sl_order_id}")
+                except Exception as e:
+                    logging.error(f"Error cancelando orden SL: {e}")
+            if self.tp_order_id:
+                try:
+                    self.client.futures_cancel_order(symbol=self.symbol, orderId=self.tp_order_id)
+                    logging.info(f"Orden TP cancelada: {self.tp_order_id}")
+                except Exception as e:
+                    logging.error(f"Error cancelando orden TP: {e}")
+            
+            if self.position and self.position_qty:
+                close_side = 'SELL' if self.position == 'long' else 'BUY'
+                if simulate:
+                    self.client.futures_create_order(
+                        symbol=self.symbol,
+                        side=close_side,
+                        type='MARKET',
+                        quantity=self.position_qty
+                    )
+                else:
+                    self.client.futures_create_order(
+                        symbol=self.symbol,
+                        side=close_side,
+                        type='MARKET',
+                        quantity=self.position_qty
+                    )
                 pnl = (price - self.entry_price) * self.position_qty * (-1 if self.position == 'short' else 1)
                 duration = datetime.now() - self.entry_time
-                
-                msg = (f"📉 *Simulación Real: Posición {self.position.upper()} CERRADA*\n"
-                       f"Salida: {price:.4f}\n"
-                       f"Resultado: {pnl:.2f} USDT\n"
-                       f"Duración: {duration}")
-                send_telegram_message(msg)
-            else:
-                # Modo real: ejecuta la orden de cierre
-                self.client.futures_create_order(
-                    symbol=self.symbol,
-                    side='SELL' if self.position == 'long' else 'BUY',
-                    type='MARKET',
-                    quantity=self.position_qty
-                )
-                
-                pnl = (price - self.entry_price) * self.position_qty * (-1 if self.position == 'short' else 1)
-                duration = datetime.now() - self.entry_time
-                
                 msg = (f"📉 *Posición {self.position.upper()} CERRADA*\n"
                        f"Salida: {price:.4f}\n"
                        f"Resultado: {pnl:.2f} USDT\n"
@@ -452,36 +517,8 @@ class EnhancedTradingBot:
         self.take_profit = None
         self.position_qty = None
         self.entry_time = None
-
-    def manage_exits(self, current_price: float, df: pd.DataFrame):
-        """Gestiona SL y TP dinámicamente"""
-        if not self.position:
-            return
-            
-        try:
-            atr = df['ATR'].iloc[-1]
-            price_precision, _ = self.get_precision()
-            
-            if self.position == 'long':
-                new_sl = current_price - (atr * self.sl_multiplier)
-                self.stop_loss = max(self.stop_loss, new_sl) if self.stop_loss else new_sl
-                
-                if current_price >= self.entry_price * (1 + (self.tp_multiplier * atr/self.entry_price)):
-                    self.take_profit = current_price - (atr * 0.5)
-                    
-            elif self.position == 'short':
-                new_sl = current_price + (atr * self.sl_multiplier)
-                self.stop_loss = min(self.stop_loss, new_sl) if self.stop_loss else new_sl
-                
-                if current_price <= self.entry_price * (1 - (self.tp_multiplier * atr/self.entry_price)):
-                    self.take_profit = current_price + (atr * 0.5)
-            
-            self.stop_loss = round(self.stop_loss, price_precision)
-            if self.take_profit:
-                self.take_profit = round(self.take_profit, price_precision)
-                
-        except Exception as e:
-            logging.error(f"Error gestionando SL/TP: {str(e)}")
+        self.sl_order_id = None
+        self.tp_order_id = None
 
     def execute_strategy(self):
         """Ejecuta la estrategia de trading en bucle"""
@@ -490,6 +527,9 @@ class EnhancedTradingBot:
                 if (datetime.now() - self.last_execution).seconds < 300:
                     time.sleep(60)
                     continue
+                
+                if not self.position:
+                    self.cancel_pending_orders()
                 
                 df = self.fetch_enhanced_data(limit=300)
                 df = self.calculate_enhanced_indicators(df)
@@ -500,11 +540,7 @@ class EnhancedTradingBot:
                 signal = self.generate_signal(df)
                 current_price = df['close'].iloc[-1]
                 
-                self.manage_exits(current_price, df)
-                
-                if self.position:
-                    self.monitor_positions(current_price)
-                elif signal['direction'] and signal['strength'] >= 0.5:
+                if not self.position and signal['direction'] and signal['strength'] >= 0.5:
                     self.execute_entry(signal, df)
                     
                 self.last_execution = datetime.now()
@@ -538,11 +574,10 @@ class EnhancedTradingBot:
                 time.sleep(5)
         return pd.DataFrame()
 
-    def monitor_positions(self, current_price: float):
-        """Monitorea posiciones abiertas para cerrarlas"""
-        if (self.position == 'long' and (current_price <= self.stop_loss or current_price >= self.take_profit)) or \
-           (self.position == 'short' and (current_price >= self.stop_loss or current_price <= self.take_profit)):
-            self.execute_exit(current_price)
+    def monitor_positions(self, current_price: float, df: pd.DataFrame):
+        """Monitorea posiciones abiertas y cancela órdenes pendientes si no hay posición"""
+        if not self.position:
+            self.cancel_pending_orders()
 
 class TelegramBotThread(threading.Thread):
     def __init__(self, trading_bot: EnhancedTradingBot):
@@ -613,7 +648,6 @@ def main():
             
             if not df.empty and all(col in df.columns for col in ['ATR', 'close', 'EMA_50', 'EMA_200', 'RSI']):
                 signal = {'direction': args.simulate, 'strength': 0.8}
-                # En modo simulación se usa la señal simulada, pero se ejecutan las órdenes reales
                 bot.execute_entry(signal, df, simulate=False)
                 time.sleep(2)
                 bot.execute_exit(df['close'].iloc[-1], simulate=False)
